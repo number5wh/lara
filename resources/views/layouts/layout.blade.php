@@ -11,7 +11,6 @@
 ">
 
 <link rel="stylesheet" href="{{url('css/all.css')}}">
-
   </head>
 
   <body ontouchstart>
@@ -28,25 +27,25 @@
       </div>
 
       <div class="weui_tabbar">
-        <a href="javascript:;" class="weui_tabbar_item weui_bar_item_on">
+        <a href="{{url('/friend')}}" class="weui_tabbar_item weui_bar_item_on">
           <div class="weui_tabbar_icon">
             <img src="{{url('images/icon_nav_button.png')}}" alt="">
           </div>
           <p class="weui_tabbar_label">联系人</p>
         </a>
-        <a href="javascript:;" class="weui_tabbar_item">
+        <a href="{{url('/equip')}}" class="weui_tabbar_item">
           <div class="weui_tabbar_icon">
             <img src="{{url('images/icon_nav_msg.png')}}" alt="">
           </div>
           <p class="weui_tabbar_label">设备</p>
         </a>
-        <a href="javascript:;" class="weui_tabbar_item">
+        <a href="{{url('/quick')}}" class="weui_tabbar_item">
           <div class="weui_tabbar_icon">
             <img src="{{url('images/icon_nav_article.png')}}" alt="">
           </div>
           <p class="weui_tabbar_label">便捷操作</p>
         </a>
-        <a href="javascript:;" class="weui_tabbar_item">
+        <a href="{{url('/friend')}}" class="weui_tabbar_item">
           <div class="weui_tabbar_icon">
             <img src="{{url('images/icon_nav_cell.png')}}" alt="">
           </div>
@@ -54,9 +53,9 @@
         </a>
       </div>
     </div>
-
     <script src="{{url('js/jquery-2.1.4.js')}}"></script>
 <script src="{{url('js/all.js')}}"></script>
+    <script>$(".bk_title").html(document.title)</script>
 
   </body>
 </html>

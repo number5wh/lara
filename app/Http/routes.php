@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+$this->get('/', 'Auth\AuthController@showLoginForm');
+Route::group(['prefix'=>'/friend'],function(){
+    Route::get('/','User\FriendController@home');
+    Route::post('/handle','User\FriendController@handle');
+    Route::get('/add','User\FriendController@showAddForm');
+    Route::post('/add','User\FriendController@add');
+    Route::get('/handleResult/{from}/{to}/{pass}','User\FriendController@handleResult');
 });
-Route::get('/friend',function(){
-    return view('friends.home');
-});
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

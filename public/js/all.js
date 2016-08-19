@@ -1,3 +1,14 @@
+/**
+ * Created by root on 16-7-29.
+ */
+$(document).ready(function(){
+
+    $("b.sliderFriendGroup").click(function(){
+        $(this).parent().next().slideToggle();
+    });
+
+});
+
 // jshint ignore: start
 +function($){
 
@@ -13432,6 +13443,92 @@ $.rawCitiesData = [
 
 }($);
 
+/**
+ * Created by root on 16-8-19.
+ */
+$("#showTooltips").click(function() {
+    var email = $('#email').val();
+    var filter=/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$)|(^$)/;
+    if(filter.test(email))
+    {
+        $.toptip('提交成功', 'success');
+    }
+
+    else if(!filter.test(email)){
+        $.toptip('请输入正确的邮箱地址');
+    }
+});
+
+
+
+/**
+ * Created by root on 16-8-18.
+ */
+$(document).ready(function(){
+    $("li div#friendHandle").change(function(){
+        //alert(1);
+        var value = $(this).find('option:selected').val();
+        if(value == -1) {
+            $(this).siblings("div.handleAgree").css('display','none');//jquery样式改变
+            $(this).siblings("div.handleDeny").css('display','none');
+            $(this).siblings("div.handleIgnore").css('display','none');
+        }
+        if(value == 1) {
+            $(this).siblings("div.handleAgree").css('display','block');//jquery样式改变
+            $(this).siblings("div.handleDeny").css('display','none');
+            $(this).siblings("div.handleIgnore").css('display','none');
+        }
+        if(value == 0) {
+            $(this).siblings("div.handleAgree").css('display','none');//jquery样式改变
+            $(this).siblings("div.handleDeny").css('display','block');
+            $(this).siblings("div.handleIgnore").css('display','none');
+        }
+        if(value == 3) {
+            $(this).siblings("div.handleAgree").css('display','none');//jquery样式改变
+            $(this).siblings("div.handleDeny").css('display','none');
+            $(this).siblings("div.handleIgnore").css('display','block');
+        }
+    });
+});
+
+/**
+ * Created by root on 16-8-18.
+ */
+//$(document).ready(function(){
+//    $("#friendPage").click(function(){
+//        $(this).siblings("ul").toggle();
+//    });
+//});
+$(document).on("click", "#friendPage", function() {
+    $.actions({
+        title: "选择操作",
+        onClose: function() {
+            console.log("close");
+        },
+        actions: [
+            {
+                text: "添加好友",
+                className: "color-primary",
+                onClick: function() {
+                    //$.alert("你选择了“编辑”");
+                    var dm = window.location.host;
+                    var tg = "/friend/add";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+
+                }
+            },
+            {
+                text: "添加分组",
+                className: "color-primary",
+                onClick: function() {
+                    $.alert("你选择了“编辑”");
+                }
+            }
+        ]
+    });
+});
+
 /** 
 * jQuery WeUI V0.8.0 
 * By 言川
@@ -19600,8 +19697,7 @@ Device/OS Detection
     var $t = $('.weui_toptips').remove();
     $t = $('<div class="weui_toptips"></div>').appendTo(document.body);
     $t.html(text);
-    $t[0].className = 'weui_toptips ' + className
-
+    $t[0].className = 'weui_toptips ' + className;
     clearTimeout(timeout);
 
     if(!$t.hasClass('weui_toptips_visible')) {

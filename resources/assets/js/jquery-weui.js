@@ -6166,8 +6166,7 @@ Device/OS Detection
     var $t = $('.weui_toptips').remove();
     $t = $('<div class="weui_toptips"></div>').appendTo(document.body);
     $t.html(text);
-    $t[0].className = 'weui_toptips ' + className
-
+    $t[0].className = 'weui_toptips ' + className;
     clearTimeout(timeout);
 
     if(!$t.hasClass('weui_toptips_visible')) {
