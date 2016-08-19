@@ -20,6 +20,11 @@ Route::group(['prefix'=>'/friend'],function(){
     Route::get('/handleResult/{from}/{to}/{pass}','User\FriendController@handleResult');
 });
 
+Route::group(['prefix'=>'/host'],function(){
+    Route::get('/add','Equip\HostController@showAddForm');
+    Route::post('/add','Equip\HostController@add');
+});
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');

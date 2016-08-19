@@ -9,5 +9,12 @@ use App\Http\Controllers\Controller;
 
 class EquipController extends Controller
 {
-    //
+    /**
+     * 构造函数
+     */
+    public function __construct(){
+        // $this->middleware('auth');
+    }
+
+
 }
