@@ -1,12 +1,8 @@
 /**
- * Created by root on 16-8-18.
+ * Created by root on 16-8-20.
  */
-//$(document).ready(function(){
-//    $("#friendPage").click(function(){
-//        $(this).siblings("ul").toggle();
-//    });
-//});
-$(document).on("click", "#friendPage", function() {
+
+$(document).on("click", "#equipPageAdmin", function() {
     $.actions({
         title: "选择操作",
         onClose: function() {
@@ -14,23 +10,33 @@ $(document).on("click", "#friendPage", function() {
         },
         actions: [
             {
-                text: "添加好友",
+                text: "添加主机",
                 className: "color-primary",
                 onClick: function() {
                     //$.alert("你选择了“编辑”");
                     var dm = window.location.host;
-                    var tg = "/friend/add";
+                    var tg = "/host/add";
                     var url = "http://"+dm+tg;
                     window.location.href=url;
 
                 }
             },
             {
-                text: "添加分组",
+                text: "添加设备",
                 className: "color-primary",
                 onClick: function() {
                     var dm = window.location.host;
-                    var tg = "/friendGroup/add";
+                    var tg = "/equip/add";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+                }
+            },
+            {
+                text: "移除设备",
+                className: "color-primary",
+                onClick: function() {
+                    var dm = window.location.host;
+                    var tg = "/equip/detele";
                     var url = "http://"+dm+tg;
                     window.location.href=url;
                 }

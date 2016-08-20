@@ -96,10 +96,12 @@
     @endif
 
     <?php
-    //dd($data);
+            //dd($data);
     $name = $data['name'];
-    $emails = $data['emails'];
+    $emails = $data['email'];
+            //dd($emails);
     $groups = $name==null?0:count($name);
+    //dd($groups);
     for($i=0;$i<$groups;$i++){
         ?>
 
@@ -114,19 +116,15 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <p>{{$emails[$i][$j]}}</p>
             </div>
-            <div class="weui_cell_ft">
-            </div>
         </a>
         <?php }elseif(Auth::user()->is_admin == 1){
                 $url = url("/user/getAuth/{$emails[$i][$j]}");
             ?>
-        <a class="weui_cell" href="javascript:;">
+
             <div class="weui_cell_bd weui_cell_primary">
-                <p><a href="{{$url}}">{{$emails[$i][$j]}}</a></p>
+                <p><a href="{{$url}}" style="color: inherit">{{$emails[$i][$j]}}</a></p>
             </div>
-            <div class="weui_cell_ft">
-            </div>
-        </a>
+
         <?php }}
 
             ?>

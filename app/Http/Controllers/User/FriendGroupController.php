@@ -55,16 +55,17 @@ class FriendGroupController extends Controller
 
     //添加好友分组
     public function showAddForm(){
-        return view('user.addFriendGroup');
+        return view('friendGroups.add');
     }
 
     public function add(Input $input){
         $data = $input::all();
 
         $friendGroup = new FriendGroup();
-        $friendGroup->user_id = $data['user_id'];
+        $friendGroup->user_id = Auth::user()->id;
         $friendGroup->name = $data['groupName'];
         $friendGroup->save();
-        echo 1;
+        $url=url("/friend");
+        echo "<script>alert('添加成功！');window.location.href='{$url}';</script>";
     }
 }

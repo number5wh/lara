@@ -71,22 +71,33 @@ class FriendController extends Controller
                 }
             }
 //            dd($friends2);
-            foreach ($friends2 as $c) {
-                if ($c != null) {
-                    foreach ($c as $d) {
-                        $emails[][] = $this->getemailById($d);
+            for($i=0;$i<count($friends2);$i++){
+                if($friends2[$i]!=null){
+                    for($j=0;$j<count($friends2[$i]);$j++){
+                        $emails[$i][] = $this->getEmailById($friends2[$i][$j]);
                     }
-                } else {
+                }else {
                     $emails[][] = null;
                 }
             }
-
+//            foreach ($friends2 as $c) {
+//                if ($c != null) {
+//
+//                    foreach ($c as $d) {
+//
+//                    }
+//                } else {
+//                    $emails[][] = null;
+//                }
+//            }
+            //dd($friends2);
+//dd($emails);
             $data = [
                 'name' => $name,
-                'emails' => $emails,
+                'email' => $emails,
             ];
         }
-
+//dd($data);
         $group = $friendGroup->getGroupNameById(Auth::user()->id);
         return view('friends.home',compact(['data','fremailAdd','fremailPass','fremailDeny','group']));
 

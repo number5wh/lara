@@ -19,10 +19,18 @@ Route::group(['prefix'=>'/friend'],function(){
     Route::post('/add','User\FriendController@add');
     Route::get('/handleResult/{from}/{to}/{pass}','User\FriendController@handleResult');
 });
+Route::group(['prefix'=>'/friendGroup'],function(){
+    Route::get('/add','User\FriendGroupController@showAddForm');
+    Route::post('/add','User\FriendGroupController@add');
+});
 
 Route::group(['prefix'=>'/host'],function(){
     Route::get('/add','Equip\HostController@showAddForm');
     Route::post('/add','Equip\HostController@add');
+});
+
+Route::group(['prefix'=>'/equip'],function(){
+    Route::get('/','Equip\EquipController@home');
 });
 
 Route::auth();
