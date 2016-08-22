@@ -106,7 +106,7 @@
         ?>
 
 
-    <div class="weui_cells_title"><b class="sliderFriendGroup">{{$name[$i]}}</b></div>
+    <div class="weui_cells_title"><b class="slider">{{$name[$i]}}</b></div>
     <div class="weui_cells weui_cells_access" style='display:none'>
         <?php
         for($j=0;$j<count($emails[$i]);$j++){

@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Equip;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Models\Equipment;
+use App\Models\EquipmentGroup;
 use App\Models\Host;
+use App\Http\Controllers\Equip\EquipGroupController;
 use App\Models\EquipDistribute;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -60,6 +63,17 @@ class EquipController extends Controller
             $equip[] = Equipment::find($a)->toArray();
         }
         return $equip;
+    }
+
+    /*
+     * 切换查看方式
+     */
+    public function changeWatch($type = 1){
+        if($type == 1){
+            return $this->home();
+        }else{
+            return EquipGroupController::quick();
+        }
     }
 
 }

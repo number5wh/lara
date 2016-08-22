@@ -39,7 +39,7 @@
           </div>
           <p class="weui_tabbar_label">设备</p>
         </a>
-        <a href="{{url('/quick')}}" class="weui_tabbar_item">
+        <a href="{{url('/equipGroup')}}" class="weui_tabbar_item">
           <div class="weui_tabbar_icon">
             <img src="{{url('images/icon_nav_article.png')}}" alt="">
           </div>

@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
 
-    $("b.sliderFriendGroup").click(function(){
+    $("b.slider").click(function(){
         $(this).parent().next().slideToggle();
     });
 

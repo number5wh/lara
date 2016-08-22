@@ -31,6 +31,13 @@ Route::group(['prefix'=>'/host'],function(){
 
 Route::group(['prefix'=>'/equip'],function(){
     Route::get('/','Equip\EquipController@home');
+    Route::get('/changeWatch/{type}','Equip\EquipController@changeWatch');
+});
+
+Route::group(['prefix'=>'equipGroup'],function(){
+    Route::get('/','Equip\EquipGroupController@home');
+    Route::get('/add','Equip\EquipGroupController@showAddForm');
+    Route::post('/add','Equip\EquipGroupController@add');
 });
 
 Route::auth();

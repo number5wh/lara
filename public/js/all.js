@@ -40,12 +40,45 @@ $(function(){
  */
 $(document).ready(function(){
 
-    $("b.sliderFriendGroup").click(function(){
+    $("b.slider").click(function(){
         $(this).parent().next().slideToggle();
     });
 
 });
 
+/**
+ * Created by root on 16-8-22.
+ */
+$(document).ready(function(){
+    $("#changeWatch").click(function(){
+        var dm = window.location.host;
+        var tg = "/equip/changeWatch";
+        var url = "http://"+dm+tg;
+        $.post(
+            url,
+            {
+                type:$(this).find('img').attr('alt')
+            },
+            function(){
+                alert(666);
+            }
+        );
+    });
+});
+/**
+ * Created by root on 16-8-3.
+ */
+$(function(){
+    $('input.checkedAll1').click(function() {
+       //alert($(this).parent().next().find("[name='equip_id[]']:checkbox").html());
+
+        if($(this).prop("checked")){
+            $(this).parent().next().find("[name='equip_id[]']:checkbox").prop('checked',true);
+        }else{
+            $(this).parent().next().find("[name='equip_id[]']:checkbox").prop('checked',false);
+        }
+    });
+});
 // jshint ignore: start
 +function($){
 
@@ -19830,6 +19863,49 @@ Device/OS Detection
     }, duration);
   }
 }($);
+
+/**
+ * Created by root on 16-8-18.
+ */
+//$(document).ready(function(){
+//    $("#friendPage").click(function(){
+//        $(this).siblings("ul").toggle();
+//    });
+//});
+$(document).on("click", "#quickPage", function() {
+    $.actions({
+        title: "选择操作",
+        onClose: function() {
+            console.log("close");
+        },
+        actions: [
+            {
+                text: "添加设备分组",
+                className: "color-primary",
+                onClick: function() {
+                    //$.alert("你选择了“编辑”");
+                    var dm = window.location.host;
+                    var tg = "/equipGroup/add";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+
+                }
+            },
+            {
+                text: "删除分组",
+                className: "color-primary",
+                onClick: function() {
+                    //$.alert("你选择了“编辑”");
+                    var dm = window.location.host;
+                    var tg = "/equipGroup/delete";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+
+                }
+            }
+        ]
+    });
+});
 
 /**
  * Swiper 3.3.1
