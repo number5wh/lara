@@ -11,7 +11,7 @@
 |
 */
 
-$this->get('/', 'Auth\AuthController@showLoginForm');
+Route::get('/', 'Auth\AuthController@showLoginForm');
 Route::group(['prefix'=>'/friend'],function(){
     Route::get('/','User\FriendController@home');
     Route::post('/handle','User\FriendController@handle');
