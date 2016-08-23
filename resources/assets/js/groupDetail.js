@@ -1,8 +1,12 @@
 /**
- * Created by root on 16-8-20.
+ * Created by root on 16-8-18.
  */
-
-$(document).on("click", "#equipPageAdmin", function() {
+//$(document).ready(function(){
+//    $("#friendPage").click(function(){
+//        $(this).siblings("ul").toggle();
+//    });
+//});
+$(document).on("click", "#groupDetailPage", function() {
     $.actions({
         title: "选择操作",
         onClose: function() {
@@ -10,35 +14,30 @@ $(document).on("click", "#equipPageAdmin", function() {
         },
         actions: [
             {
-                text: "添加主机",
+                text: "添加设备到分组",
                 className: "color-primary",
                 onClick: function() {
                     //$.alert("你选择了“编辑”");
                     var dm = window.location.host;
-                    var tg = "/host/add";
+                    var id = $("#groupDetailPage").attr('alt');
+                    var tg = "/equipGroup/group/"+id+"/addEquip";
                     var url = "http://"+dm+tg;
+                    //alert(url);
                     window.location.href=url;
 
                 }
             },
             {
-                text: "添加设备",
+                text: "删除分组设备",
                 className: "color-primary",
                 onClick: function() {
+                    //$.alert("你选择了“编辑”");
                     var dm = window.location.host;
-                    var tg = "/equip/add";
+                    var id = $("#groupDetailPage").attr('alt');
+                    var tg = "/equipGroup/group/"+id+"/deleteEquip";
                     var url = "http://"+dm+tg;
                     window.location.href=url;
-                }
-            },
-            {
-                text: "移除设备",
-                className: "color-primary",
-                onClick: function() {
-                    var dm = window.location.host;
-                    var tg = "/equip/delete";
-                    var url = "http://"+dm+tg;
-                    window.location.href=url;
+
                 }
             }
         ]

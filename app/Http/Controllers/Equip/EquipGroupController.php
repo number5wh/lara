@@ -126,7 +126,7 @@ class EquipGroupController extends Controller
 //        dd($equip,$equipId);
         $equip2 = $equipObj->getDistributeEquip();
 
-        return view('quick.addEquip',compact('equip','equipId','group','equip2'));
+        return view('equipGroups.addEquip',compact('equip','equipId','group','equip2'));
     }
 
     public function addEquip2(Input $input){

@@ -13582,7 +13582,7 @@ $(document).on("click", "#equipPageAdmin", function() {
                 className: "color-primary",
                 onClick: function() {
                     var dm = window.location.host;
-                    var tg = "/equip/detele";
+                    var tg = "/equip/delete";
                     var url = "http://"+dm+tg;
                     window.location.href=url;
                 }
@@ -13674,6 +13674,52 @@ $(document).on("click", "#friendPage", function() {
                     var tg = "/friendGroup/add";
                     var url = "http://"+dm+tg;
                     window.location.href=url;
+                }
+            }
+        ]
+    });
+});
+
+/**
+ * Created by root on 16-8-18.
+ */
+//$(document).ready(function(){
+//    $("#friendPage").click(function(){
+//        $(this).siblings("ul").toggle();
+//    });
+//});
+$(document).on("click", "#groupDetailPage", function() {
+    $.actions({
+        title: "选择操作",
+        onClose: function() {
+            console.log("close");
+        },
+        actions: [
+            {
+                text: "添加设备到分组",
+                className: "color-primary",
+                onClick: function() {
+                    //$.alert("你选择了“编辑”");
+                    var dm = window.location.host;
+                    var id = $("#groupDetailPage").attr('alt');
+                    var tg = "/equipGroup/group/"+id+"/addEquip";
+                    var url = "http://"+dm+tg;
+                    //alert(url);
+                    window.location.href=url;
+
+                }
+            },
+            {
+                text: "删除分组设备",
+                className: "color-primary",
+                onClick: function() {
+                    //$.alert("你选择了“编辑”");
+                    var dm = window.location.host;
+                    var id = $("#groupDetailPage").attr('alt');
+                    var tg = "/equipGroup/group/"+id+"/deleteEquip";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+
                 }
             }
         ]
@@ -19907,6 +19953,45 @@ $(document).on("click", "#quickPage", function() {
     });
 });
 
+/**
+ * Created by root on 16-8-4.
+ */
+$(function(){
+    $("a#singleSwitch").click(function(){
+        //alert($(this).find("input[name=status]").val());
+        //$.post(
+        //    $(this).find('input[name=url]').val(),
+        //    {
+        //        _token:$(this).find("input[name=_token]").val(),
+        //        equip_id:$(this).find("input[name=equip_id]").val(),
+        //        status:$(this).find("input[name=status]").val()
+        //        //group_id:$(this).find("input[name=group_id]").val()
+        //    },
+        //    function(data){
+        //        window.location.reload();
+        //    }
+        //);
+
+        $.ajax({
+            type:'post',
+            url:$(this).find('input[name=url]').val(),
+            data:{ _token:$(this).find("input[name=_token]").val(),
+                equip_id:$(this).find("input[name=equip_id]").val(),
+                status:$(this).find("input[name=status]").val()},
+            dataType:'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success:function(data){
+                window.location.reload();
+
+            },
+            error: function(xhr, type){
+                alert('Ajax error!')
+            }
+        });
+    });
+});
 /**
  * Swiper 3.3.1
  * Most modern mobile touch slider and framework with hardware accelerated transitions

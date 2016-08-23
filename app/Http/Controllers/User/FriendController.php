@@ -24,7 +24,7 @@ class FriendController extends Controller
      * 构造函数
      */
     public function __construct(){
-       // $this->middleware('auth');
+        $this->middleware('auth');
     }
     
     /*

@@ -23,10 +23,10 @@
       </div>
       <div class="weui_tab_bd">
           @yield('main')
-
+          <div style="width: 100%;height: 60px"></div>
       </div>
 
-      <div class="weui_tabbar">
+      <div class="weui_tabbar" style="float: left">
         <a href="{{url('/friend')}}" class="weui_tabbar_item weui_bar_item_on">
           <div class="weui_tabbar_icon">
             <img src="{{url('images/icon_nav_button.png')}}" alt="">

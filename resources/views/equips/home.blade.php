@@ -44,7 +44,8 @@
           if($equip2!=null){
           $num2 = count($equip2);
           ?>
-          <div class="weui_cells_title"><b class="sliderFriendGroup">别人分配的设备</b></div>
+          <div class="weui_cells_title"><b class="slider">别人分配的设备</b></div>
+          <div class="weui_cells weui_cells_access" style='display:none'>
           <?php
           for($i=0;$i<$num2;$i++){
               ?>

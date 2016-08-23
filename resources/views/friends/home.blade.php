@@ -118,7 +118,7 @@
             </div>
         </a>
         <?php }elseif(Auth::user()->is_admin == 1){
-                $url = url("/user/getAuth/{$emails[$i][$j]}");
+                $url = url("/distribute/getDistribute/{$emails[$i][$j]}");
             ?>
 
             <div class="weui_cell_bd weui_cell_primary">
