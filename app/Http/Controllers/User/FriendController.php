@@ -249,10 +249,19 @@ class FriendController extends Controller
         return view('friends.add', compact('groups', $groups));
     }
 
-    public function add(Request $request){
-        //添加到好友请求表
-       // dd($request);
+    public function add(Requests\AddFriendRequest $request){
 
+       // dd($request);
+        $emails = User::getEmails();
+        foreach($emails as $email){
+            $validateEmail[] = $email->email;
+        }
+        if( !in_array($request->email,$validateEmail)){
+            $url = url('/friend/add');
+            echo "<script>alert('用户不存在！');window.location.href='{$url}';</script>";
+        }
+
+        //添加到好友请求表
         $to = $this->getIdByEmail($request->email);
 //            dd($to);
         $fr = new FriendRequest;

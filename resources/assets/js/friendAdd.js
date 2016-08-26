@@ -2,16 +2,15 @@
  * Created by root on 16-8-19.
  */
 $("#showTooltips").click(function() {
-    var email = $('#email').val();
-    var filter=/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.[a-zA-Z0-9_-]+$)|(^$)/;
-    if(filter.test(email))
+    var email = $("input[name=email]").val();
+    //alert(email);
+    var filter = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
+    //alert(filter.test(email));
+    if(filter.test(email) === false)
     {
-        $.toptip('提交成功', 'success');
-    }
-
-    else if(!filter.test(email)){
         $.toptip('请输入正确的邮箱地址');
     }
+
 });
 
 

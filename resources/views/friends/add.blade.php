@@ -11,6 +11,9 @@
 @endsection
 @section('main')
 
+    @if(isset($msg))
+        <div>{{$msg}}</div>
+        @endif
     <header class='demos-header'>
         <h1 class="demos-title">添加好友</h1>
     </header>

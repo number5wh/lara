@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -53,5 +54,10 @@ class User extends Authenticatable
     //获取快捷分组名
     public function EquipmentGroupName(){
         return $this->hasMany('App\Models\EquipmentGroup')->select('id','name');
+    }
+
+    //获取邮箱
+    public static function getEmails(){
+        return DB::table('users')->select('email')->get();
     }
 }
