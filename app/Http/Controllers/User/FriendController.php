@@ -281,5 +281,4 @@ class FriendController extends Controller
         $url = url('/friend');
         echo "<script>alert('确定');window.location.href='{$url}';</script>";
     }
-
 }

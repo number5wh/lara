@@ -38,7 +38,7 @@
           }}else{
               echo "您没有任何主机<br>";
           ?>
-          <a href="{{url('/host/add')}}"><button>点我添加主机</button></a><br/>
+          <a href="{{url('/host/add')}}"><button class="weui_btn weui_btn_mini weui_btn_primary">点我添加主机</button></a><br/>
         <?php }
 
           if($equip2!=null){
