@@ -11,6 +11,7 @@ use App\Models\Host;
 use App\Http\Controllers\Equip\EquipGroupController;
 use App\Models\EquipDistribute;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
@@ -26,9 +27,10 @@ class EquipController extends Controller
     /*
      * 首页
      */
-    public function home()
+    public function home(Request $request)
     {
         //主机部分
+       // dd($request->cookie());
         $equip = $this->getHostEquip(Auth::user()->id);
 //        dd($equip);
         //被分配的部分

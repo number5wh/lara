@@ -65,7 +65,8 @@ class EquipGroupController extends Controller
      */
     public function showDeleteForm(){
         $group = EquipmentGroup::where('user_id',Auth::user()->id)->get()->toArray();
-        return view('equipGroups.delete',compact(['group']));
+//        dd($group);
+        return view('equipGroups.deleteGroup',compact(['group']));
     }
 
     public function delete(Input $input){

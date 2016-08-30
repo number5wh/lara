@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-    快捷分组设备
+    便捷分组设备
 @endsection
 @section('header')
     <div class="bk_nav">

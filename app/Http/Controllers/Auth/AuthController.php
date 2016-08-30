@@ -95,4 +95,9 @@ class AuthController extends Controller
         $fg->save();
         return redirect($this->redirectPath());
     }
+
+//    public function login(Request $request)
+//    {
+//        dd($request->cookie());
+//    }
 }

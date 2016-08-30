@@ -1,24 +1,25 @@
-@extends('layout.layout')
-@section('hl')
-    <a href="javascript :;" onClick="javascript :history.back(-1);"><img src="{{url('public/images/header/back.png')}}" alt="返回" style="height: 70px;width: 70px;" /></a>
-    @endsection
-@section('hc')
-    删除分组
+@extends('layouts.layout')
+@section('title')
+   删除分组
 @endsection
-@section('hr')
+@section('header')
+    <div class="bk_nav">
+        <img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>
+        <p class="bk_title"></p>
 
+    </div>
 @endsection
 @section('main')
     <?php
     $num = $group==null?0:count($group);
     if($num == 0){
        ?>
-    <script>alert('您还没有分组！');window.location.href='/quick/addGroup1';</script>
+    <script>alert('您还没有分组！');window.location.href='/equipGroup';</script>
     <?php
     }
     ?>
     <br/><br/>
-    <form action="{{url('/quick/deleteGroup2')}}" method="post">
+    <form action="{{url('/equipGroup/delete')}}" method="post">
         <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
     <?php
 
@@ -31,6 +32,6 @@
 
     ?>
         <br><br>
-        <input type="submit" value="删除"/>
+        <input type="submit" class="weui_btn weui_btn_mini weui_btn_primary" value="删除"/>
     </form>
 @endsection

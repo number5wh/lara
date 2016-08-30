@@ -47,6 +47,8 @@ Route::group(['prefix'=>'equipGroup'],function(){
     Route::get('/group/{id}/allSwitch/{status}','Equip\EquipGroupController@allSwitch');
     Route::get('/group/{id}/addEquip','Equip\EquipGroupController@addEquip1');
     Route::post('/addEquip','Equip\EquipGroupController@addEquip2');
+    Route::get('/delete','Equip\EquipGroupController@showDeleteForm');
+    Route::post('/delete','Equip\EquipGroupController@delete');
     Route::get('/group/{id}/deleteEquip','Equip\EquipGroupController@deleteEquip1');
     Route::post('/deleteEquip2','Equip\EquipGroupController@deleteEquip2');
 });

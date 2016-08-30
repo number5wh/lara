@@ -17,6 +17,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
 
 class FriendController extends Controller
 {
@@ -32,6 +33,7 @@ class FriendController extends Controller
      */
     public function home(){
         //查看好友请求
+
         $fremailAdd = $this->getRequestInfo(2);
         $fremailPass = $this->getRequestInfo(1);
         $fremailDeny = $this->getRequestInfo(0);

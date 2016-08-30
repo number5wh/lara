@@ -25,6 +25,6 @@
 
         ?>
         <br><br>
-        <input type="submit" value="确定"/>
+        <input type="submit" class="weui_btn weui_btn_mini weui_btn_primary" value="确定"/>
     </form>
 @endsection
