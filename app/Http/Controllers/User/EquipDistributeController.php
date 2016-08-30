@@ -41,8 +41,7 @@ class EquipDistributeController extends Controller
 
         if(!in_array($id,$idArr)){
             //判断是否在好友列表里
-            $url=url('/friend');
-            echo "<script>alert('信息有误！');window.location.href='{$url}';</script>";
+            return redirect("/friend")->withErrors('信息有误');
         }else{
             $equips = EquipDistribute::where('to',$id)->where('from',$myId)->get()->toArray();
 //            dd($equips);
@@ -53,8 +52,9 @@ class EquipDistributeController extends Controller
                 $ed->save();
 
                 $groupId = EquipDistribute::where('from',$myId)->where('to',$id)->select('id')->get()->toArray();
-                $url=url("/distribute/showSetEquip/{$groupId[0]['id']}");
-                echo "<script>alert('还未分配设备！');window.location.href='{$url}';</script>";
+                return redirect("/distribute/showSetEquip/{$groupId[0]['id']}")->withErrors('还未分配设备');
+//                $url=url("/distribute/showSetEquip/{$groupId[0]['id']}");
+//                echo "<script>alert('还未分配设备！');window.location.href='{$url}';</script>";
             }else{
                 $disId = $equips[0]['id'];
                 $eid = $equips[0]['equipments'];
@@ -123,8 +123,9 @@ class EquipDistributeController extends Controller
 
         EquipDistribute::where('id',$groupId)->where('from',Auth::user()->id)
             ->update(['equipments'=>$newEquip[0]['equipments']]);
-        $url=url("/distribute/getDistribute/{$email['email']}");
-        echo "<script>alert('添加设备成功！');window.location.href='{$url}';</script>";
+        return redirect("/distribute/getDistribute/{$email['email']}")->withSuccess('添加设备成功');
+//        $url=url("/distribute/getDistribute/{$email['email']}");
+//        echo "<script>alert('添加设备成功！');window.location.href='{$url}';</script>";
 
     }
 
@@ -159,7 +160,8 @@ class EquipDistributeController extends Controller
         $newEquipId = str_replace($e,'',$group[0]['equipments']);
         EquipDistribute::where('id',$id)->where('from',Auth::user()->id)
             ->update(['equipments'=>$newEquipId]);
-        $url=url("/distribute/getDistribute/{$email['email']}");
-        echo "<script>alert('删除设备成功！');window.location.href='{$url}';</script>";
+        return redirect("/distribute/getDistribute/{$email['email']}")->withSuccess('删除设备成功');
+//        $url=url("/distribute/getDistribute/{$email['email']}");
+//        echo "<script>alert('删除设备成功！');window.location.href='{$url}';</script>";
     }
 }

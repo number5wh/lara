@@ -56,8 +56,7 @@ class EquipGroupController extends Controller
         $group->equipments = $equipments;
         $group->user_id = Auth::user()->id;
         $group->save();
-        $url = url("/equipGroup");
-        echo "<script>alert('添加分组成功！');window.location.href='{$url}';</script>";
+        return redirect("/equipGroup")->withSuccess('添加分组成功');
     }
     
     /*
@@ -77,8 +76,7 @@ class EquipGroupController extends Controller
                 EquipmentGroup::where('id',$a)->delete();
             }
         }
-        $url = url("/equipGroup");
-        echo "<script>alert('删除分组成功！');window.location.href='{$url}';</script>";
+        return redirect("/equipGroup")->withSuccess('删除分组成功');
     }
 
     /*
@@ -88,8 +86,7 @@ class EquipGroupController extends Controller
     public function groupInfo($id){
         $uid = EquipmentGroup::select('user_id')->where('id',$id)->get()->toArray();
         if(Auth::user()->id != $uid[0]['user_id']){
-            $url = url("/equipGroup");
-            echo "<script>alert('你没有这个权限！');window.location.href='{$url}';</script>";
+            return redirect("/equipGroup")->withErrors('你没有这个权限');
         }
 
         $groupName = EquipmentGroup::select('name')->where('id',$id)->get()->toArray();
@@ -147,8 +144,7 @@ class EquipGroupController extends Controller
 
         EquipmentGroup::where('id',$groupId)->where('user_id',Auth::user()->id)
             ->update(['equipments'=>$newEquip[0]['equipments']]);
-        $url = url("/equipGroup");
-        echo "<script>alert('添加设备成功！');window.location.href='{$url}';</script>";
+        return redirect("/equipGroup")->withSuccess('添加设备成功');
 
     }
 
@@ -180,8 +176,7 @@ class EquipGroupController extends Controller
         $newEquipId = str_replace($e,'',$group[0]['equipments']);
         EquipmentGroup::where('id',$id)->where('user_id',Auth::user()->id)
             ->update(['equipments'=>$newEquipId]);
-        $url = url("/equipGroup");
-        echo "<script>alert('删除成功！');window.location.href='{$url}';</script>";
+        return redirect("/equipGroup")->withSuccess('删除成功');
 
     }
 
@@ -205,8 +200,7 @@ class EquipGroupController extends Controller
         foreach($equip as $v){
             Equipment::where('id',$v)->update(['status'=>$status]);
         }
-        $url = url("/equipGroup/groupInfo/{$id}");
-        echo "<script>alert('操作成功！');window.location.href='{$url}';</script>";
+        return redirect("/equipGroup/groupInfo/{$id}")->withSuccess('操作成功');
     }
 
 
@@ -218,9 +212,8 @@ class EquipGroupController extends Controller
         $equips  = null;
         $equips = EquipmentGroup::where('user_id',Auth::user()->id)->get()->toArray();
         if($equips == null){
-            $url = url("/equip");
-            echo "<script>alert('您还没有便捷分组！');window.location.href='{$url}';</script>";
-            die;
+            return redirect("/equip")->withErrors('您还没有便捷分组');
+
         }
         foreach($equips as $v){
             $eid[] = array_filter(explode(',',$v['equipments']));

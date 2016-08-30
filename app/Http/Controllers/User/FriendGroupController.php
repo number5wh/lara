@@ -65,7 +65,6 @@ class FriendGroupController extends Controller
         $friendGroup->user_id = Auth::user()->id;
         $friendGroup->name = $data['groupName'];
         $friendGroup->save();
-        $url=url("/friend");
-        echo "<script>alert('添加成功！');window.location.href='{$url}';</script>";
+        return redirect("/friend")->withSuccess('添加成功');
     }
 }

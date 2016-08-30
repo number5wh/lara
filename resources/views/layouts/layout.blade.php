@@ -64,5 +64,8 @@
     </script>
     <script src="{{url('js/jquery-weui.js')}}"></script>
     <script src="{{url('js/all.js')}}"></script>
+  @include('toptips.error')
+  @include('toptips.success')
+
   </body>
 </html>

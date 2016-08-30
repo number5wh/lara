@@ -123,8 +123,8 @@ class EquipController extends Controller
         }
 //        dd($c);
         if($c == null){
-            $url = url("/equip");
-            echo "<script>alert('没有可添加的设备！');window.location.href='{$url}';</script>";
+            return redirect('/equip')->withErrors('没有可添加的设备');
+
         }else{
 
             return view('equips.addEquip')->with('deleted',$c);
@@ -138,8 +138,7 @@ class EquipController extends Controller
         Equipment::where('id',$id)->update([
             'is_deleted'=>0
         ]);
-        $url = url("/equip/addEquip1");
-        echo "<script>alert('添加成功！');window.location.href='{$url}';</script>";
+        return redirect('/equip/addEquip1')->withSuccess('添加成功');
     }
 
     //移除设备
@@ -153,8 +152,7 @@ class EquipController extends Controller
         foreach($deleteId as $id){
             Equipment::where('id',$id)->update(['is_deleted'=>1]);
         }
-        $url = url("/equip");
-        echo "<script>alert('移除成功！');window.location.href='{$url}';</script>";
+        return redirect('/equip')->withSuccess('移除成功');
     }
 
 }

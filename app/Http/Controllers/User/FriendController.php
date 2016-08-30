@@ -207,10 +207,8 @@ class FriendController extends Controller
                 ->where('from',$from)
                 ->where('to',$to)
                 ->update(['pass'=>$pass]);
-            $url=url("/friend");
-            echo "<script>alert('添加成功！');window.location.href='{$url}';</script>";
-           // return Redirect::action('User\FriendController@home');
-            //return redirect()->action('UserController@home');
+            return redirect('/friend')->withSuccess('添加成功!');
+
 
         }elseif($pass == 0){//拒绝
             //friend_request表的更新
@@ -219,9 +217,8 @@ class FriendController extends Controller
                 ->where('from',$from)
                 ->where('to',$to)
                 ->update(['pass'=>$pass]);
+            return redirect('/friend')->withErrors('已拒绝');
 
-            $url=url("/friend");
-            echo "<script>alert('操作成功！');window.location.href='{$url}';</script>";
         }elseif($pass == 3){//忽略
             //friend_request表的更新
 
@@ -230,9 +227,7 @@ class FriendController extends Controller
                 ->where('to',$to)
                 ->where(['pass'=>2])
                 ->delete();
-
-            $url=url("/friend");
-            echo "<script>alert('操作成功！');window.location.href='{$url}';</script>";
+            return redirect('/friend')->withSuccess('已忽略');
         }
     }
 
