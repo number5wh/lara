@@ -17,9 +17,15 @@
         <div class="weui_cells weui_cells_form" id="addHost">
             {{csrf_field()}}
             <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">主机id</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" name="id" placeholder="请输入主机id">
+                </div>
+            </div>
+            <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">主机名称</label></div>
                 <div class="weui_cell_bd weui_cell_primary">
-                    <input class="weui_input" type="text" name="name" placeholder="请输入主机名称">
+                    <input class="weui_input" type="text" name="name" placeholder="为主机起个名称">
                 </div>
             </div>
             <div class="weui_cell">
@@ -32,5 +38,4 @@
                 <input type="submit" class="weui_btn weui_btn_primary" id="addHostBtn" value="确定"/>
             </div>
             </div>
-
 @endsection

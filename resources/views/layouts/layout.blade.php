@@ -53,9 +53,16 @@
         </a>
       </div>
     </div>
-    <script src="{{url('js/jquery-2.1.4.js')}}"></script>
-<script src="{{url('js/all.js')}}"></script>
-    <script>$(".bk_title").html(document.title)</script>
 
+    <script src="{{url('js/jquery-2.1.4.js')}}"></script>
+    <script>$(".bk_title").html(document.title)</script>
+    <script src="{{url('js/fastclick.js')}}"></script>
+    <script>
+      $(function() {
+        FastClick.attach(document.body);
+      });
+    </script>
+    <script src="{{url('js/jquery-weui.js')}}"></script>
+    <script src="{{url('js/all.js')}}"></script>
   </body>
 </html>

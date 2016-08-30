@@ -252,27 +252,39 @@ class FriendController extends Controller
     }
 
     public function add(Requests\AddFriendRequest $request){
-
-       // dd($request);
+        if($request->email == Auth::user()->email){
+            echo "self";
+            die;
+        }
         $emails = User::getEmails();
         foreach($emails as $email){
             $validateEmail[] = $email->email;
         }
-        if( !in_array($request->email,$validateEmail)){
-            $url = url('/friend/add');
-            echo "<script>alert('用户不存在！');window.location.href='{$url}';</script>";
+//        dd($request->email,$validateEmail);
+//        dd(in_array($request->email,$validateEmail));
+        if( in_array($request->email,$validateEmail) === FALSE){
+            echo "not exist";
+            die;
         }
 
         //添加到好友请求表
+//      return "success";
         $to = $this->getIdByEmail($request->email);
-//            dd($to);
         $fr = new FriendRequest;
         $fr->from = Auth::user()->id;
         $fr->to = $to;
-        $fr->group = $request->group;
+        $fr->group = $request->groupId;
         $fr->save();
-        $url = url('/friend');
-        echo "<script>alert('请求已发出！');window.location.href='{$url}';</script>";
+        echo "success";
+    }
+
+
+    /*
+     * 获取已有好友列表
+     */
+    public function getFriends($id)
+    {
+
     }
 
 

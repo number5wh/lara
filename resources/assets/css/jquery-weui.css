@@ -662,8 +662,6 @@ body {
 .weui_toast.weui_toast_visible {
   opacity: 1;
   visibility: visible;
-  -webkit-transform: scale(1);
-          transform: scale(1);
 }
 @media screen and (min-width: 1024px) {
   .weui_dialog {
