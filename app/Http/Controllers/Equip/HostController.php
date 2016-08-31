@@ -80,5 +80,11 @@ class HostController extends Controller
             }
         }
     }
+    /*
+     * 根据主机id获取主机名
+     */
+    public static function getNameById($id){
+       return Host::where('id',$id)->select('name')->first()->toArray();
+    }
 
 }

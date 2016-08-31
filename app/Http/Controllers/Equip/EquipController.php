@@ -27,16 +27,12 @@ class EquipController extends Controller
     /*
      * 首页
      */
-    public function home(Request $request)
+    public function home()
     {
         //主机部分
-       // dd($request->cookie());
         $equip = $this->getHostEquip(Auth::user()->id);
-//        dd($equip);
         //被分配的部分
         $equip2 = $this->getDistributeEquip();
-//        dd($equip);
-
         return view('equips.home',compact(['equip','equip2']));
 
     }
@@ -80,74 +76,40 @@ class EquipController extends Controller
         }
     }
 
-    //添加设备(添加那些已被移除的设备)
-    public function addEquip1(){
-        //
+    //添加设备
+    public function showAddForm(){
         $hosts = User::find(Auth::user()->id)->getHostId->toArray();
 //        dd($hosts);
-        $c = null;
-
-        $deleted =null;
-        foreach($hosts as $host){
-            $deleted[] = Host::find($host['id'])->equipmentIdDeleted->toArray();
-
+        for($i=0;$i<count($hosts);$i++){
+            $hostInf[$i]['id'] = $hosts[$i]['id'];
+            $hostInf[$i]['name'] =  HostController::getNameById($hosts[$i]['id']);
         }
-        //        dd($deleted);
-
-        /*
-         * deleted格式
-          array:2 [▼
-          0 => array:4 [▼
-            "id" => 2
-            "name" => "卫生间灯"
-            "host_id" => 1
-            "host_name" => "host1"
-          ]
-          1 => array:4 [▼
-            "id" => 3
-            "name" => "公司前台"
-            "host_id" => 2
-            "host_name" => "host2"
-          ]
-        ]
-         *
-         * */
-        foreach($deleted as $a){
-//            dd($a);
-            foreach($a as $b){
-                $res =  DB::select("select a.host_id host_id,b.name host_name from equipment a left join host b on a.host_id=b.id where a.id=?",[$b['id']]);
-                $b['host_id'] =$res[0]->host_id;
-                $b['host_name'] = $res[0]->host_name;
-                $c[] = $b;
-            }
-        }
-//        dd($c);
-        if($c == null){
-            return redirect('/equip')->withErrors('没有可添加的设备');
-
+//dd($hostInf);
+        if($hosts == null){
+            return redirect('/equip')->withErrors('请先添加主机');
         }else{
-
-            return view('equips.addEquip')->with('deleted',$c);
+            return view('equips.addEquip')->with(['hostInf'=>$hostInf]);
         }
 
 
     }
 
-    public function addEquip2($id)
+    public function add(Requests\AddEquipRequest $request)
     {
-        Equipment::where('id',$id)->update([
-            'is_deleted'=>0
-        ]);
-        return redirect('/equip/addEquip1')->withSuccess('添加成功');
+        $equip = new Equipment();
+        $equip->name = $request->name;
+        $equip->host_id = $request->host_id;
+        $equip->save();
+        return redirect('/equip')->withSuccess('添加设备成功');
     }
 
     //移除设备
-    public function deleteEquip1(){
+    public function showDeleteForm(){
         $equip = $this->getHostEquip(Auth::user()->id);
         return view('equips.deleteEquip')->with('equip',$equip);
     }
 
-    public function deleteEquip2(Input $input){
+    public function delete(Input $input){
         $deleteId = $input::all()['equip_id'];
         foreach($deleteId as $id){
             Equipment::where('id',$id)->update(['is_deleted'=>1]);

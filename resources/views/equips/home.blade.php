@@ -34,11 +34,15 @@
           </a>
 
           <?php }
-          echo "</div><br />";
+          echo "</div>";
           }}else{
-              echo "您没有任何主机<br>";
           ?>
-          <a href="{{url('/host/add')}}"><button class="weui_btn weui_btn_mini weui_btn_primary">点我添加主机</button></a><br/>
+          <a class="weui_cell" href="javascript:;">
+              <div class="weui_cell_bd weui_cell_primary">
+                  <a href="{{url('/host/add')}}"><button class="weui_btn weui_btn_mini weui_btn_primary">点我添加主机</button></a>
+              </div>
+          </a>
+
         <?php }
 
           if($equip2!=null){
@@ -54,7 +58,7 @@
                   <p>{{$equip2[$i]['name']}}</p>
               </div>
           </a>
-          <?php }  echo "</div><br />";}?>
+          <?php }  echo "</div>";}?>
 
 
 @endsection

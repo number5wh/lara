@@ -46,7 +46,7 @@
                 <input type="submit" class="weui_btn weui_btn_primary" href="javascript:" id="addFriend" value="确定"/>
             </div>
 
-            </div>
+    </div>
     {{--</form>--}}
 
 @endsection

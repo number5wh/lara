@@ -15,11 +15,30 @@
     </div>
 @endsection
 @section('main')
-    <div class="addEquip">
-        <ul>
-            @foreach($deleted as $v)
-                <li>设备名称:{{$v['name']}}(所属主机{{$v['host_name']}}) <a href="{{url("/equipment/addEquip2/{$v['id']}")}}"><button>添加</button></a></li>
-            @endforeach
-        </ul>
-    </div>
+    <form action="{{url('/equip/add')}}" method="post">
+        <div class="weui_cells weui_cells_form">
+            {{csrf_field()}}
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">设备名称</label></div>
+                <div class="weui_cell_bd weui_cell_primary">
+                    <input class="weui_input" type="text" name="name" placeholder="请输入设备名称">
+                </div>
+            </div>
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">选择主机</label></div>
+                <div class="weui_cell weui_cell_select">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <select class="weui_select" name="host_id">
+                            @foreach($hostInf as $host)
+                                <option value="{{$host['id']}}">{{$host['name']['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="weui_btn_area">
+                <input type="submit" class="weui_btn weui_btn_primary" href="javascript:"  value="确定"/>
+            </div>
+        </div>
+    </form>
 @endsection

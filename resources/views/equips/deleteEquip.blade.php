@@ -18,7 +18,7 @@
     <?php
         $num = $equip==null?0:count($equip);
         $hostName = array_keys($equip);?>
-    <form action="{{url('/equip/deleteEquip2')}}" method="post">
+    <form action="{{url('/equip/delete')}}" method="post">
         <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
     <?php
         for($i=0;$i<$num;$i++){
@@ -34,9 +34,14 @@
                     <p><input type="checkbox" name="equip_id[]" value="{{$equip[$hostName[$i]][$j]['id']}}">{{$equip[$hostName[$i]][$j]['name']}}</p>
                 </div>
             </a>
+        </div>
             <?php
             }}?>
-</div>
-        <input type="submit" value="确定"/>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <input type="submit"  class="weui_btn weui_btn_mini weui_btn_warn" value="删除"/>
+            </div>
+        </a>
+
     </form>
 @endsection

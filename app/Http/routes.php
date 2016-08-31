@@ -32,10 +32,10 @@ Route::group(['prefix'=>'/host'],function(){
 Route::group(['prefix'=>'/equip'],function(){
     Route::get('/','Equip\EquipController@home');
     Route::get('/changeWatch/{type}','Equip\EquipController@changeWatch');
-    Route::get('/add','Equip\EquipController@addEquip1');
-    Route::get('/addEquip2/{id}','Equip\EquipController@addEquip2');
-    Route::get('/delete','Equip\EquipController@deleteEquip1');
-    Route::post('/deleteEquip2','Equip\EquipController@deleteEquip2');
+    Route::get('/add','Equip\EquipController@showAddForm');
+    Route::post('/add','Equip\EquipController@add');
+    Route::get('/delete','Equip\EquipController@showDeleteForm');
+    Route::post('/delete','Equip\EquipController@delete');
 });
 
 Route::group(['prefix'=>'equipGroup'],function(){
