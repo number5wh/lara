@@ -25,13 +25,22 @@
 
     for($i=0;$i<$num;$i++){
         ?>
-    <input type="checkbox" name="groupId[]" value="{{$group[$i]['id']}}"/>{{$group[$i]['name']}}<br/>
+        <a class="weui_cell" href="javascript:;" style="color: inherit">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>  <input type="checkbox" name="groupId[]" value="{{$group[$i]['id']}}"/>
+                    {{$group[$i]['name']}}</p>
+            </div>
+        </a>
 
     <?php
     }
 
     ?>
-        <br><br>
-        <input type="submit" class="weui_btn weui_btn_mini weui_btn_primary" value="删除"/>
+        <a class="weui_cell" href="javascript:;" style="color: inherit">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p><input type="submit" class="weui_btn weui_btn weui_btn_warn" value="删除"/></p>
+            </div>
+        </a>
+
     </form>
 @endsection

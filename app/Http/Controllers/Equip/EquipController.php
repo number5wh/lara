@@ -117,4 +117,10 @@ class EquipController extends Controller
         return redirect('/equip')->withSuccess('移除成功');
     }
 
+    public static function getHostByEquipId($id)
+    {
+       return DB::select("select b.host_id,a.name from host a left join  equipment b on a.id=b.host_id
+                  where b.id=:id",['id'=>$id]);
+    }
+
 }

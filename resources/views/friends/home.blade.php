@@ -107,7 +107,7 @@
 
 
     <div class="weui_cells_title"><b class="slider">{{$name[$i]}}</b></div>
-    <div class="weui_cells weui_cells_access" style='display:none'>
+    <div class="weui_cells weui_cells_access">
         <?php
         for($j=0;$j<count($emails[$i]);$j++){
         if(Auth::user()->is_admin == 0){
@@ -116,16 +116,24 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <p>{{$emails[$i][$j]}}</p>
             </div>
+
         </a>
         <?php }elseif(Auth::user()->is_admin == 1){
                 $url = url("/distribute/getDistribute/{$emails[$i][$j]}");
+                if($emails[$i][$j] != null){
+
             ?>
+            <a class="weui_cell" href="{{$url}}">
+                <div class="weui_cell_bd weui_cell_primary">
+                    <p>{{$emails[$i][$j]}}</p>
+                </div>
+                <div class="weui_cell_ft"></div>
+            </a>
+            {{--<div class="weui_cell_bd weui_cell_primary">--}}
+                {{--<p><a href="{{$url}}" style="color: inherit">{{$emails[$i][$j]}}</a></p>--}}
+            {{--</div>--}}
 
-            <div class="weui_cell_bd weui_cell_primary">
-                <p><a href="{{$url}}" style="color: inherit">{{$emails[$i][$j]}}</a></p>
-            </div>
-
-        <?php }}
+        <?php }}}
 
             ?>
     </div>

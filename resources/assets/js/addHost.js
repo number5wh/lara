@@ -18,6 +18,8 @@ $(document).on("click", "div input#addHostBtn", function() {
         function(data){
             if(data == 'right'){
                 $.alert('添加主机成功');
+                //setTimeout("http://"+dm+"/equip",3000);
+               // window.location.href="http://"+dm+"/equip";
             }else if(data=='wrong host name'){
                 $.alert("主机id有误");
             }else if(data=='already login'){

@@ -23,6 +23,7 @@ class EquipGroupController extends Controller
      * 便捷分组首页
      */
     public function home(){
+        //获取便捷分组名字
         $quick = User::find(Auth::user()->id)->EquipmentGroupName->toArray();
 //        dd($quick[0]['name']);
 //        dd($quick);
@@ -42,13 +43,12 @@ class EquipGroupController extends Controller
         return view('equipGroups.add',compact(['equip','equip2']));
     }
 
-    public function add(Input $input){
+    public function add(Requests\AddEquipGroupRequest $request){
 
-        $data = $input::all();
-
-        $name = $data['name'];
+        $name = $request->name;
+        $idArr = $request->equip_id;
         $equipments = '';
-        foreach($data['equip_id'] as $id){
+        foreach($idArr as $id){
             $equipments.=$id.',';
         }
         $group = new EquipmentGroup();
@@ -68,9 +68,11 @@ class EquipGroupController extends Controller
         return view('equipGroups.deleteGroup',compact(['group']));
     }
 
-    public function delete(Input $input){
-        $data = $input::all();
-        $id = $data['groupId'];
+    public function delete(Request $request){
+        $this->validate($request,[
+            'groupId'=>'required',
+        ]);
+        $id = $request->groupId;
         if($id !=null){
             foreach($id as $a){
                 EquipmentGroup::where('id',$a)->delete();
@@ -127,10 +129,9 @@ class EquipGroupController extends Controller
         return view('equipGroups.addEquip',compact('equip','equipId','group','equip2'));
     }
 
-    public function addEquip2(Input $input){
-        $data = $input::all();
-        $groupId = $data['group_id'];
-        $equipId = $data['equip_id'];
+    public function addEquip2(Requests\AddEquipForGroupRequest $request){
+        $groupId = $request->group_id;
+        $equipId = $request->equip_id;
 
         $newEquip = EquipmentGroup::select('equipments')->where('id',$groupId)->where('user_id',Auth::user()->id)
             ->get()->toArray();
@@ -164,17 +165,16 @@ class EquipGroupController extends Controller
         return view('equipGroups.deleteEquip',compact(['group','equipId','equipName']));
     }
 
-    public function deleteEquip2(Input $input){
-        $data = $input::all();
-        $id = $data['group_id'];
-        $equipId = $data['equip_id'];
+    public function deleteEquip2(Requests\AddEquipForGroupRequest $request){
+        $groupId = $request->group_id;
+        $equipId = $request->equip_id;
 
         $e = implode(',',$equipId).",";
 
-        $group = EquipmentGroup::where('id',$id)->where('user_id',Auth::user()->id)->get()->toArray();
+        $group = EquipmentGroup::where('id',$groupId)->where('user_id',Auth::user()->id)->get()->toArray();
         //将要删除的id串替换为空
         $newEquipId = str_replace($e,'',$group[0]['equipments']);
-        EquipmentGroup::where('id',$id)->where('user_id',Auth::user()->id)
+        EquipmentGroup::where('id',$groupId)->where('user_id',Auth::user()->id)
             ->update(['equipments'=>$newEquipId]);
         return redirect("/equipGroup")->withSuccess('删除成功');
 

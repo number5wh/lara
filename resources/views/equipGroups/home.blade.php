@@ -12,12 +12,18 @@
         .weui-row {
             margin-top: 10px;
         }
+        .weui-col-25{
+            float: left;
+            text-overflow: ellipsis ;
+            overflow: hidden;
+        }
         [class*="weui-col-"] {
             margin:10px;
             border: 1px solid #ccc;
             height: 60px;
             line-height: 60px;
             text-align: center;
+
 
         }
 

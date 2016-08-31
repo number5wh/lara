@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-    添加设备到{{$group[0]['name']}}
+    添加设备
 @endsection
 @section('header')
     <div class="bk_nav">
@@ -10,6 +10,9 @@
     </div>
 @endsection
 @section('main')
+    <header class='demos-header'>
+        <h4 class="demos-title">添加设备到{{$group[0]['name']}}</h4>
+    </header>
     <?php
     $num = $equip==null?0:count($equip);?>
     <form action="{{url("/equipGroup/addEquip")}}" method="post">
@@ -68,6 +71,6 @@
                     }
 
                     ?>
-        <input type="submit" class="weui_btn weui_btn_mini weui_btn_primary" value="添加"/>
+        <input type="submit" class="weui_btn weui_btn weui_btn_primary" value="添加"/>
     </form>
 @endsection

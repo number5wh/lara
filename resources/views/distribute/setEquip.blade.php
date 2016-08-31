@@ -9,6 +9,7 @@
     </div>
 @endsection
 @section('main')
+    <div align="center">为{{$femail}}设备分配</div>
     <?php
     $num = $equip==null?0:count($equip);
     $hostName = array_keys($equip);?>
@@ -44,7 +45,11 @@
     echo "</div>";
     }
             ?>
-        <br><br>
-        <input type="submit" value="确定"/>
+                <a class="weui_cell" href="javascript:;">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <p><input type="submit" class="weui_btn weui_btn weui_btn_primary" value="确定"/>
+                        </p> </div>
+                </a>
+
     </form>
 @endsection

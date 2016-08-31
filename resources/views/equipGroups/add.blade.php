@@ -28,8 +28,21 @@
 ?>
     <form action={{url("/equipGroup/add")}} method="post">
         <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
-        请输入分组名：<input type="text" name="name" placeholder="分组名"/><br/>
-        请选择加入的设备:<br>
+        <div class="weui_cells weui_cells_form">
+            <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">分组名:</label></div>
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <input class="weui_input" type="text" name="name" placeholder="请输入分组名"/>
+                    </div>
+            </div>
+            </div>
+        </a>
+        <a class="weui_cell" href="javascript:;" style="color: inherit">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p>请选择加入的设备:</p>
+            </div>
+        </a>
+
         <?php
     if($num != 0){
     $hostName = array_keys($equip);?>
@@ -76,6 +89,11 @@
             }
 
     ?>
-        <input type="submit" class="weui_btn weui_btn_mini weui_btn_primary" value="确定"/>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p><input type="submit" class="weui_btn weui_btn weui_btn_primary" value="确定"/></p>
+            </div>
+        </a>
+
     </form>
 @endsection

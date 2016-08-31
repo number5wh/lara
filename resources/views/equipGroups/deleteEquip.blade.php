@@ -19,12 +19,20 @@
         <?php
             for($i=0;$i<$num;$i++){
                 ?>
-        <input type="checkbox" name="equip_id[]" value="{{$equipId[$i]}}"/>{{$equipName[$i]}}<br/>
+        <a class="weui_cell" href="javascript:;" style="color: inherit">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p><input type="checkbox" name="equip_id[]" value="{{$equipId[$i]}}">{{$equipName[$i]}}</p>
+            </div>
+        </a>
         <?php
             }
 
         ?>
-        <br><br>
-        <input type="submit" class="weui_btn weui_btn_mini weui_btn_primary" value="确定"/>
+        <a class="weui_cell" href="javascript:;">
+            <div class="weui_cell_bd weui_cell_primary">
+                <p> <input type="submit" class="weui_btn weui_btni weui_btn_warn" value="确定"/></p>
+            </div>
+        </a>
+
     </form>
 @endsection
