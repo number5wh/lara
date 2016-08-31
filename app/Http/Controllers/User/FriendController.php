@@ -284,6 +284,7 @@ class FriendController extends Controller
         }
         //添加到好友请求表
 //      return "success";
+
         $to = $this->getIdByEmail($request->email);
         $fr = new FriendRequest;
         $fr->from = Auth::user()->id;

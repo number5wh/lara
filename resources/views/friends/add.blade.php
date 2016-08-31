@@ -34,7 +34,7 @@
             <div class="weui_cell_hd"><label class="weui_label">选择分组</label></div>
             <div class="weui_cell weui_cell_select">
                 <div class="weui_cell_bd weui_cell_primary">
-                    <select class="weui_select" name="group" id="selectGroups">
+                    <select class="weui_select" name="group" id="selectGroupsForAddFriend">
                         @foreach($groups as $group)
                             <option value="{{$group}}">{{$group}}</option>
                         @endforeach

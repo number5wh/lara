@@ -79,7 +79,7 @@
     @if($fremailDeny != null)
         <ul style="list-style-type: none">
             @foreach($fremailDeny as $deny)
-                <li class="deny"><a href="{{url("/friend/handleResult/".Auth::user()->id."/$deny/0")}}">{{$deny}}拒绝了你的好友请求</a></li>
+                <li class="deny"><a href="{{url("/friend/handleResult/".Auth::user()->id."/$deny/0")}}" style="color: inherit">{{$deny}}拒绝了你的好友请求</a></li>
             @endforeach
         </ul>
     @endif
@@ -87,7 +87,7 @@
     @if($fremailPass != null)
         <ul style="list-style-type: none">
             @foreach($fremailPass as $pass)
-                <li class="pass"><a href="{{url('/friend/handleResult/'.Auth::user()->id."/$pass/1")}}">{{$pass}}通过了你的好友请求</a></li>
+                <li class="pass"><a href="{{url('/friend/handleResult/'.Auth::user()->id."/$pass/1")}}" style="color: inherit">{{$pass}}通过了你的好友请求</a></li>
                 @endforeach
         </ul>
         @endif

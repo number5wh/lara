@@ -36,7 +36,6 @@
                     </div>
             </div>
             </div>
-        </a>
         <a class="weui_cell" href="javascript:;" style="color: inherit">
             <div class="weui_cell_bd weui_cell_primary">
                 <p>请选择加入的设备:</p>

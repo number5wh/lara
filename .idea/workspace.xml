@@ -4,14 +4,15 @@
     <bookmark url="file://$PROJECT_DIR$/app/Http/Controllers/Equip/EquipController.php" line="82" mnemonic="0" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3326eae6-b72b-4f78-9c5e-08dbdc54525b" name="Default" comment="equipGroup">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Self/SelfController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/self/home.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/self/selfInfo.blade.php" />
+    <list default="true" id="3326eae6-b72b-4f78-9c5e-08dbdc54525b" name="Default" comment="another check">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/all.js" afterPath="$PROJECT_DIR$/public/js/all.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/all.js.map" afterPath="$PROJECT_DIR$/public/js/all.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/addFriend.js" afterPath="$PROJECT_DIR$/resources/assets/js/addFriend.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/equipGroups/add.blade.php" afterPath="$PROJECT_DIR$/resources/views/equipGroups/add.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/friends/add.blade.php" afterPath="$PROJECT_DIR$/resources/views/friends/add.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/friends/home.blade.php" afterPath="$PROJECT_DIR$/resources/views/friends/home.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
     </list>
     <ignored path="lara.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,12 +41,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EquipGroupController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Equip/EquipGroupController.php">
+      <file leaf-file-name="FriendController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="30.0">
-              <caret line="73" column="11" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
-              <folding />
+            <state vertical-scroll-proportion="-32.966667">
+              <caret line="298" column="15" selection-start-line="298" selection-start-column="15" selection-end-line="298" selection-end-column="15" />
+              <folding>
+                <element signature="e#45#76#0#PHP" expanded="true" />
+                <marker date="1472635832906" expanded="true" signature="8641:8699" placeholder="select useri..friend..." />
+                <marker date="1472635832906" expanded="true" signature="8641:8776" placeholder="select useri..." />
+                <marker date="1472635832906" expanded="true" signature="8718:8776" placeholder="select useri..friend..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,95 +59,31 @@
       <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/friends/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.5333333">
-              <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="18.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/layout.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.666666">
-              <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/self/home.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.333333">
-              <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SelfController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Self/SelfController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.5">
-              <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
+            <state vertical-scroll-proportion="-36.4">
+              <caret line="81" column="125" selection-start-line="81" selection-start-column="125" selection-end-line="81" selection-end-column="125" />
               <folding>
-                <element signature="e#45#58#0#PHP" expanded="true" />
+                <element signature="e#4147#4169#0#HTML" expanded="true" />
+                <element signature="e#4469#4491#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="selfInfo.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/self/selfInfo.blade.php">
+      <file leaf-file-name="all.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/all.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2075135">
-              <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.53426576">
+              <caret line="17308" column="0" selection-start-line="17308" selection-start-column="0" selection-end-line="17308" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddEquipGroupRequest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddEquipGroupRequest.php">
+      <file leaf-file-name="add.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/friends/add.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.5">
-              <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EquipDistributeController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/EquipDistributeController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.3333333">
-              <caret line="22" column="2" selection-start-line="22" selection-start-column="2" selection-end-line="27" selection-end-column="5" />
-              <folding>
-                <element signature="e#45#73#0#PHP" expanded="true" />
-                <marker date="1472627004370" expanded="true" signature="800:862" placeholder="select useri..friend..." />
-                <marker date="1472627004370" expanded="true" signature="800:965" placeholder="select useri..." />
-                <marker date="1472627004370" expanded="true" signature="903:965" placeholder="select useri..friend..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9666667">
-              <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
+            <state vertical-scroll-proportion="-20.0">
+              <caret line="36" column="89" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -179,18 +121,15 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/toptips/success.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/toptips/error.blade.php" />
-        <option value="$PROJECT_DIR$/resources/assets/js/addFriend.js" />
         <option value="$PROJECT_DIR$/resources/views/friendGroups/add.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/AddFriendGroupRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/User/FriendGroupController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Equip/HostController.php" />
-        <option value="$PROJECT_DIR$/resources/views/friends/add.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/equips/addEquip.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/AddEquipRequest.php" />
         <option value="$PROJECT_DIR$/resources/assets/js/addSlider.js" />
         <option value="$PROJECT_DIR$/resources/views/equips/deleteEquip.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/equips/home.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php" />
         <option value="$PROJECT_DIR$/resources/views/distribute/equip.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Equip/EquipController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/User/EquipDistributeController.php" />
@@ -198,7 +137,6 @@
         <option value="$PROJECT_DIR$/resources/views/distribute/setEquip.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/js/addHost.js" />
         <option value="$PROJECT_DIR$/resources/views/equipGroups/home.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/equipGroups/add.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/AddEquipGroupRequest.php" />
         <option value="$PROJECT_DIR$/resources/views/equipGroups/deleteEquip.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/equipGroups/addEquip.blade.php" />
@@ -206,11 +144,15 @@
         <option value="$PROJECT_DIR$/resources/views/equipGroups/deleteGroup.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Equip/EquipGroupController.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/layout.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/friends/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/self/home.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Self/SelfController.php" />
         <option value="$PROJECT_DIR$/resources/views/self/selfInfo.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php" />
+        <option value="$PROJECT_DIR$/resources/views/friends/add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/assets/js/addFriend.js" />
+        <option value="$PROJECT_DIR$/resources/views/equipGroups/add.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/friends/home.blade.php" />
       </list>
     </option>
   </component>
@@ -450,7 +392,13 @@
       <option name="project" value="LOCAL" />
       <updated>1472632804910</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="self">
+      <created>1472635136054</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1472635136054</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -470,8 +418,8 @@
       <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26075268" sideWeight="0.5028653" order="17" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16935484" sideWeight="0.49713466" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="消息" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32795697" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15860215" sideWeight="0.49713466" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19412607" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -523,7 +471,9 @@
     <MESSAGE value="friend" />
     <MESSAGE value="equip" />
     <MESSAGE value="equipGroup" />
-    <option name="LAST_COMMIT_MESSAGE" value="equipGroup" />
+    <MESSAGE value="self" />
+    <MESSAGE value="another check" />
+    <option name="LAST_COMMIT_MESSAGE" value="another check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -543,13 +493,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/all.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.9831461">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/jquery-weui.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.2340426">
@@ -672,30 +615,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/js/addFriend.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02097902">
-          <caret line="20" column="17" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/friendGroups/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40145984">
-          <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/friends/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="31" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Equip/HostController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.0">
@@ -728,14 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/equips/addEquip.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0">
-          <caret line="30" column="65" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/distribute/equip.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.0">
@@ -760,19 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6666666">
-          <caret line="142" column="9" selection-start-line="142" selection-start-column="9" selection-end-line="142" selection-end-column="9" />
-          <folding>
-            <element signature="e#45#76#0#PHP" expanded="true" />
-            <marker date="1472613108355" expanded="true" signature="8640:8698" placeholder="select useri..friend..." />
-            <marker date="1472613108355" expanded="true" signature="8640:8775" placeholder="select useri..." />
-            <marker date="1472613108355" expanded="true" signature="8717:8775" placeholder="select useri..friend..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/js/addHost.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8737864">
@@ -785,14 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.9587629">
           <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/equips/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.2164948">
-          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -839,16 +729,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/equipGroups/add.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53608245">
-          <caret line="58" column="14" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
-          <folding>
-            <element signature="e#1360#1382#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/equipGroups/addEquip.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.3333333">
@@ -861,9 +741,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.0">
           <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="25" selection-end-column="12" />
-          <folding>
-            <element signature="e#762#784#0#HTML" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +758,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddEquipGroupRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.5">
+        <state vertical-scroll-proportion="0.64221823">
           <caret line="28" column="10" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
           <folding />
         </state>
@@ -904,7 +782,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/EquipDistributeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.3333333">
+        <state vertical-scroll-proportion="0.17889088">
           <caret line="22" column="2" selection-start-line="22" selection-start-column="2" selection-end-line="27" selection-end-column="5" />
           <folding>
             <element signature="e#45#73#0#PHP" expanded="true" />
@@ -923,14 +801,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/friends/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.5333333">
-          <caret line="121" column="16" selection-start-line="121" selection-start-column="16" selection-end-line="121" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/self/home.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.333333">
@@ -941,7 +811,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9666667">
+        <state vertical-scroll-proportion="0.10554562">
           <caret line="56" column="23" selection-start-line="56" selection-start-column="23" selection-end-line="56" selection-end-column="23" />
           <folding />
         </state>
@@ -952,7 +822,7 @@
         <state vertical-scroll-proportion="-12.5">
           <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
           <folding>
-            <element signature="e#45#58#0#PHP" expanded="true" />
+            <element signature="e#45#58#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -961,6 +831,86 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.2075135">
           <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/friendGroups/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1443661">
+          <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/equips/addEquip.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2728873">
+          <caret line="30" column="65" selection-start-line="30" selection-start-column="65" selection-end-line="30" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/equips/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1443661">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/equipGroups/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6285211">
+          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/js/addFriend.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.71070236">
+          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/User/FriendController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-32.966667">
+          <caret line="298" column="15" selection-start-line="298" selection-start-column="15" selection-end-line="298" selection-end-column="15" />
+          <folding>
+            <element signature="e#45#76#0#PHP" expanded="true" />
+            <marker date="1472635832906" expanded="true" signature="8641:8699" placeholder="select useri..friend..." />
+            <marker date="1472635832906" expanded="true" signature="8641:8776" placeholder="select useri..." />
+            <marker date="1472635832906" expanded="true" signature="8718:8776" placeholder="select useri..friend..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/friends/add.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.0">
+          <caret line="36" column="89" selection-start-line="36" selection-start-column="77" selection-end-line="36" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/friends/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-36.4">
+          <caret line="81" column="125" selection-start-line="81" selection-start-column="125" selection-end-line="81" selection-end-column="125" />
+          <folding>
+            <element signature="e#4147#4169#0#HTML" expanded="true" />
+            <element signature="e#4469#4491#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/all.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53426576">
+          <caret line="17308" column="0" selection-start-line="17308" selection-start-column="0" selection-end-line="17308" selection-end-column="0" />
           <folding />
         </state>
       </provider>
