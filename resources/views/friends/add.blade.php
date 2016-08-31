@@ -21,7 +21,7 @@
 
 
 
-
+    {{--<form action="{{'/friend/add'}}" method="post">--}}
     <div class="weui_cells weui_cells_form">
         {{csrf_field()}}
         <div class="weui_cell">
@@ -47,6 +47,6 @@
             </div>
 
             </div>
-
+    {{--</form>--}}
 
 @endsection

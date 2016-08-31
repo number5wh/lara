@@ -27,6 +27,10 @@ $("#addFriend").click(function() {
                 $.alert('用户名不存在!','错误');
             }else if(data=='self') {
                 $.alert("不能添加自己为好友!",'错误');
+            }else if(data=='existed') {
+                $.alert("已在好友列表里!",'错误');
+            }else if(data=='can\'t send twice') {
+                $.alert("不能在还有请求未处理时再发起另一次请求!",'错误');
             }else if(data=='success') {
                 $.alert("请求已发出!",'成功');
             }

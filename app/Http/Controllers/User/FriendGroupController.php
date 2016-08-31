@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
+use App\Http\Requests\AddFriendGroupRequest;
 
 class FriendGroupController extends Controller
 {
@@ -58,12 +58,10 @@ class FriendGroupController extends Controller
         return view('friendGroups.add');
     }
 
-    public function add(Input $input){
-        $data = $input::all();
-
+    public function add(AddFriendGroupRequest $request){
         $friendGroup = new FriendGroup();
         $friendGroup->user_id = Auth::user()->id;
-        $friendGroup->name = $data['groupName'];
+        $friendGroup->name = $request->name;
         $friendGroup->save();
         return redirect("/friend")->withSuccess('添加成功');
     }

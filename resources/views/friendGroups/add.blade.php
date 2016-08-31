@@ -24,7 +24,7 @@
         <div class="weui_cell">
             <div class="weui_cell_hd"><label class="weui_label">分组名称</label></div>
             <div class="weui_cell_bd weui_cell_primary">
-                <input class="weui_input" type="text" name="groupName" placeholder="请输入分组名称">
+                <input class="weui_input" type="text" name="name" placeholder="请输入分组名称">
             </div>
         </div>
 

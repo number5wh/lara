@@ -247,7 +247,7 @@ class FriendController extends Controller
     }
 
     public function add(Requests\AddFriendRequest $request){
-        if($request->email == Auth::user()->email){
+        if($request->email == Auth::user()->email){//是自身账号？
             echo "self";
             die;
         }
@@ -255,13 +255,33 @@ class FriendController extends Controller
         foreach($emails as $email){
             $validateEmail[] = $email->email;
         }
+
 //        dd($request->email,$validateEmail);
 //        dd(in_array($request->email,$validateEmail));
-        if( in_array($request->email,$validateEmail) === FALSE){
+        if( in_array($request->email,$validateEmail) === FALSE){//账号不存在？
             echo "not exist";
             die;
         }
 
+        $friends = $this->getFriends(Auth::user()->id);
+        $emails2 = null;
+        foreach($friends as $friend){
+            $emails2[] = $this->getEmailById($friend->userid);
+        }
+       // dd($emails2,$request->email);
+        if( in_array($request->email,$emails2)){//已在好友列表里
+            echo "existed";
+            die;
+        }
+
+        $fq = FriendRequest::where('from',Auth::user()->id)
+            ->where('to',$this->getIdByEmail($request->email))->get()->toArray();
+        $fq2 = FriendRequest::where('to',Auth::user()->id)
+            ->where('from',$this->getIdByEmail($request->email))->get()->toArray();
+        if(count($fq)!=0 || count($fq2)!=0){//好友请求还未处理，不能再发起另一次请求
+            echo "can't send twice";
+            die;
+        }
         //添加到好友请求表
 //      return "success";
         $to = $this->getIdByEmail($request->email);
@@ -277,9 +297,11 @@ class FriendController extends Controller
     /*
      * 获取已有好友列表
      */
-    public function getFriends($id)
-    {
-
+    public function getFriends($id){
+        $friend1 = DB::select("select userid2 userid from friend where userid1 = :userid1
+            UNION select userid1 userid from friend where userid2 = :userid2",
+            ['userid1'=>$id,'userid2'=>$id]);
+        return $friend1;
     }
 
 
@@ -287,7 +309,6 @@ class FriendController extends Controller
     public function handleResult($from,$to,$pass){
         $toId = $this->getIdByEmail($to);
         FriendRequest::where('from',$from)->where('to',$toId)->where('pass',$pass)->delete();
-        $url = url('/friend');
-        echo "<script>alert('确定');window.location.href='{$url}';</script>";
+        return redirect('/friend')->withSuccess('已处理');
     }
 }
