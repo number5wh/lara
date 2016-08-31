@@ -45,7 +45,7 @@
           </div>
           <p class="weui_tabbar_label">便捷操作</p>
         </a>
-        <a href="{{url('/friend')}}" class="weui_tabbar_item">
+        <a href="{{url('/self')}}" class="weui_tabbar_item">
           <div class="weui_tabbar_icon">
             <img src="{{url('images/icon_nav_cell.png')}}" alt="">
           </div>

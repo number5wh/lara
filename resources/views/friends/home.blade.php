@@ -111,6 +111,7 @@
         <?php
         for($j=0;$j<count($emails[$i]);$j++){
         if(Auth::user()->is_admin == 0){
+            if($emails[$i][$j] != null){
             ?>
         <a class="weui_cell" href="javascript:;">
             <div class="weui_cell_bd weui_cell_primary">
@@ -118,7 +119,7 @@
             </div>
 
         </a>
-        <?php }elseif(Auth::user()->is_admin == 1){
+        <?php }}elseif(Auth::user()->is_admin == 1){
                 $url = url("/distribute/getDistribute/{$emails[$i][$j]}");
                 if($emails[$i][$j] != null){
 

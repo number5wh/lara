@@ -61,6 +61,11 @@ Route::group(['prefix'=>'distribute'],function(){
     Route::post('/deleteEquip2','User\EquipDistributeController@deleteEquip2');
 });
 
+Route::group(['prefix'=>'self'],function(){
+    Route::get('/','Self\SelfController@home');
+    Route::get('/getSelf','Self\SelfController@getSelf');
+});
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
