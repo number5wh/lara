@@ -34,12 +34,15 @@
                     <p><input type="checkbox" name="equip_id[]" value="{{$equip[$hostName[$i]][$j]['id']}}">{{$equip[$hostName[$i]][$j]['name']}}</p>
                 </div>
             </a>
-        </div>
+
             <?php
-            }}?>
+            }
+            ?>
+            </div>
+       <?php }?>
         <a class="weui_cell" href="javascript:;">
             <div class="weui_cell_bd weui_cell_primary">
-                <input type="submit"  class="weui_btn weui_btn_mini weui_btn_warn" value="删除"/>
+                <input type="submit"  class="weui_btn weui_btn weui_btn_warn" value="删除"/>
             </div>
         </a>
 

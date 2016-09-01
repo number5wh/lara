@@ -8,6 +8,7 @@ use App\Models\EquipmentGroup;
 use App\Http\Requests;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class EquipGroupController extends Controller
@@ -18,16 +19,27 @@ class EquipGroupController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    
+
+    /*
+     * 获取便捷分组组名
+     */
+    public function getEquipGroup()
+    {
+        $groupName =  DB::select("select distinct name from equipment_group
+                      where user_id = :id",['id'=>Auth::user()->id]);
+        foreach($groupName as $v){
+            $group[] = $v->name;
+        }
+        return $group;
+    }
     /*
      * 便捷分组首页
      */
     public function home(){
-        //获取便捷分组名字
-        $quick = User::find(Auth::user()->id)->EquipmentGroupName->toArray();
-//        dd($quick[0]['name']);
-//        dd($quick);
-        return view('equipGroups.home',compact(['quick']));
+        //获取分组名
+        $groupName = $this->getEquipGroup();
+//        dd($quick,$groupName);
+        return view('equipGroups.home',compact(['groupName']));
     }
 
     /*
@@ -47,15 +59,14 @@ class EquipGroupController extends Controller
 
         $name = $request->name;
         $idArr = $request->equip_id;
-        $equipments = '';
         foreach($idArr as $id){
-            $equipments.=$id.',';
+            $group = new EquipmentGroup();
+            $group->name = $name;
+            $group->equipments = $id;
+            $group->user_id = Auth::user()->id;
+            $group->save();
         }
-        $group = new EquipmentGroup();
-        $group->name = $name;
-        $group->equipments = $equipments;
-        $group->user_id = Auth::user()->id;
-        $group->save();
+
         return redirect("/equipGroup")->withSuccess('添加分组成功');
     }
     
@@ -63,19 +74,24 @@ class EquipGroupController extends Controller
      * 删除分组
      */
     public function showDeleteForm(){
-        $group = EquipmentGroup::where('user_id',Auth::user()->id)->get()->toArray();
+        $group = $this->getEquipGroup();
+        if(count($group) == 0){
+            return redirect('/equipGroup')->withErrors('您还没有分组');
+        }
 //        dd($group);
         return view('equipGroups.deleteGroup',compact(['group']));
     }
 
     public function delete(Request $request){
         $this->validate($request,[
-            'groupId'=>'required',
+            'groupName'=>'required',
         ]);
-        $id = $request->groupId;
-        if($id !=null){
-            foreach($id as $a){
-                EquipmentGroup::where('id',$a)->delete();
+        $name = $request->groupName;
+        if($name !=null){
+            foreach($name as $a){
+                EquipmentGroup::where('name',$a)
+                    ->where('user_id',Auth::user()->id)
+                    ->delete();
             }
         }
         return redirect("/equipGroup")->withSuccess('删除分组成功');
@@ -85,75 +101,70 @@ class EquipGroupController extends Controller
      * 获取组内设备信息
      */
 
-    public function groupInfo($id){
-        $uid = EquipmentGroup::select('user_id')->where('id',$id)->get()->toArray();
-        if(Auth::user()->id != $uid[0]['user_id']){
-            return redirect("/equipGroup")->withErrors('你没有这个权限');
+    public function groupInfo($name){
+        //判断组名合法性
+        $groupName = $this->getEquipGroup();
+//        dd($groupName);
+        if(!in_array($name,$groupName)){
+            return redirect("/equipGroup")->withErrors('分组名称有误');
         }
 
-        $groupName = EquipmentGroup::select('name')->where('id',$id)->get()->toArray();
-        $e = EquipmentGroup::select('equipments')->where('id',$id)->get()->toArray();
-//        dd($e[0]['equipments']);
-        if($e[0]['equipments'] == null){
-            $equip = null;
-            $equipInfo = null;
-
-        }else{
-            $a[] = explode(',',$e[0]['equipments']);
-            foreach($a as $b)
-                $equip = array_filter($b);
-            foreach($equip as $c){
-                $equipInfo[] = Equipment::find($c)->toArray();
-            }
-
-//            dd($equipInfo);
-            return view('equipGroups.groupDetail',compact(['equipInfo','groupName','id']));
+        //获取设备信息
+        $equips = EquipmentGroup::where('user_id',Auth::user()->id)
+            ->where('name',$name)->get()->toArray();
+        for($i=0;$i<count($equips);$i++){
+            $equips[$i]['equipInfo'] = Equipment::where('id',$equips[$i]['equipments'])
+                ->get()->toArray();
         }
+
+        return view('equipGroups.groupDetail',compact(['equips','name']));
     }
+
 
     /*
      * 添加设备到分组
      */
 
-    public function addEquip1($id){
-        $group = EquipmentGroup::where('id',$id)->where('user_id',Auth::user()->id)->get()->toArray();
-//        dd($group);
-        $equipId = array_filter(explode(',',$group[0]['equipments']));//去除逗号再去除最后一个null
-//        dd($e);
-
+    public function addEquip1($name){
+        //获取该分组已有设备id
+        $e = EquipmentGroup::where('name',$name)
+            ->where('user_id',Auth::user()->id)->get()->toArray();
+        foreach($e as $v){
+            $equipId[] = $v['equipments'];
+        }
+        //获取用户所有设备信息
         $equipObj = new EquipController();
         $equip = $equipObj->getHostEquip(Auth::user()->id);
 //        dd($equip,$equipId);
         $equip2 = $equipObj->getDistributeEquip();
 
-        return view('equipGroups.addEquip',compact('equip','equipId','group','equip2'));
+        return view('equipGroups.addEquip',compact('equip','equipId','name','equip2'));
     }
 
     public function addEquip2(Requests\AddEquipForGroupRequest $request){
-        $groupId = $request->group_id;
+        $name = $request->name;
         $equipId = $request->equip_id;
-
-        $newEquip = EquipmentGroup::select('equipments')->where('id',$groupId)->where('user_id',Auth::user()->id)
-            ->get()->toArray();
-
-        foreach($equipId as $v){
-            $newEquip[0]['equipments'].=$v.',';
+        foreach($equipId as $item){
+            $eg = new EquipmentGroup();
+            $eg->name = $name;
+            $eg->equipments = $item;
+            $eg->user_id = Auth::user()->id;
+            $eg->save();
         }
-        //  $newEquip = $oldEquip.$equipId;
-
-//        dd($newEquip);
-
-        EquipmentGroup::where('id',$groupId)->where('user_id',Auth::user()->id)
-            ->update(['equipments'=>$newEquip[0]['equipments']]);
         return redirect("/equipGroup")->withSuccess('添加设备成功');
 
     }
 
-    //从分组中删除设备
-    public function deleteEquip1($id){
-        $group = EquipmentGroup::where('id',$id)->where('user_id',Auth::user()->id)->get()->toArray();
-//        dd($group);
-        $equipId = array_filter(explode(',',$group[0]['equipments']));//去除逗号再去除最后一个null
+    /*
+     * 从分组中删除设备
+     */
+    public function deleteEquip1($name){
+        //获取该分组已有设备id
+        $e = EquipmentGroup::where('name',$name)
+            ->where('user_id',Auth::user()->id)->get()->toArray();
+        foreach($e as $v){
+            $equipId[] = $v['equipments'];
+        }
         foreach($equipId as $v){
             $eName[] = Equipment::select('name')->where('id',$v)->get()->toArray();
         }
@@ -162,20 +173,19 @@ class EquipGroupController extends Controller
         }
 
 //        dd($equipName);
-        return view('equipGroups.deleteEquip',compact(['group','equipId','equipName']));
+        return view('equipGroups.deleteEquip',compact(['name','equipId','equipName']));
     }
 
     public function deleteEquip2(Requests\AddEquipForGroupRequest $request){
-        $groupId = $request->group_id;
+        $name = $request->name;
         $equipId = $request->equip_id;
 
-        $e = implode(',',$equipId).",";
-
-        $group = EquipmentGroup::where('id',$groupId)->where('user_id',Auth::user()->id)->get()->toArray();
-        //将要删除的id串替换为空
-        $newEquipId = str_replace($e,'',$group[0]['equipments']);
-        EquipmentGroup::where('id',$groupId)->where('user_id',Auth::user()->id)
-            ->update(['equipments'=>$newEquipId]);
+        foreach($equipId as $item){
+            EquipmentGroup::where('name',$name)
+                ->where('user_id',Auth::user()->id)
+                ->where('equipments',$item)
+                ->delete();
+        }
         return redirect("/equipGroup")->withSuccess('删除成功');
 
     }
@@ -193,14 +203,14 @@ class EquipGroupController extends Controller
         echo 1;
     }
 
-    public function allSwitch($id,$status){
+    public function allSwitch($name,$status){
         //dd(__DIR__);
-        $e = EquipmentGroup::select('equipments')->where('id',$id)->where('user_id',Auth::user()->id)->get()->toArray();
-        $equip = array_filter(explode(',',$e[0]['equipments']));
-        foreach($equip as $v){
-            Equipment::where('id',$v)->update(['status'=>$status]);
+        $e = EquipmentGroup::select('equipments')->where('name',$name)
+            ->where('user_id',Auth::user()->id)->get()->toArray();
+        foreach($e as $v){
+            Equipment::where('id',$v['equipments'])->update(['status'=>$status]);
         }
-        return redirect("/equipGroup/groupInfo/{$id}")->withSuccess('操作成功');
+        return redirect("/equipGroup/groupInfo/{$name}")->withSuccess('操作成功');
     }
 
 
@@ -209,35 +219,21 @@ class EquipGroupController extends Controller
      * 转换设备的查看方式为便捷分组
      */
     public static function quick(){
+        $eg = new EquipGroupController();
+        $groupName = $eg->getEquipGroup();
         $equips  = null;
         $equips = EquipmentGroup::where('user_id',Auth::user()->id)->get()->toArray();
-        if($equips == null){
+        if(count($equips) == 0){
             return redirect("/equip")->withErrors('您还没有便捷分组');
 
         }
-        foreach($equips as $v){
-            $eid[] = array_filter(explode(',',$v['equipments']));
-        }
-//        dd($eid);
-        for($i=0;$i<count($eid);$i++){
-            for($j=0;$j<count($eid[$i]);$j++){
-                $ename[$i][] = Equipment::select('name')->where('id',$eid[$i][$j])->get()->toArray();
-            }
-        }
-//dd($ename);
-        for($k=0;$k<count($ename);$k++){
-            for($a=0;$a<count($ename[$k]);$a++){
-                $equipName[$k][] = $ename[$k][$a][0]['name'];
-            }
-        }
-//        dd($equipName);
 
         for($i=0;$i<count($equips);$i++){
-            $equips[$i]['equip_name'] = $equipName[$i];
-            unset($equips[$i]['equipments'],$equips[$i]['created_at'],$equips[$i]['updated_at']);
+            $equips[$i]['equipInfo'] = Equipment::where('id',$equips[$i]['equipments'])
+                ->get()->toArray();
         }
-//        dd($equips);
-        return view('equipGroups.quick',compact('equips'));
+//        dd($equips,$groupName);
+        return view('equipGroups.quick',compact('equips','groupName'));
     }
 
 }

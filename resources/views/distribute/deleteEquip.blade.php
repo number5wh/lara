@@ -9,11 +9,14 @@
     </div>
 @endsection
 @section('main')
+    <header class='demos-header'>
+        <h1 class="demos-title">删除{{$email}}设备</h1>
+    </header>
     <?php
     $num = count($equipGroup);?>
     <form action="{{url('/distribute/deleteEquip2')}}" method="post">
         <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
-        <input type="text" name="group_id" value="{{$group[0]['id']}}" hidden="hidden"/>
+        <input type="text" name="id" value="{{$id}}" hidden="hidden"/>
         <?php
             foreach($equipGroup as $k => $v){?>
         <div class="weui_cells_title"><b class="slider">{{$k}}&nbsp;&nbsp;&nbsp;</b>

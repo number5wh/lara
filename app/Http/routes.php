@@ -42,22 +42,22 @@ Route::group(['prefix'=>'equipGroup'],function(){
     Route::get('/','Equip\EquipGroupController@home');
     Route::get('/add','Equip\EquipGroupController@showAddForm');
     Route::post('/add','Equip\EquipGroupController@add');
-    Route::get('/groupInfo/{id}','Equip\EquipGroupController@groupInfo');
+    Route::get('/groupInfo/{name}','Equip\EquipGroupController@groupInfo');
     Route::post('/singleSwitch','Equip\EquipGroupController@singleSwitch');
-    Route::get('/group/{id}/allSwitch/{status}','Equip\EquipGroupController@allSwitch');
-    Route::get('/group/{id}/addEquip','Equip\EquipGroupController@addEquip1');
+    Route::get('/group/{name}/allSwitch/{status}','Equip\EquipGroupController@allSwitch');
+    Route::get('/group/{name}/addEquip','Equip\EquipGroupController@addEquip1');
     Route::post('/addEquip','Equip\EquipGroupController@addEquip2');
     Route::get('/delete','Equip\EquipGroupController@showDeleteForm');
     Route::post('/delete','Equip\EquipGroupController@delete');
-    Route::get('/group/{id}/deleteEquip','Equip\EquipGroupController@deleteEquip1');
+    Route::get('/group/{name}/deleteEquip','Equip\EquipGroupController@deleteEquip1');
     Route::post('/deleteEquip2','Equip\EquipGroupController@deleteEquip2');
 });
 
 Route::group(['prefix'=>'distribute'],function(){
     Route::get('/getDistribute/{email}','User\EquipDistributeController@getDistribute');
-    Route::get('/showSetEquip/{id}','User\EquipDistributeController@showSetEquip');
+    Route::get('/showSetEquip/userid/{id}','User\EquipDistributeController@showSetEquip');
     Route::post('/setEquip','User\EquipDistributeController@setEquip');
-    Route::get('/deleteEquip1/{id}','User\EquipDistributeController@deleteEquip1');
+    Route::get('/deleteEquip1/userid/{id}','User\EquipDistributeController@deleteEquip1');
     Route::post('/deleteEquip2','User\EquipDistributeController@deleteEquip2');
 });
 

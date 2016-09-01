@@ -39,7 +39,7 @@
           ?>
           <a class="weui_cell" href="javascript:;">
               <div class="weui_cell_bd weui_cell_primary">
-                  <a href="{{url('/host/add')}}"><button class="weui_btn weui_btn_mini weui_btn_primary">点我添加主机</button></a>
+                  <a href="{{url('/host/add')}}" class="weui_btn weui_btn weui_btn_primary">点我添加主机</a>
               </div>
           </a>
 

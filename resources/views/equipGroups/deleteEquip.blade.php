@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-    从{{$group[0]['name']}}删除设备
+    删除设备
 @endsection
 @section('header')
     <div class="bk_nav">
@@ -10,12 +10,14 @@
     </div>
     @endsection
 @section('main')
-    <br/>
+    <header class='demos-header'>
+        <h4 class="demos-title">从{{$name}}中删除设备</h4>
+    </header>
     <?php
     $num = $equipId==null?0:count($equipId);?>
     <form action="{{url('/equipGroup/deleteEquip2')}}" method="post">
         <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
-        <input type="text" name="group_id" value="{{$group[0]['id']}}" hidden="hidden"/>
+        <input type="text" name="name" value="{{$name}}" hidden="hidden"/>
         <?php
             for($i=0;$i<$num;$i++){
                 ?>

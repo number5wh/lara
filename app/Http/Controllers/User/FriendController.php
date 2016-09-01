@@ -2,12 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Models\EquipDistribute;
-use App\Models\Equipment;
 use App\Models\Friend;
-use App\Models\FriendGroup;
 use App\Models\FriendRequest;
-use App\Models\Host;
 use App\User;
 
 use Auth;
@@ -16,9 +12,6 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Response;
-
 class FriendController extends Controller
 {
     /**
@@ -247,6 +240,7 @@ class FriendController extends Controller
     }
 
     public function add(Requests\AddFriendRequest $request){
+
         if($request->email == Auth::user()->email){//是自身账号？
             echo "self";
             die;
@@ -264,16 +258,19 @@ class FriendController extends Controller
         }
 
         $friends = $this->getFriends(Auth::user()->id);
-        $emails2 = null;
-        foreach($friends as $friend){
-            $emails2[] = $this->getEmailById($friend->userid);
-        }
-       // dd($emails2,$request->email);
-        if( in_array($request->email,$emails2)){//已在好友列表里
-            echo "existed";
-            die;
+        if($friends!=null){
+            $emails2 = null;
+            foreach($friends as $friend){
+                $emails2[] = $this->getEmailById($friend->userid);
+            }
+            // dd($emails2,$request->email);
+            if( in_array($request->email,$emails2)){//已在好友列表里
+                echo "existed";
+                die;
+            }
         }
 
+//        dd(666);
         $fq = FriendRequest::where('from',Auth::user()->id)
             ->where('to',$this->getIdByEmail($request->email))->get()->toArray();
         $fq2 = FriendRequest::where('to',Auth::user()->id)
@@ -283,15 +280,16 @@ class FriendController extends Controller
             die;
         }
         //添加到好友请求表
-//      return "success";
 
+        //dd($request->group);
         $to = $this->getIdByEmail($request->email);
         $fr = new FriendRequest;
         $fr->from = Auth::user()->id;
         $fr->to = $to;
-        $fr->group = $request->groupId;
+        $fr->group = $request->group;
         $fr->save();
         echo "success";
+        die;
     }
 
 
@@ -312,4 +310,5 @@ class FriendController extends Controller
         FriendRequest::where('from',$from)->where('to',$toId)->where('pass',$pass)->delete();
         return redirect('/friend')->withSuccess('已处理');
     }
+
 }

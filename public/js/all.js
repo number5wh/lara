@@ -5,6 +5,7 @@ $("#addFriend").click(function() {
     var email = $("input[name=email]").val();
     var filter = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
     //alert(filter.test(email));
+    //alert($("#selectGroup").find("option:selected").val());
     if(filter.test(email) === false)
     {
         $.toptip('请输入正确的邮箱地址');
@@ -17,11 +18,11 @@ $("#addFriend").click(function() {
         url,
         {
             email:$("input[name='email']").val(),
-            groupId:$("#selectGroupsForAddFriend").find("option:selected").val(),
+            group:$("#selectGroup").find("option:selected").val(),
             _token:$("input[name='_token']").val(),
         },
         function(data){
-            //$.alert(data);
+
             if(data == 'not exist'){
                 $.alert('用户名不存在!','错误');
             }else if(data=='self') {
@@ -32,6 +33,7 @@ $("#addFriend").click(function() {
                 $.alert("不能在还有请求未处理时再发起另一次请求!",'错误');
             }else if(data=='success') {
                 $.alert("请求已发出!",'成功');
+                setTimeout(function(){window.location="http://"+dm+"/friend";},3000);
             }
         }
     );

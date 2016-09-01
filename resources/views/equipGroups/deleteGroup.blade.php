@@ -12,13 +12,8 @@
 @section('main')
     <?php
     $num = $group==null?0:count($group);
-    if($num == 0){
-       ?>
-    <script>alert('您还没有分组！');window.location.href='/equipGroup';</script>
-    <?php
-    }
+
     ?>
-    <br/><br/>
     <form action="{{url('/equipGroup/delete')}}" method="post">
         <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
     <?php
@@ -27,8 +22,8 @@
         ?>
         <a class="weui_cell" href="javascript:;" style="color: inherit">
             <div class="weui_cell_bd weui_cell_primary">
-                <p>  <input type="checkbox" name="groupId[]" value="{{$group[$i]['id']}}"/>
-                    {{$group[$i]['name']}}</p>
+                <p>  <input type="checkbox" name="groupName[]" value="{{$group[$i]}}"/>
+                    {{$group[$i]}}</p>
             </div>
         </a>
 

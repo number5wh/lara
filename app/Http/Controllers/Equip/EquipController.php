@@ -8,12 +8,9 @@ use App\User;
 use App\Models\Equipment;
 use App\Models\EquipmentGroup;
 use App\Models\Host;
-use App\Http\Controllers\Equip\EquipGroupController;
 use App\Models\EquipDistribute;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 
 class EquipController extends Controller
@@ -56,11 +53,16 @@ class EquipController extends Controller
         if($group == null){
             return null;
         }
-        $equipId = array_filter(explode(',',$group[0]['equipments']));
+        for($i=0;$i<count($group);$i++){
+            $equipId[] = array_filter(explode(',',$group[$i]['equipments']));
+        }
 
         $equip = null;
         foreach($equipId as $a){
-            $equip[] = Equipment::find($a)->toArray();
+            foreach($a as $b){
+                $equip[] = Equipment::find($b)->toArray();
+            }
+
         }
         return $equip;
     }
@@ -109,10 +111,19 @@ class EquipController extends Controller
         return view('equips.deleteEquip')->with('equip',$equip);
     }
 
-    public function delete(Input $input){
-        $deleteId = $input::all()['equip_id'];
+    public function delete(Request $request){
+        $this->validate($request,[
+            'equip_id'=>'required',
+        ]);
+        $deleteId = $request->equip_id;
         foreach($deleteId as $id){
-            Equipment::where('id',$id)->update(['is_deleted'=>1]);
+            //删除设备表上的数据
+            Equipment::where('id',$id)
+                ->delete();
+            //删除便捷分组的数据
+            EquipDistribute::where('equipments',$id)->delete();
+            //删除分配给别人的数据
+            EquipmentGroup::where('equipments',$id)->delete();
         }
         return redirect('/equip')->withSuccess('移除成功');
     }

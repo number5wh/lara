@@ -15,16 +15,22 @@
     </div>
 @endsection
 @section('main')
-    @foreach($equips as $group)
-        <div class="weui_cells_title"><b class="slider">{{$group['name']}}</b></div>
+    @foreach($groupName as $group)
+        <div class="weui_cells_title"><b class="slider">{{$group}}</b></div>
         <div class="weui_cells weui_cells_access" style='display:none'>
-            @foreach($group['equip_name'] as $ename)
+            <?php
+            for($i=0;$i<count($equips);$i++){
+                if($equips[$i]['name'] == $group){
+                    ?>
                 <a class="weui_cell" href="javascript:;">
                     <div class="weui_cell_bd weui_cell_primary">
-                        <p>{{$ename}}</p>
+                        <p>{{$equips[$i]['equipInfo'][0]['name']}}</p>
                     </div>
                 </a>
-            @endforeach
+            <?php
+                }
+            }
+            ?>
         </div>
 
     @endforeach

@@ -33,9 +33,9 @@
     <div class="weui-row">
     <?php
 
-           for($i=0;$i<count($quick);$i++){
+           for($i=0;$i<count($groupName);$i++){
                ?>
-        <a class="weui-col-25" style="color: inherit" href="{{url("/equipGroup/groupInfo/{$quick[$i]['id']}")}}">{{$quick[$i]['name']}}</a>
+        <a class="weui-col-25" style="color: inherit" href="{{url("/equipGroup/groupInfo/{$groupName[$i]}")}}">{{$groupName[$i]}}</a>
 
     <?php
            }
