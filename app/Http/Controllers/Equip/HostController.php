@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Equip;
 use App\Models\Host;
+use App\Models\HostType;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -20,37 +21,40 @@ class HostController extends Controller
 
     //添加主机
     public function showAddForm(){
-        return view('hosts.add');
+        $hostType = HostType::get()->toArray();
+
+        return view('hosts.add',compact('hostType'));
     }
 
     public function add(Requests\AddHostRequest $request){
 
 //        echo 1;
-        $id = $request->id;
+        $type = $request->type;
         $name = $request->name;
         $password = $request->password;
         $res = '';
-        $res  =  $this->checkHost($id,$password);
+       // $res  =  $this->checkHost($id,$password);
 //        dd($res);
-        if($res!='right'){
-            echo $res;
-        }else{
+//        if($res!='right'){
+//            echo $res;
+//        }else{
 
-            //更新主机表
-            Host::where('id',$id)
-                ->where('password',$password)
-                ->update([
-                    'user_id'=>Auth::user()->id,
-                    'name'=>$name,
-                ]);
-            //更新user表
-            User::where('id',Auth::user()->id)->update(['is_admin'=>1]);
-            //更新Auth
-            Auth::user()->admin_id = 1;
+            //添加到主机表
+        $host  = new Host();
+        $host->name = $name;
+        $host->type_id = $type;
+        $host->password = $password;
+        $host->user_id = Auth::user()->id;
+        $host->save();
+        //更新user表
+        User::where('id',Auth::user()->id)->update(['is_admin'=>1]);
+        //更新Auth
 
-            //输出到ajax
-            echo $res;
-        }
+        Auth::user()->admin_id = 1;
+
+        return redirect('/equip')->withSuccess('添加主机成功');
+        //输出到ajax
+//        echo 'success';
     }
     //验证主机名
     public function checkHost($id,$password){
@@ -76,7 +80,7 @@ class HostController extends Controller
                 return 'wrong password';
             }else{
                 //信息正确
-                return 'right';
+                return 'success';
             }
         }
     }

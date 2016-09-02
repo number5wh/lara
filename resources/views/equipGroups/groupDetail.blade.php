@@ -18,15 +18,14 @@
             height: 70px;
             line-height: 70px;
             text-align: center;
+            font-size: smaller;
 
         }
 
     </style>
 @endsection
 @section('main')
-    <div align="center"><a class="weui_btn weui_btn_mini weui_btn_primary" href="{{url("/equipGroup/group/$name/allSwitch/1")}}">全部开启</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;<a class="weui_btn weui_btn_mini weui_btn_default" href="{{url("/equipGroup/group/$name/allSwitch/0")}}">全部关闭</a>
-    </div>
+
     <div class="weui-row">
     <?php
            for($i=0;$i<count($equips);$i++){
@@ -49,6 +48,8 @@
         <?php }?>
         <a class="weui-col-40" href="{{url('/equipGroup/group/'.$name.'/addEquip')}}" style="color: inherit">+</a>
         </div>
-
+    <div align="center"><a class="weui_btn weui_btn_mini weui_btn_primary" href="{{url("/equipGroup/group/$name/allSwitch/1")}}">全部开启</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;<a class="weui_btn weui_btn_mini weui_btn_default" href="{{url("/equipGroup/group/$name/allSwitch/0")}}">全部关闭</a>
+    </div>
 
 @endsection

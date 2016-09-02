@@ -47,7 +47,7 @@ class EquipDistributeController extends Controller
 //            dd(count($equips));
             if(count($equips) == 0){
                 //没有记录,跳转到添加界面
-                return redirect("/distribute/showSetEquip/userid/$id")->withErrors('还未分配设备');
+                return redirect("/distribute/showSetEquip/userid/$id");
             }else{
 //dd($equips);
                 foreach($equips as $a){

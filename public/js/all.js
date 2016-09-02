@@ -50,19 +50,20 @@ $(document).on("click", "div input#addHostBtn", function() {
     var dm = window.location.host;
     var tg = "/host/add";
     var url = "http://"+dm+tg;
-    //alert(url);
+    //alert($('input[name=name]').val());
     $.post(
         url,
         {
-            id:$('input[name=id]').val(),
+            type:$("#selectType").find("option:selected").val(),
             name:$('input[name=name]').val(),
             _token:$('input[name=_token]').val(),
             password:$('input[name=password]').val()
         },
         function(data){
-            if(data == 'right'){
+            //$.alert(data);
+            if(data == 'success'){
                 $.alert('添加主机成功');
-                //setTimeout("http://"+dm+"/equip",3000);
+                setTimeout(function(){window.location="http://"+dm+"/equip";},3000);
                // window.location.href="http://"+dm+"/equip";
             }else if(data=='wrong host name'){
                 $.alert("主机id有误");

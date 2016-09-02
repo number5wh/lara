@@ -24,7 +24,7 @@ class AddHostRequest extends Request
     public function rules()
     {
         return [
-            'id' => 'required|max:255',
+            'type' => 'required',
             'name'=>'required|max:255',
             'password'=>'required|max:255'
         ];

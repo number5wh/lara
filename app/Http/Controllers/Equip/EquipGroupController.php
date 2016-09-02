@@ -27,9 +27,14 @@ class EquipGroupController extends Controller
     {
         $groupName =  DB::select("select distinct name from equipment_group
                       where user_id = :id",['id'=>Auth::user()->id]);
+        if(empty($groupName)){
+            return null;
+        }
+
         foreach($groupName as $v){
             $group[] = $v->name;
         }
+
         return $group;
     }
     /*

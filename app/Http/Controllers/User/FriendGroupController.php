@@ -38,7 +38,7 @@ class FriendGroupController extends Controller
         foreach($fg as $v){
             $g[] = $v['name'];
         }
-        return $g;
+        return array_unique($g);
     }
 
     /**

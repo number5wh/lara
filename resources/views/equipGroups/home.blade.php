@@ -23,8 +23,7 @@
             height: 60px;
             line-height: 60px;
             text-align: center;
-
-
+            font-size: smaller;
         }
 
     </style>

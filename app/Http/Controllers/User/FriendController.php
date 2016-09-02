@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Friend;
+use App\Models\FriendGroup;
 use App\Models\FriendRequest;
 use App\User;
 
@@ -34,67 +35,35 @@ class FriendController extends Controller
         //获取好友列表
         $friendGroup = new FriendGroupController();
         $fg = $friendGroup->getFriendGroupById(Auth::user()->id);
-        //dd($fg);
-        if(count($fg) ==1 && $fg[0]['users'] == null){
-            $tmp[]=$fg[0]['name'];
-            $data['name'] = $tmp;
-            $data['email'] = null;
+//        dd($fg);
+        if(count($fg) ==1 && empty($fg[0]['users'])){
+            //没好友
+            $friends[$fg[0]['name']][0] = null;
+            $emails[0][0] = null;
+            $keys = array_keys($friends);
         }
         else {
             foreach ($fg as $v) {
-                $name[] = $v['name'];
-                $friends[] = $v['users'];
+                $friends[$v['name']][] = $v['users'];
             }
-            foreach ($friends as $a) {
-                if ($a != null) {
-                    $friends1[] = explode(',', $a);//以,分组取出
-                } else {
-                    $friends1[] = $a;
-                }
+//dd($friends,count($friends),count($friends[]));
+            $keys = array_keys($friends);
 
-            }
-//            dd($friends1);
-            foreach ($friends1 as $b) {
-//                dd($b);
-                if ($b != null) {
-                    $friends2[] = array_filter($b);//去除最后一个null值
-//                    dd($friends2);
-                } else {
-//                    dd($b);
-                    $friends2[] = $b;
-//
-                }
-            }
-//            dd($friends2);
-            for($i=0;$i<count($friends2);$i++){
-                if($friends2[$i]!=null){
-                    for($j=0;$j<count($friends2[$i]);$j++){
-                        $emails[$i][] = $this->getEmailById($friends2[$i][$j]);
+            $emails = null;
+            for($i=0;$i<count($friends);$i++){
+                for($j=0;$j<count($friends[$keys[$i]]);$j++){
+                    if(empty($friends[$keys[$i]][$j])){
+                        $emails[$i][$j] = null;
+                    }else{
+                        $emails[$i][$j] = $this->getEmailById($friends[$keys[$i]][$j]);
                     }
-                }else {
-                    $emails[][] = null;
                 }
             }
-//            foreach ($friends2 as $c) {
-//                if ($c != null) {
-//
-//                    foreach ($c as $d) {
-//
-//                    }
-//                } else {
-//                    $emails[][] = null;
-//                }
-//            }
-            //dd($friends2);
-//dd($emails);
-            $data = [
-                'name' => $name,
-                'email' => $emails,
-            ];
+
         }
-//dd($data);
+//        dd($friends,$emails,$keys);
         $group = $friendGroup->getGroupNameById(Auth::user()->id);
-        return view('friends.home',compact(['data','fremailAdd','fremailPass','fremailDeny','group']));
+        return view('friends.home',compact(['friends','keys','emails','fremailAdd','fremailPass','fremailDeny']));
 
     }
 
@@ -158,7 +127,7 @@ class FriendController extends Controller
 
             //friend_group表的更新(添加人和被添加人)
 
-            //添加人
+            //主动添加人
             //获取添加人要添加的分组
             $groupFrom = FriendRequest::select('group')
                 ->where('from',$from)
@@ -172,27 +141,38 @@ class FriendController extends Controller
             //获取这组已有好友列表
             $friendGroup = new FriendGroupController();
             $friendList1 = $friendGroup->getUsers($from,$groupFrom[0]['group']);
-
-            //再把to加上
-            $list1 = $friendList1[0]['users'].$to.",";
-            DB::table('friend_group')
-                ->where('user_id',$from)
-                ->where('name',$groupFrom[0]['group'])
-                ->update(['users'=>$list1]);
-
+            if(count($friendList1 == 1) && empty($friendList1[0]['users'])){
+                //该分组没有好友的情况
+                FriendGroup::where('user_id',$from)
+                    ->where('name',$groupFrom[0]['group'])
+                    ->update(['users'=>$to]);
+            }else{
+                //还分组已有好友
+                $fd = new FriendGroup();
+                $fd->user_id = $from;
+                $fd->name = $groupFrom[0]['group'];
+                $fd->users = $to;
+                $fd->save();
+            }
 
             //被添加人
             //获取这组已有好友列表
             $groupTo = $data['group'];
             $friendList2 = $friendGroup->getUsers($to,$groupTo);
             //加上from
-            $list2 = $friendList2[0]['users'].$from.",";
-            DB::table('friend_group')
-                ->where('user_id',$to)
-                ->where('name',$groupTo)
-                ->update(['users'=>$list2]);
-
-
+            if(count($friendList2 == 1) && empty($friendList2[0]['users'])){
+                //该分组没有好友的情况
+                FriendGroup::where('user_id',$to)
+                    ->where('name',$groupTo)
+                    ->update(['users'=>$from]);
+            }else{
+                //还分组已有好友
+                $fd = new FriendGroup();
+                $fd->user_id = $to;
+                $fd->name = $groupTo;
+                $fd->users = $from;
+                $fd->save();
+            }
 
             //friend_request表的更新
 
@@ -233,7 +213,6 @@ class FriendController extends Controller
     //添加好友
     public function showAddForm()
     {
-//            dd(123);
         $friendGroup = new FriendGroupController();
         $groups = $friendGroup->getGroupNameById(Auth::user()->id);
         return view('friends.add', compact('groups', $groups));

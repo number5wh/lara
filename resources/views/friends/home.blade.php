@@ -54,21 +54,21 @@
                             <div class="weui_cell weui_cell_select" id="chooseGroup">
                                 <div class="weui_cell_bd weui_cell_primary">
                                     <select class="weui_select" name="group" >
-                                        @foreach($group as $v)
+                                        @foreach($keys as $v)
                                             <option value="{{$v}}">{{$v}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="weui_cells_tips"><input type="submit" id="btn" class="weui_btn weui_btn_mini weui_btn_primary" value="确定"></div>
+                            <div class="weui_cells_tips"><input type="submit" id="btn" class="weui_btn weui_btn weui_btn_primary" value="确定"></div>
 
                         </div>
                         <div class="handleDeny" style="display: none">
-                            <div class="weui_cells_tips"><input type="submit" id="btn" class="weui_btn weui_btn_mini weui_btn_primary" value="确定"></div>
+                            <div class="weui_cells_tips"><input type="submit" id="btn" class="weui_btn weui_btn weui_btn_warn" value="拒绝"></div>
 
                         </div>
                         <div class="handleIgnore" style="display: none">
-                            <div class="weui_cells_tips"><input type="submit" id="btn" class="weui_btn weui_btn_mini weui_btn_primary" value="确定"></div>
+                            <div class="weui_cells_tips"><input type="submit" id="btn" class="weui_btn weui_btn weui_btn_primary" value="忽略"></div>
                         </div>
                     </li>
                 @endforeach
@@ -96,17 +96,12 @@
     @endif
 
     <?php
-            //dd($data);
-    $name = $data['name'];
-    $emails = $data['email'];
-            //dd($emails);
-    $groups = $name==null?0:count($name);
-    //dd($groups);
-    for($i=0;$i<$groups;$i++){
+
+    for($i=0;$i<count($keys);$i++){
         ?>
 
 
-    <div class="weui_cells_title"><b class="slider">{{$name[$i]}}</b></div>
+    <div class="weui_cells_title"><b class="slider">{{$keys[$i]}}</b></div>
     <div class="weui_cells weui_cells_access">
         <?php
         for($j=0;$j<count($emails[$i]);$j++){
