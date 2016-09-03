@@ -12,7 +12,7 @@ $(document).ready(function(){
                 type:$(this).find('img').attr('alt')
             },
             function(){
-                alert(666);
+                //alert(666);
             }
         );
     });

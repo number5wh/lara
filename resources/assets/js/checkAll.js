@@ -11,4 +11,13 @@ $(function(){
             $(this).parent().next().find("[name='equip_id[]']:checkbox").prop('checked',false);
         }
     });
+    $('input.checkedAll2').click(function() {
+        //alert($(this).parent().next().find("[name='equip_id[]']:checkbox").html());
+
+        if($(this).prop("checked")){
+            $(this).parent().next().find("[name='id[]']:checkbox").prop('checked',true);
+        }else{
+            $(this).parent().next().find("[name='id[]']:checkbox").prop('checked',false);
+        }
+    });
 });

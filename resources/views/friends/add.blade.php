@@ -36,7 +36,7 @@
                 <div class="weui_cell_bd weui_cell_primary">
                     <select class="weui_select" name="group" id="selectGroup">
                         @foreach($groups as $group)
-                            <option value="{{$group}}">{{$group}}</option>
+                            <option value="{{$group['id']}}">{{$group['name']}}</option>
                         @endforeach
                     </select>
                 </div>

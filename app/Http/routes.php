@@ -18,10 +18,16 @@ Route::group(['prefix'=>'/friend'],function(){
     Route::get('/add','User\FriendController@showAddForm');
     Route::post('/add','User\FriendController@add');
     Route::get('/handleResult/{from}/{to}/{pass}','User\FriendController@handleResult');
+    Route::get('/delete','User\FriendController@showDeleteForm');
+    Route::post('/delete','User\FriendController@delete');
 });
 Route::group(['prefix'=>'/friendGroup'],function(){
     Route::get('/add','User\FriendGroupController@showAddForm');
     Route::post('/add','User\FriendGroupController@add');
+    Route::get('/delete','User\FriendGroupController@showDeleteForm');
+    Route::post('/delete','User\FriendGroupController@delete');
+    Route::get('/move','User\FriendGroupController@showMove');
+    Route::post('/move','User\FriendGroupController@move');
 });
 
 Route::group(['prefix'=>'/host'],function(){
@@ -54,7 +60,7 @@ Route::group(['prefix'=>'equipGroup'],function(){
 });
 
 Route::group(['prefix'=>'distribute'],function(){
-    Route::get('/getDistribute/{email}','User\EquipDistributeController@getDistribute');
+    Route::get('/getDistribute/{id}','User\EquipDistributeController@getDistribute');
     Route::get('/showSetEquip/userid/{id}','User\EquipDistributeController@showSetEquip');
     Route::post('/setEquip','User\EquipDistributeController@setEquip');
     Route::get('/deleteEquip1/userid/{id}','User\EquipDistributeController@deleteEquip1');

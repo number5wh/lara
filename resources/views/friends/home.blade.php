@@ -54,8 +54,8 @@
                             <div class="weui_cell weui_cell_select" id="chooseGroup">
                                 <div class="weui_cell_bd weui_cell_primary">
                                     <select class="weui_select" name="group" >
-                                        @foreach($keys as $v)
-                                            <option value="{{$v}}">{{$v}}</option>
+                                        @foreach($fg as $v)
+                                            <option value="{{$v['id']}}">{{$v['name']}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -97,31 +97,31 @@
 
     <?php
 
-    for($i=0;$i<count($keys);$i++){
+    for($i=0;$i<count($fg);$i++){
         ?>
 
 
-    <div class="weui_cells_title"><b class="slider">{{$keys[$i]}}</b></div>
+    <div class="weui_cells_title"><b class="slider">{{$fg[$i]['name']}}</b></div>
     <div class="weui_cells weui_cells_access">
         <?php
-        for($j=0;$j<count($emails[$i]);$j++){
+        for($j=0;$j<count($friends);$j++){
         if(Auth::user()->is_admin == 0){
-            if($emails[$i][$j] != null){
+            if($friends[$j]['group_id'] == $fg[$i]['id']){
             ?>
         <a class="weui_cell" href="javascript:;">
             <div class="weui_cell_bd weui_cell_primary">
-                <p>{{$emails[$i][$j]}}</p>
+                <p>{{$friends[$j]['friend_email']}}</p>
             </div>
 
         </a>
         <?php }}elseif(Auth::user()->is_admin == 1){
-                $url = url("/distribute/getDistribute/{$emails[$i][$j]}");
-                if($emails[$i][$j] != null){
+                $url = url("/distribute/getDistribute/{$friends[$j]['users']}");
+                if($friends[$j]['group_id'] == $fg[$i]['id']){
 
             ?>
             <a class="weui_cell" href="{{$url}}">
                 <div class="weui_cell_bd weui_cell_primary">
-                    <p>{{$emails[$i][$j]}}</p>
+                    <p>{{$friends[$j]['friend_email']}}</p>
                 </div>
                 <div class="weui_cell_ft"></div>
             </a>

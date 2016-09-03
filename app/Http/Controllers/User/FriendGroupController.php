@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 use App\Models\FriendGroup;
+use App\Models\FriendGroupDetail;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -19,35 +20,32 @@ class FriendGroupController extends Controller
     }
 
     /**
-     * 根据id获取好友分组及列表
+     * 根据用户id获取好友分组id和名字
      */
     public function getFriendGroupById($id){
-        $friends = FriendGroup::select('name','users')
+        $friends = FriendGroup::select('id','name')
             ->where('user_id',$id)
             ->get()
             ->toArray();
         return $friends;
     }
 
-    /**
-     * 获取好友分组名
+    /*
+     * 获取所有分组的所有好友
      */
-    public function getGroupNameById($id){
-        //关联关系查询
-        $fg = User::find($id)->FriendGroupNames;
-        foreach($fg as $v){
-            $g[] = $v['name'];
-        }
-        return array_unique($g);
+    public function getFriendList()
+    {
+        return FriendGroupDetail::where('user_id',Auth::user()->id)
+            ->get()->toArray();
     }
 
     /**
      * 获取某组已有好友列表
      */
-    public function getUsers($id,$name){
-        $friendList1 = FriendGroup::select('users')
-            ->where('user_id',$id)
-            ->where('name',$name)
+    public function getUsers($userid,$groupId){
+        $friendList1 = FriendGroupDetail::select('users')
+            ->where('user_id',$userid)
+            ->where('group_id',$groupId)
             ->get()
             ->toArray();
         return $friendList1;
@@ -65,4 +63,86 @@ class FriendGroupController extends Controller
         $friendGroup->save();
         return redirect("/friend")->withSuccess('添加成功');
     }
+    
+    /*
+     * 删除好友分组
+     */
+    public function showDeleteForm()
+    {
+        $fg = $this->getFriendGroupById(Auth::user()->id);
+        if(count($fg) == 1 && $fg[0]['name'] == '默认'){
+            return redirect('/friend')->withErrors('默认分组不能删除');
+        }
+        return view('friendGroups.delete',compact('fg'));
+    }
+
+    public function delete(Request $request)
+    {
+        $this->validate($request,[
+           'groupId'=>'required'
+        ]);
+        //获取默认分组id
+        $defaultGroupId = FriendGroup::where('name','默认')
+            ->where('user_id',Auth::user()->id)
+            ->select('id')
+            ->get()->toArray();
+
+        $groupId = $request->groupId;
+//        dd($groupId);
+//        $idArr = array_filter(explode(',',$groupId));
+
+        for($i=0;$i<count($groupId);$i++){
+            //将里面的好友转移到默认分组
+            FriendGroupDetail::where('user_id',Auth::user()->id)
+                ->where('group_id',$groupId[$i])
+                ->update([
+                    'group_id'=>$defaultGroupId[0]['id']
+                ]);
+            //删除分组
+            FriendGroup::where('user_id',Auth::user()->id)
+                ->where('id',$groupId[$i])
+                ->delete();
+        }
+       return redirect('/friend')->withSuccess('删除分组成功');
+    }
+    
+    /*
+     * 移动好友到别的分组
+     */
+    public function showMove()
+    {
+        $friend = new FriendController();
+        $fg = $this->getFriendGroupById(Auth::user()->id);
+        $friends = $this->getFriendList();
+
+        if(count($fg) == 1){
+            return redirect('/friend')->withErrors('只有一个分组，不能进行好友移动');
+        }
+        //获取好友email
+        foreach($friends as $k=>$v){
+            $friends[$k]['friend_email'] = $friend->getEmailById($v['users']);
+        }
+//        dd($fg,$friends);
+        return view('friendGroups.showMove',compact(['friends','fg']));
+    }
+
+    public function move(Request $request)
+    {
+        $this->validate($request,[
+            'id'=>'required',
+            'group'=>'required'
+        ]);
+        $group = $request->group;
+        $idArr = $request->id;
+        foreach($idArr as $id){
+            //更新好友分组详情表
+            FriendGroupDetail::where('user_id',Auth::user()->id)
+                ->where('users',$id)
+                ->update([
+                    'group_id'=>$group
+                ]);
+        }
+        return redirect('/friend')->withSuccess('移动好友成功');
+    }
+    
 }

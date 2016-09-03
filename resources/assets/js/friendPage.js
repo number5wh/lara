@@ -34,7 +34,38 @@ $(document).on("click", "#friendPage", function() {
                     var url = "http://"+dm+tg;
                     window.location.href=url;
                 }
-            }
+            },
+            {
+                text: "移动好友",
+                className: "color-primary",
+                onClick: function() {
+                    var dm = window.location.host;
+                    var tg = "/friendGroup/move";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+                }
+            },
+
+            {
+                text: "删除好友",
+                className: "color-danger",
+                onClick: function() {
+                    var dm = window.location.host;
+                    var tg = "/friend/delete";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+                }
+            },
+            {
+                text: "删除好友分组",
+                className: "color-danger",
+                onClick: function() {
+                    var dm = window.location.host;
+                    var tg = "/friendGroup/delete";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+                }
+            },
         ]
     });
 });

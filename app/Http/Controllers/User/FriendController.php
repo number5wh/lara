@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\EquipDistribute;
+use App\Models\EquipmentGroup;
 use App\Models\Friend;
 use App\Models\FriendGroup;
+use App\Models\FriendGroupDetail;
 use App\Models\FriendRequest;
 use App\User;
 
@@ -32,38 +35,17 @@ class FriendController extends Controller
         $fremailPass = $this->getRequestInfo(1);
         $fremailDeny = $this->getRequestInfo(0);
 
-        //获取好友列表
+        //获取好友分组和列表
         $friendGroup = new FriendGroupController();
         $fg = $friendGroup->getFriendGroupById(Auth::user()->id);
-//        dd($fg);
-        if(count($fg) ==1 && empty($fg[0]['users'])){
-            //没好友
-            $friends[$fg[0]['name']][0] = null;
-            $emails[0][0] = null;
-            $keys = array_keys($friends);
-        }
-        else {
-            foreach ($fg as $v) {
-                $friends[$v['name']][] = $v['users'];
-            }
-//dd($friends,count($friends),count($friends[]));
-            $keys = array_keys($friends);
+        $friends = $friendGroup->getFriendList();
 
-            $emails = null;
-            for($i=0;$i<count($friends);$i++){
-                for($j=0;$j<count($friends[$keys[$i]]);$j++){
-                    if(empty($friends[$keys[$i]][$j])){
-                        $emails[$i][$j] = null;
-                    }else{
-                        $emails[$i][$j] = $this->getEmailById($friends[$keys[$i]][$j]);
-                    }
-                }
-            }
-
+        //获取好友email
+        foreach($friends as $k=>$v){
+            $friends[$k]['friend_email'] = $this->getEmailById($v['users']);
         }
-//        dd($friends,$emails,$keys);
-        $group = $friendGroup->getGroupNameById(Auth::user()->id);
-        return view('friends.home',compact(['friends','keys','emails','fremailAdd','fremailPass','fremailDeny']));
+//        dd($fg,$friends);
+        return view('friends.home',compact(['friends','fg','fremailAdd','fremailPass','fremailDeny']));
 
     }
 
@@ -80,7 +62,7 @@ class FriendController extends Controller
                 $fremail = null;
             }else{
                 foreach($fromId as $v){
-                    $fremail[] = $this->getemailById($v['from']);
+                    $fremail[] = $this->getEmailById($v['from']);
                 }
             }
         }else{
@@ -137,42 +119,20 @@ class FriendController extends Controller
                 ->toArray();
 
 
-
-            //获取这组已有好友列表
-            $friendGroup = new FriendGroupController();
-            $friendList1 = $friendGroup->getUsers($from,$groupFrom[0]['group']);
-            if(count($friendList1 == 1) && empty($friendList1[0]['users'])){
-                //该分组没有好友的情况
-                FriendGroup::where('user_id',$from)
-                    ->where('name',$groupFrom[0]['group'])
-                    ->update(['users'=>$to]);
-            }else{
-                //还分组已有好友
-                $fd = new FriendGroup();
-                $fd->user_id = $from;
-                $fd->name = $groupFrom[0]['group'];
-                $fd->users = $to;
-                $fd->save();
-            }
+            //添加到分组里
+            $fd = new FriendGroupDetail();
+            $fd->user_id = $from;
+            $fd->group_id = $groupFrom[0]['group'];
+            $fd->users = $to;
+            $fd->save();
 
             //被添加人
-            //获取这组已有好友列表
             $groupTo = $data['group'];
-            $friendList2 = $friendGroup->getUsers($to,$groupTo);
-            //加上from
-            if(count($friendList2 == 1) && empty($friendList2[0]['users'])){
-                //该分组没有好友的情况
-                FriendGroup::where('user_id',$to)
-                    ->where('name',$groupTo)
-                    ->update(['users'=>$from]);
-            }else{
-                //还分组已有好友
-                $fd = new FriendGroup();
-                $fd->user_id = $to;
-                $fd->name = $groupTo;
-                $fd->users = $from;
-                $fd->save();
-            }
+            $fd = new FriendGroupDetail();
+            $fd->user_id = $to;
+            $fd->group_id = $groupTo;
+            $fd->users = $from;
+            $fd->save();
 
             //friend_request表的更新
 
@@ -214,7 +174,7 @@ class FriendController extends Controller
     public function showAddForm()
     {
         $friendGroup = new FriendGroupController();
-        $groups = $friendGroup->getGroupNameById(Auth::user()->id);
+        $groups = $friendGroup->getFriendGroupById(Auth::user()->id);
         return view('friends.add', compact('groups', $groups));
     }
 
@@ -236,6 +196,7 @@ class FriendController extends Controller
             die;
         }
 
+        //获取已有的好友
         $friends = $this->getFriends(Auth::user()->id);
         if($friends!=null){
             $emails2 = null;
@@ -288,6 +249,73 @@ class FriendController extends Controller
         $toId = $this->getIdByEmail($to);
         FriendRequest::where('from',$from)->where('to',$toId)->where('pass',$pass)->delete();
         return redirect('/friend')->withSuccess('已处理');
+    }
+
+    /*
+     * 批量删除好友
+     */
+    public function showDeleteForm(){
+        //获取好友分组和列表
+        $friendGroup = new FriendGroupController();
+        $fg = $friendGroup->getFriendGroupById(Auth::user()->id);
+        $friends = $friendGroup->getFriendList();
+
+        //获取好友email
+        foreach($friends as $k=>$v){
+            $friends[$k]['friend_email'] = $this->getEmailById($v['users']);
+        }
+//        dd($fg,$friends);
+        return view('friends.delete',compact(['friends','fg']));
+    }
+
+    public function delete(Request $request)
+    {
+        $myId = Auth::user()->id;
+        $this->validate($request,[
+            'id'=>'required',
+        ]);
+        $idArr = $request->id;
+
+        foreach($idArr as $id){
+            $friendInfo = User::find($id)->toArray();
+            if(Auth::user()->is_admin == 1){
+                //获取分配给好友的设备
+                $equipDistribute1 = EquipDistribute::where('from',$myId)->where('to',$id)->select('equipments')->get()->toArray();
+                if(count($equipDistribute1)!= 0){
+                    //先删除好友便捷分组里所分配的设备
+                    foreach($equipDistribute1 as $a){
+                        EquipmentGroup::where('user_id',$id)
+                            ->where('equipments',$a['equipments'])
+                            ->delete();
+                    }
+                    //删除分配给好友的设备
+                    EquipDistribute::where('from',$myId)->where('to',$id)->delete();
+                }
+             }
+
+            if($friendInfo['is_admin'] == 1){
+                //获取好友分配的设备
+                $equipDistribute2 = EquipDistribute::where('from',$id)->where('to',$myId)->select('equipments')->get()->toArray();
+                if(count($equipDistribute2)!= 0){
+                    //先删除便捷分组里对应的设备
+                    foreach($equipDistribute2 as $b){
+                        EquipmentGroup::where('user_id',$myId)
+                            ->where('equipments',$b['equipments'])
+                            ->delete();
+                    }
+                    //删除好友分配的设备
+                    EquipDistribute::where('from',$id)->where('to',$myId)->delete();
+                }
+            }
+            //删除双方好友分组里的好友信息
+            FriendGroupDetail::where('user_id',$myId)->where('users',$id)->delete();
+            FriendGroupDetail::where('user_id',$id)->where('users',$myId)->delete();
+            //删除好友列表里的信息
+            Friend::where('userid1',$myId)->where('userid2',$id)->delete();
+            Friend::where('userid1',$id)->where('userid2',$myId)->delete();
+        }
+
+        return redirect('/friend')->withSuccess('删除好友成功');
     }
 
 }

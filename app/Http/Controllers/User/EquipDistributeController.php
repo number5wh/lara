@@ -5,13 +5,10 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Models\EquipDistribute;
 use App\User;
-use App\Http\Controllers\User\FriendController;
 use Auth;
 use App\Models\Equipment;
 use App\Models\Host;
-use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Equip\EquipController;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -28,13 +25,13 @@ class EquipDistributeController extends Controller
     }
 
     //查看为好友分配的设备
-    public function getDistribute($email){
+    public function getDistribute($id){
         $myId = Auth::user()->id;
+
         $fd = new FriendController();
-        $id = $fd->getIdByEmail($email);
         //获取好友列表
         $friendArr = $fd->getFriends($myId);
-
+        $email = $fd->getEmailById($id);
         foreach($friendArr as $friend){
             $idArr[] = $friend->userid;
         }
@@ -92,24 +89,7 @@ class EquipDistributeController extends Controller
         $equip = $equipObj->getHostEquip(Auth::user()->id);
         $fd = new FriendController();
         $femail=$fd->getEmailById($id);
-    /*    dd($equip);
-                array:2 [▼
-          "公司" => array:3 [▼
-            0 => array:2 [▼
-              "id" => 18
-              "name" => "灯2"
-            ]
-            1 => array:2 [▼
-              "id" => 19
-              "name" => "灯3"
-            ]
-            2 => array:2 [▼
-              "id" => 20
-              "name" => "灯4"
-            ]
-          ]
-          "家" => []
-        ]*/
+
         if($equips == null){ //还未分配过设备
 
             $equipId = [];
@@ -141,7 +121,7 @@ class EquipDistributeController extends Controller
         }
 
 
-        return redirect("/distribute/getDistribute/{$email['email']}")->withSuccess('添加设备成功');
+        return redirect("/distribute/getDistribute/{$to}")->withSuccess('添加设备成功');
 
     }
 
@@ -200,6 +180,6 @@ class EquipDistributeController extends Controller
                 ->where('equipments',$item)
                 ->delete();
         }
-        return redirect("/distribute/getDistribute/{$email['email']}")->withSuccess('删除设备成功');
+        return redirect("/distribute/getDistribute/{$to}")->withSuccess('删除设备成功');
     }
 }
