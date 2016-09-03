@@ -4,7 +4,7 @@
 @endsection
 @section('header')
     <div class="bk_nav">
-        <img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>
+        <img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="window.location.href='{{url('/friend')}}'"/>
         <p class="bk_title"></p>
     </div>
 @endsection
