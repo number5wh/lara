@@ -33,7 +33,7 @@ $("#addFriend").click(function() {
                 $.alert("不能在还有请求未处理时再发起另一次请求!",'错误');
             }else if(data=='success') {
                 $.alert("请求已发出!",'成功');
-                setTimeout(function(){window.location="http://"+dm+"/friend";},3000);
+                setTimeout(function(){window.location="http://"+dm+"/friend";},0);
             }
         }
     );

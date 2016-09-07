@@ -31,8 +31,9 @@
     <div class="weui_cells_title">好友处理
         @if($fremailAdd != null)
             <ul style="list-style-type: none">
-                <form action="{{url('/friend/handle')}}" method="post">
+
                 @foreach($fremailAdd as $add)
+                    <form action="{{url('/friend/handle')}}" method="post">
                     <li class="addFriend">
                         <div class="weui_cells_tips">{{$add}}想添加你为好友</div>
                         <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
@@ -71,8 +72,9 @@
                             <div class="weui_cells_tips"><input type="submit" id="btn" class="weui_btn weui_btn weui_btn_primary" value="忽略"></div>
                         </div>
                     </li>
+                    </form>
                 @endforeach
-                </form>
+
             </ul>
     @endif
 

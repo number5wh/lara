@@ -81,6 +81,7 @@ class FriendGroupController extends Controller
         $this->validate($request,[
            'groupId'=>'required'
         ]);
+
         //获取默认分组id
         $defaultGroupId = FriendGroup::where('name','默认')
             ->where('user_id',Auth::user()->id)
@@ -88,19 +89,21 @@ class FriendGroupController extends Controller
             ->get()->toArray();
 
         $groupId = $request->groupId;
+        //以，数组传递过来的
 //        dd($groupId);
-//        $idArr = array_filter(explode(',',$groupId));
+        $idArr = array_filter(explode(',',$groupId));
 
-        for($i=0;$i<count($groupId);$i++){
+//        dd($idArr);
+        foreach($idArr as $gid){
             //将里面的好友转移到默认分组
             FriendGroupDetail::where('user_id',Auth::user()->id)
-                ->where('group_id',$groupId[$i])
+                ->where('group_id',$gid)
                 ->update([
                     'group_id'=>$defaultGroupId[0]['id']
                 ]);
             //删除分组
             FriendGroup::where('user_id',Auth::user()->id)
-                ->where('id',$groupId[$i])
+                ->where('id',$gid)
                 ->delete();
         }
        return redirect('/friend')->withSuccess('删除分组成功');

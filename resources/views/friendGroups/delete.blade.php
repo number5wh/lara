@@ -14,8 +14,9 @@
     $num = $fg==null?0:count($fg);
 
     ?>
-    <form action="{{url('/friendGroup/delete')}}" method="post">
-        <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
+    <form action="{{url('/friendGroup/delete')}}" method="post" id="deleteGroupForm">
+        <input type="text" name="_token" value="{{csrf_token()}}"  hidden >
+        <input type="text" name="groupId" value="" id="delFGId" hidden>
     <?php
 
     for($i=0;$i<$num;$i++){
@@ -23,7 +24,7 @@
         ?>
         <a class="weui_cell" href="javascript:;" style="color: inherit">
             <div class="weui_cell_bd weui_cell_primary">
-                <p> <input type="checkbox" name="groupId[]" value="{{$fg[$i]['id']}}"/>
+                <p> <input type="checkbox" name="gid" value="{{$fg[$i]['id']}}"/>
                       {{$fg[$i]['name']}}</p>
             </div>
         </a>
@@ -34,7 +35,7 @@
     ?>
         <a class="weui_cell" href="javascript:;" style="color: inherit">
             <div class="weui_cell_bd weui_cell_primary">
-                <p><input type="submit" class="weui_btn weui_btn weui_btn_warn" id=""
+                <p><input type="button" class="weui_btn weui_btn weui_btn_warn" id="deleteFriendGroup"
                           value="删除"/></p>
             </div>
         </a>
