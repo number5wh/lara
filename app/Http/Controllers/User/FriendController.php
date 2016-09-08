@@ -34,8 +34,8 @@ class FriendController extends Controller
         $fremailAdd = $this->getRequestInfo(2);
         $fremailPass = $this->getRequestInfo(1);
         $fremailDeny = $this->getRequestInfo(0);
-
         //获取好友分组和列表
+
         $friendGroup = new FriendGroupController();
         $fg = $friendGroup->getFriendGroupById(Auth::user()->id);
         $friends = $friendGroup->getFriendList();
