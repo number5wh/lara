@@ -3,7 +3,7 @@
     便捷分组设备
 @endsection
 @section('header')
-    <div class="bk_nav">
+{{--    <div class="bk_nav">
         <a href="{{url('/equip/changeWatch/1')}}"><img src="{{url('images/change.png')}}" alt="" class="bk_back" style="background: white"/></a>
         <p class="bk_title"></p>
         @if(Auth::user()->is_admin == 1)
@@ -12,6 +12,17 @@
             <img src="{{url('images/add1.png')}}" alt="" id="equipPage" class="bk_nav_menu" style="background: white"/>
         @endif
 
+    </div>--}}
+    <div class="bk_nav">
+        <span class="glyphicon glyphicon-resize-horizontal bk_back" onclick="window.location.href='{{url('/equip/changeWatch/1')}}'"></span>
+        {{--<img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>--}}
+        <p class="bk_title"></p>
+        @if(Auth::user()->is_admin == 1)
+            <span class="bk_nav_menu glyphicon glyphicon-align-justify" id="equipPageAdmin"></span>
+        @else
+            <span class="bk_nav_menu glyphicon glyphicon-align-justify" id="equipPage"></span>
+        @endif
+        {{--<img src="{{url('images/add1.png')}}" alt="" id="friendPage" class="bk_nav_menu" style="background: white"/>--}}
     </div>
 @endsection
 @section('main')

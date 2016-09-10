@@ -9,8 +9,9 @@
 
 <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
 ">
-
+<link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{url('css/all.css')}}">
+
   </head>
 
   <body ontouchstart>

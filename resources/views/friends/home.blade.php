@@ -4,13 +4,14 @@
 @endsection
 @section('header')
   <div class="bk_nav">
-      <img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>
+      <span class="glyphicon glyphicon-chevron-left bk_back" onclick="history.back(-1)"></span>
+      {{--<img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>--}}
       <p class="bk_title"></p>
-      <img src="{{url('images/add1.png')}}" alt="" id="friendPage" class="bk_nav_menu" style="background: white"/>
+      <span class="bk_nav_menu glyphicon glyphicon-align-justify" id="friendPage"></span>
+      {{--<img src="{{url('images/add1.png')}}" alt="" id="friendPage" class="bk_nav_menu" style="background: white"/>--}}
   </div>
     @endsection
 @section('main')
-
     <div class="weui_search_bar" id="search_bar">
         <form class="weui_search_outer">
             <div class="weui_search_inner">
@@ -104,7 +105,7 @@
 
 
     <div class="weui_cells_title"><b class="slider">{{$fg[$i]['name']}}</b></div>
-    <div class="weui_cells weui_cells_access">
+    <div class="weui_cells weui_cells_access" style='display:none;'>
         <?php
         for($j=0;$j<count($friends);$j++){
         if(Auth::user()->is_admin == 0){

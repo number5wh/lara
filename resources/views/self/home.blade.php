@@ -4,7 +4,8 @@
 @endsection
 @section('header')
     <div class="bk_nav">
-        <img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>
+        <span class="glyphicon glyphicon-chevron-left bk_back" onclick="history.back(-1)"></span>
+        {{--<img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>--}}
         <p class="bk_title"></p>
     </div>
 @endsection

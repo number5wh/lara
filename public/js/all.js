@@ -13789,7 +13789,7 @@ $(document).on("click", "#groupDetailPage", function() {
                 onClick: function() {
                     //$.alert("你选择了“编辑”");
                     var dm = window.location.host;
-                    var id = $("#groupDetailPage").attr('alt');
+                    var id = $("#groupDetailPage").find('p').text();
                     var tg = "/equipGroup/group/"+id+"/addEquip";
                     var url = "http://"+dm+tg;
                     //alert(url);
@@ -13803,7 +13803,7 @@ $(document).on("click", "#groupDetailPage", function() {
                 onClick: function() {
                     //$.alert("你选择了“编辑”");
                     var dm = window.location.host;
-                    var id = $("#groupDetailPage").attr('alt');
+                    var id = $("#groupDetailPage").find('p').text();
                     var tg = "/equipGroup/group/"+id+"/deleteEquip";
                     var url = "http://"+dm+tg;
                     window.location.href=url;

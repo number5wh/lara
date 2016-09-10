@@ -46,11 +46,20 @@ body,html{height:100%;-webkit-tap-highlight-color:transparent}
   position: fixed;
   top: 0;
 }
-.bk_nav img {
-  width: 50px;
-  height: 50px;
+.bk_nav span {
+  font-size: 20px;
+  text-align: center;
+  line-height: 50px;
+  color: #ffffff;
 }
+
+.bk_back{
+  margin-left: 10px;
+  float: left;
+}
+
 .bk_nav_menu {
+  margin-right: 10px;
   float: right;
 }
 .bk_nav p {

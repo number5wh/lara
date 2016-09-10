@@ -4,9 +4,9 @@
 @endsection
 @section('header')
     <div class="bk_nav">
-        <img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="window.location.href='{{url('/equipGroup')}}'"/>
+        <span class="glyphicon glyphicon-chevron-left bk_back" onclick="window.location.href='{{url('/equipGroup')}}'"></span>
+        {{--<img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>--}}
         <p class="bk_title"></p>
-
     </div>
 @endsection
 @section('main')

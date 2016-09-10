@@ -4,10 +4,13 @@
     @endsection
 @section('header')
     <div class="bk_nav">
-        <img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="window.location.href='{{url('/equip')}}'"/>
+        <span class="glyphicon glyphicon-chevron-left bk_back" onclick="window.location.href='{{url('/equip')}}'"></span>
+        {{--<img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>--}}
         <p class="bk_title"></p>
-        <img src="{{url('images/add1.png')}}" alt="" id="friendPage" class="bk_nav_menu" style="background: white"/>
+        <span class="bk_nav_menu glyphicon glyphicon-align-justify" id="friendPage"></span>
+        {{--<img src="{{url('images/add1.png')}}" alt="" id="friendPage" class="bk_nav_menu" style="background: white"/>--}}
     </div>
+
 @endsection
 @section('main')
     <header class='demos-header'>

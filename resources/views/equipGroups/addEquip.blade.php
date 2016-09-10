@@ -4,9 +4,9 @@
 @endsection
 @section('header')
     <div class="bk_nav">
-        <img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="window.location.href='{{url('/equipGroup')}}'"/>
+        <span class="glyphicon glyphicon-chevron-left bk_back" onclick="window.location.href='{{url('/equipGroup')}}'"></span>
         <p class="bk_title"></p>
-        <img src="{{url('images/add1.png')}}" alt="" id="quickPage" class="bk_nav_menu" style="background: white"/>
+        <span class="bk_nav_menu glyphicon glyphicon-align-justify" id="quickPage"></span>
     </div>
 @endsection
 @section('main')
