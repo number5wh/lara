@@ -18,14 +18,14 @@ class Host extends Model
         return $this->hasMany('App\Models\Equipment')->select('id');
     }
 
-    //获取该主机下的未被移除设备id和name
-    public function equipmentIdNotDeleted(){
-        return $this->hasMany('App\Models\Equipment')->where('is_deleted',0)->select('id','name');
+    //获取该主机下设备id和name
+    public function equipmentIdAndName(){
+        return $this->hasMany('App\Models\Equipment')->select('id','name');
     }
 
-
-    //获取该主机下的被移除设备id
-    public function equipmentIdDeleted(){
-        return $this->hasMany('App\Models\Equipment')->where('is_deleted',1)->select('id','name');
+    //获取该主机下设备id,name,type_id,
+    public function equipmentByType(){
+        return $this->hasMany('App\Models\Equipment')->select('id','name','type_id');
     }
+
 }

@@ -17,7 +17,7 @@
     <?php
     for($i=0;$i<count($fg);$i++){
         ?>
-    <div class="weui_cells_title"><b class="slider">{{$fg[$i]['name']}}</b>
+    <div class="weui_cells_title"><span class="slider list">{{$fg[$i]['name']}}</span>
         <input type='checkbox' class='checkedAll2'/></div>
     <div class="weui_cells weui_cells_access">
         <?php

@@ -205,7 +205,7 @@ class EquipGroupController extends Controller
         //$groupId = $data['group_id'];
         Equipment::where('id',$equipId)
             ->update(['status'=>$status]);
-        echo 1;
+        echo $status;
     }
 
     public function allSwitch($name,$status){

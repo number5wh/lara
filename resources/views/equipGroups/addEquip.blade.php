@@ -23,9 +23,9 @@
     $hostName = array_keys($equip);
         for($i=0;$i<$num;$i++){
 ?>
-        <div class="weui_cells_title"><b class="slider">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</b>
+        <div class="weui_cells_title"><div class="slider list">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</div>
             <input type='checkbox' class='checkedAll1'/>{{count($equip[$hostName[$i]])}}个设备</div>
-        <div class="weui_cells weui_cells_access" style='display:none'>
+        <div class="weui_cells weui_cells_access" style='display: none;'>
             <?php
             for($j=0;$j<count($equip[$hostName[$i]]);$j++){
                 if(!in_array($equip[$hostName[$i]][$j]['id'],$equipId)){

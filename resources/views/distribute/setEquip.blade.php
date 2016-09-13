@@ -21,7 +21,7 @@
         for($i=0;$i<$num;$i++){
 ?>
         @if(count($equip[$hostName[$i]]) != 0)
-        <div class="weui_cells_title"><b class="slider">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</b>
+        <div class="weui_cells_title"><span class="slider list">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</span>
             <input type='checkbox'  class='checkedAll1'/>{{count($equip[$hostName[$i]])}}个设备</div>
         @elseif(count($equip[$hostName[$i]]) == 0)
         <div class="weui_cells_title"><b class="slider">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</b>

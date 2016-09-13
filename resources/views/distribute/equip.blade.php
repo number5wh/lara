@@ -18,7 +18,7 @@
     //            dd($equipInfo);
         for($i=0;$i<$num;$i++){
             ?>
-        <div class="weui_cells_title"><b class="slider">{{$name[$i]['name']}}&nbsp;&nbsp;&nbsp;</b></div>
+        <div class="weui_cells_title"><span class="slider list">{{$name[$i]['name']}}&nbsp;&nbsp;&nbsp;</span></div>
         <div class="weui_cells weui_cells_access">
             <?php
             for($j=0;$j<count($equipInfo[$i]);$j++){

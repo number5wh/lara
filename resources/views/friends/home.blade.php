@@ -29,13 +29,13 @@
 
     <?php //dd($data,$fremailAdd);?>
     @if($fremailAdd != null || $fremailDeny != null || $fremailPass != null)
-    <div class="weui_cells_title">好友处理
+    <div class="weui_cells_title"><div class="slider list-req">好友处理</div>
         @if($fremailAdd != null)
             <ul style="list-style-type: none">
 
                 @foreach($fremailAdd as $add)
-                    <form action="{{url('/friend/handle')}}" method="post">
                     <li class="addFriend">
+                    <form action="{{url('/friend/handle')}}" method="post">
                         <div class="weui_cells_tips">{{$add}}想添加你为好友</div>
                         <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
                         <input type="text" name="from" value="{{$add}}" hidden="hidden"/>
@@ -72,13 +72,12 @@
                         <div class="handleIgnore" style="display: none">
                             <div class="weui_cells_tips"><input type="submit" id="btn" class="weui_btn weui_btn weui_btn_primary" value="忽略"></div>
                         </div>
-                    </li>
                     </form>
+                    </li>
                 @endforeach
 
             </ul>
     @endif
-
     @if($fremailDeny != null)
         <ul style="list-style-type: none">
             @foreach($fremailDeny as $deny)
@@ -94,18 +93,17 @@
                 @endforeach
         </ul>
         @endif
-
     </div>
     @endif
-
     <?php
 
     for($i=0;$i<count($fg);$i++){
         ?>
 
 
-    <div class="weui_cells_title"><b class="slider">{{$fg[$i]['name']}}</b></div>
-    <div class="weui_cells weui_cells_access" style='display:none;'>
+    <div class="weui_cells_title"><span class="slider list">{{$fg[$i]['name']}}
+        </span></div>
+    <div class="weui_cells weui_cells_access" style='display: none;'>
         <?php
         for($j=0;$j<count($friends);$j++){
         if(Auth::user()->is_admin == 0){
@@ -115,7 +113,6 @@
             <div class="weui_cell_bd weui_cell_primary">
                 <p>{{$friends[$j]['friend_email']}}</p>
             </div>
-
         </a>
         <?php }}elseif(Auth::user()->is_admin == 1){
                 $url = url("/distribute/getDistribute/{$friends[$j]['users']}");

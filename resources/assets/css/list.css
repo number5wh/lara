@@ -1,0 +1,15 @@
+.list{
+    height: 45px;
+    line-height: 45px;
+    font-weight: bolder;
+    font-size: 17px;
+    color: #666;
+    border-bottom: solid 1px #ECE9E9;
+}
+.list-req{
+    height: 45px;
+    line-height: 45px;
+    font-weight: bolder;
+    font-size: 17px;
+    color: #666;
+}

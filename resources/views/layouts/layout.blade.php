@@ -24,7 +24,7 @@
       </div>
       <div class="weui_tab_bd">
           @yield('main')
-          <div style="width: 100%;height: 60px"></div>
+          <div style="width: 100%;height: 65px"></div>
       </div>
 
       <div class="weui_tabbar" style="float: left">

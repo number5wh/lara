@@ -25,6 +25,19 @@
                 </div>
             </div>
             <div class="weui_cell">
+                <div class="weui_cell_hd"><label class="weui_label">设备类型</label></div>
+                <div class="weui_cell weui_cell_select">
+                    <div class="weui_cell_bd weui_cell_primary">
+                        <select class="weui_select" name="type_id">
+                            <option value="1">灯</option>
+                            <option value="2">空调</option>
+                            <option value="3">电视</option>
+                            <option value="4">风扇</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="weui_cell">
                 <div class="weui_cell_hd"><label class="weui_label">选择主机</label></div>
                 <div class="weui_cell weui_cell_select">
                     <div class="weui_cell_bd weui_cell_primary">

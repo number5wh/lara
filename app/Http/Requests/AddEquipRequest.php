@@ -25,6 +25,7 @@ class AddEquipRequest extends Request
     {
         return [
             'name'=>'required|max:255',
+            'type_id'=>'required',
             'host_id'=>'required',
         ];
     }

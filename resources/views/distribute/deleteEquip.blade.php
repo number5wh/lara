@@ -19,9 +19,9 @@
         <input type="text" name="id" value="{{$id}}" hidden="hidden"/>
         <?php
             foreach($equipGroup as $k => $v){?>
-        <div class="weui_cells_title"><b class="slider">{{$k}}&nbsp;&nbsp;&nbsp;</b>
+        <div class="weui_cells_title"><span class="slider list">{{$k}}&nbsp;&nbsp;&nbsp;</span>
             <input type='checkbox' class='checkedAll1'/>{{count($equipGroup[$k])}}个设备</div>
-        <div class="weui_cells weui_cells_access" style='display:none'>
+        <div class="weui_cells weui_cells_access" style='display: none;'>
             <?php
                 foreach($equipGroup[$k] as $v){?>
                 <a class="weui_cell" href="javascript:;">

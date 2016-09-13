@@ -44,6 +44,10 @@ Route::group(['prefix'=>'/equip'],function(){
     Route::post('/delete','Equip\EquipController@delete');
 });
 
+Route::group(['prefix'=>'/equipset'],function(){
+    Route::get('/set/id/{id}/type/{type_id}','Equip\EquipSetController@set');
+});
+
 Route::group(['prefix'=>'equipGroup'],function(){
     Route::get('/','Equip\EquipGroupController@home');
     Route::get('/add','Equip\EquipGroupController@showAddForm');

@@ -18,23 +18,23 @@
 
 @endsection
 @section('main')
-
     <div class="myrow">
     <?php
            for($i=0;$i<count($equips);$i++){
                ?>
         <a class="col-25" style="color: inherit" id="singleSwitch">
             {{$equips[$i]['equipInfo'][0]['name']}}
+            <br>
             @if($equips[$i]['equipInfo'][0]['status'] == 0)
                 <input type='text' name='status' value='1' hidden='hidden'/>
-                状态：关
+                <div class="statusId">状态：关</div>
             @else
                 <input type='text' name='status' value='0' hidden='hidden'/>
-                状态：开
+                <div class="statusId">状态：开</div>
             @endif
             <input type="text" hidden="hidden" name="url" value="{{url('/equipGroup/singleSwitch')}}"/>
             <input type="text" name="_token" value="{{csrf_token()}}" hidden="hidden"/>
-            <input type="text" name="equip_id" value=" {{$equips[$i]['equipInfo'][0]['id']}}" hidden="hidden"/>
+            <input type="text" name="equip_id" value="{{$equips[$i]['equipInfo'][0]['id']}}" hidden="hidden"/>
 
         </a>
         <?php }?>

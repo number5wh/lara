@@ -17,8 +17,9 @@
     <?php
     for($i=0;$i<count($fg);$i++){
         ?>
-    <div class="weui_cells_title"><b class="slider">{{$fg[$i]['name']}}</b>
-        <input type='checkbox' class='checkedAll2'/></div>
+    <div class="weui_cells_title"><span class="slider list-req">{{$fg[$i]['name']}}</span>
+        <input type='checkbox' class='checkedAll2'>
+        </div>
     <div class="weui_cells weui_cells_access">
         <?php
         for($j=0;$j<count($friends);$j++){
@@ -27,7 +28,7 @@
             ?>
         <a class="weui_cell" href="javascript:;">
             <div class="weui_cell_bd weui_cell_primary">
-                <p><input type="checkbox" name="id[]" value="{{$friends[$j]['users']}}">{{$friends[$j]['friend_email']}}</p>
+                <p><input type="checkbox"  name="id[]" value="{{$friends[$j]['users']}}">{{$friends[$j]['friend_email']}}</p>
             </div>
 
         </a>

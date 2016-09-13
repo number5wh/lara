@@ -29,7 +29,6 @@ $(function(){
             },
             success:function(data){
                 window.location.reload();
-
             },
             error: function(xhr, type){
                 alert('Ajax error!')

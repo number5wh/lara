@@ -80,9 +80,20 @@ $(document).on("click", "div input#addHostBtn", function() {
  */
 $(document).ready(function(){
 
-    $("b.slider").click(function(){
-        $(this).parent().next().slideToggle();
+
+    $(".slider").click(function(){
+        if( $(this).parent().next().css('display') == 'none' ){
+            $(this).removeClass('list');
+            $(this).addClass('list-req');
+            $(this).parent().next().slideDown();
+        }else{
+            $(this).removeClass('list-req');
+            $(this).addClass('list');
+            $(this).parent().next().slideUp();
+        }
+
     });
+
 
 });
 
@@ -13667,6 +13678,33 @@ $(document).on("click", "#equipPageAdmin", function() {
 });
 
 /**
+ * Created by wh on 2016/9/13.
+ */
+
+$(document).on("click", "#equipSet", function() {
+    $.actions({
+        title: "选择操作",
+        onClose: function() {
+            console.log("close");
+        },
+        actions: [
+            {
+                text: "修改设备名",
+                className: "color-primary",
+                onClick: function() {
+                    //$.alert("你选择了“编辑”");
+                    var dm = window.location.host;
+                    var tg = "/equipSet/setName";
+                    var url = "http://"+dm+tg;
+                    window.location.href=url;
+
+                }
+            },
+        ]
+    });
+});
+
+/**
  * Created by root on 16-8-18.
  */
 $(document).ready(function(){
@@ -13888,7 +13926,6 @@ $(function(){
             },
             success:function(data){
                 window.location.reload();
-
             },
             error: function(xhr, type){
                 alert('Ajax error!')

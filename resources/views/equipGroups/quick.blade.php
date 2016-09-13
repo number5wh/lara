@@ -14,7 +14,7 @@
 
     </div>--}}
     <div class="bk_nav">
-        <span class="glyphicon glyphicon-resize-horizontal bk_back" onclick="window.location.href='{{url('/equip/changeWatch/1')}}'"></span>
+        <span class="glyphicon glyphicon-retweet bk_back" onclick="window.location.href='{{url('/equip/changeWatch/1')}}'"></span>
         {{--<img src="{{url('images/back.png')}}" alt="" class="bk_back" style="background: white" onclick="history.back(-1)"/>--}}
         <p class="bk_title"></p>
         @if(Auth::user()->is_admin == 1)
@@ -27,8 +27,8 @@
 @endsection
 @section('main')
     @foreach($groupName as $group)
-        <div class="weui_cells_title"><b class="slider">{{$group}}</b></div>
-        <div class="weui_cells weui_cells_access" style='display:none'>
+        <div class="weui_cells_title"><span class="slider list">{{$group}}</span></div>
+        <div class="weui_cells weui_cells_access" style='display: none;'>
             <?php
             for($i=0;$i<count($equips);$i++){
                 if($equips[$i]['name'] == $group){
