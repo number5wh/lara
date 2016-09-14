@@ -13997,6 +13997,46 @@ $(function(){
         )
     });
 
+    //减温度
+    $("#setAirTemperatureMinus").click(function(){
+        var beforeTem = $("#showTemperature").text();
+        var afterTem = Number((Number(beforeTem)-1));
+        //构造地址
+        var dm = window.location.host;
+        var tg = "/air/setTemperature";
+        var url = "http://"+dm+tg;
+        $.post(
+            url,
+            {
+                equipId:equipId,
+                temperature:afterTem,
+                _token:$("input[name='_token']").val()
+            },
+            function(data){
+                $("#showTemperature").text(afterTem);
+            }
+        )
+    });
+    //加温度
+    $("#setAirTemperaturePlus").click(function(){
+        var beforeTem = $("#showTemperature").text();
+        var afterTem = Number((Number(beforeTem)+1));
+        //构造地址
+        var dm = window.location.host;
+        var tg = "/air/setTemperature";
+        var url = "http://"+dm+tg;
+        $.post(
+            url,
+            {
+                equipId:equipId,
+                temperature:afterTem,
+                _token:$("input[name='_token']").val()
+            },
+            function(data){
+                $("#showTemperature").text(afterTem);
+            }
+        )
+    });
 });
 /**
  * Created by root on 16-8-4.

@@ -33,6 +33,7 @@ class EquipSetController extends Controller
         $switch = Equipment::select('status')->where('id',$id)->get()->toArray();
         //获取设备id，名称，类型
         $equipIdName = Equipment::select('id','name','type_id')->where('id',$id)->get()->toArray();
+//        dd($equipIdName);
         if($switch == 0){//关闭状态
             if($type_id == 1){//灯
                 return view('equipSet.light',compact(['switch','equipIdName']));
@@ -71,6 +72,7 @@ class EquipSetController extends Controller
         //获取用户主机下的设备
         $hosts = User::find(Auth::user()->id)->getHostName->toArray();
         $equip = null;
+        $id1 = $id2 = null;
         if(count($hosts) != 0){
             foreach($hosts as $host){
                 $id2[] = Host::find($host['id'])->equipmentByType->toArray();

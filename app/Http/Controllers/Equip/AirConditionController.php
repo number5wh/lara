@@ -43,4 +43,14 @@ class AirConditionController extends Controller
         ]);
         echo 'success';
     }
+    //设置空调温度
+    public function setTemperature(Request $request)
+    {
+        $equipId = $request->equipId;
+        $temperature = $request->temperature;
+        AirCondition::where('equipment_id',$equipId)->update([
+            'temperature'=>$temperature
+        ]);
+        echo 'success';
+    }
 }

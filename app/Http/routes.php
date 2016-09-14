@@ -54,6 +54,7 @@ Route::group(['prefix'=>'/air'],function(){
     Route::post('/setModel','Equip\AirConditionController@setModel');
     Route::post('/setSpeed','Equip\AirConditionController@setSpeed');
     Route::post('/setDirection','Equip\AirConditionController@setDirection');
+    Route::post('/setTemperature','Equip\AirConditionController@setTemperature');
 });
 
 Route::group(['prefix'=>'equipGroup'],function(){

@@ -21,7 +21,7 @@
         @if($switch[0]['status'] == 0)
             <div class="status2zero">空调未启动</div>
         @elseif($switch[0]['status'] == 1)
-            <div class="temperature">{{$equipSetInf[0]['temperature']}}<sup class="sup">℃</sup>
+            <div class="temperature"><span id="showTemperature">{{$equipSetInf[0]['temperature']}}</span><sup class="sup">℃</sup>
                 @if($equipSetInf[0]['model'] == 0)
                     <sub class="sub"><span class="glyphicon glyphicon-asterisk"></span>
                         <span id="air-model"><input type="text" value="{{$equipSetInf[0]['model']}}" hidden>制冷</span>
@@ -97,13 +97,13 @@
                 </div>
             </div>
             <div class="row row-set">
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-column">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-column" id="setAirTemperatureMinus">
                     <span class="glyphicon glyphicon-minus"></span>
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-column">
                     <span style="color: #666666">温度</span>
                 </div>
-                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-column">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 row-column" id="setAirTemperaturePlus">
                     <span class="glyphicon glyphicon-plus"></span>
                 </div>
             </div>

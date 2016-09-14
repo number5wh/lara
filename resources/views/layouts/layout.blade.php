@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{url('css/all.css')}}">
     <script src="{{url('js/jquery-2.1.4.js')}}"></script>
-    <script>$(".bk_title").html(document.title)</script>
+
     <script src="{{url('js/fastclick.js')}}"></script>
     <script>
       $(function() {
@@ -64,7 +64,7 @@
         </a>
       </div>
     </div>
-
+    <script>$(".bk_title").html(document.title)</script>
     @include('toptips.error')
     @include('toptips.success')
 
