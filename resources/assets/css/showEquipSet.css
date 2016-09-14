@@ -28,13 +28,17 @@
     font-size: 15px;
 }
 .set{
-    height: 49%;
+    height: 60%;
 }
 .row-set{
     height: 25%;
     text-align: center;
+
     border: solid 1px #EEEEEE;
 }
 .row-column{
+    font-family: "LiSu";
 
+    font-size: 18px;
+    border-right: solid 1px #EEEEEE;
 }

@@ -46,6 +46,14 @@ Route::group(['prefix'=>'/equip'],function(){
 
 Route::group(['prefix'=>'/equipset'],function(){
     Route::get('/set/id/{id}/type/{type_id}','Equip\EquipSetController@set');
+    Route::get('/onoff/id/{id}','Equip\EquipSetController@equipOnOff');
+});
+
+//空调设置
+Route::group(['prefix'=>'/air'],function(){
+    Route::post('/setModel','Equip\AirConditionController@setModel');
+    Route::post('/setSpeed','Equip\AirConditionController@setSpeed');
+    Route::post('/setDirection','Equip\AirConditionController@setDirection');
 });
 
 Route::group(['prefix'=>'equipGroup'],function(){

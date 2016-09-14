@@ -11,6 +11,16 @@
 ">
 <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{url('css/all.css')}}">
+    <script src="{{url('js/jquery-2.1.4.js')}}"></script>
+    <script>$(".bk_title").html(document.title)</script>
+    <script src="{{url('js/fastclick.js')}}"></script>
+    <script>
+      $(function() {
+        FastClick.attach(document.body);
+      });
+    </script>
+    <script src="{{url('js/jquery-weui.js')}}"></script>
+    <script src="{{url('js/all.js')}}"></script>
 
   </head>
 
@@ -24,7 +34,7 @@
       </div>
       <div class="weui_tab_bd">
           @yield('main')
-          <div style="width: 100%;height: 65px"></div>
+          {{--<div style="width: 100%;height: 65px"></div>--}}
       </div>
 
       <div class="weui_tabbar" style="float: left">
@@ -55,18 +65,8 @@
       </div>
     </div>
 
-    <script src="{{url('js/jquery-2.1.4.js')}}"></script>
-    <script>$(".bk_title").html(document.title)</script>
-    <script src="{{url('js/fastclick.js')}}"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
-    </script>
-    <script src="{{url('js/jquery-weui.js')}}"></script>
-    <script src="{{url('js/all.js')}}"></script>
-  @include('toptips.error')
-  @include('toptips.success')
+    @include('toptips.error')
+    @include('toptips.success')
 
   </body>
 </html>

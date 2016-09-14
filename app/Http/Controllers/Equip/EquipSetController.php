@@ -31,9 +31,9 @@ class EquipSetController extends Controller
         }
         //判断设备是开还是关
         $switch = Equipment::select('status')->where('id',$id)->get()->toArray();
-        //获取设备id和名称
-        $equipIdName = Equipment::select('id','name')->where('id',$id)->get()->toArray();
-        if($switch == 0){
+        //获取设备id，名称，类型
+        $equipIdName = Equipment::select('id','name','type_id')->where('id',$id)->get()->toArray();
+        if($switch == 0){//关闭状态
             if($type_id == 1){//灯
                 return view('equipSet.light',compact(['switch','equipIdName']));
             }elseif($type_id == 2){//空调
@@ -46,7 +46,7 @@ class EquipSetController extends Controller
                 return view('equipSet.fan',compact(['switch','equipIdName']));
             }
 
-        }else{
+        }else{//开启状态
             //查询设备的设置信息
             $equipSetInf = $this->getEquipSetInf($id,$type_id);
             if($type_id == 1){//灯
@@ -106,5 +106,35 @@ class EquipSetController extends Controller
         }elseif($type_id == 4){//风扇
             return Fan::where('equipment_id',$id)->get()->toArray();
         }
+    }
+    
+    //开启关闭设备
+    public function equipOnOff($id)
+    {
+        //判断合法性
+        $ids = $this->getEquipId();
+        if(!in_array($id,$ids)){
+            return back()->withErrors('设备有误！');
+        }
+        //获取设备类型
+        $typeId = $this->getEquipType($id);
+        //获取设备开关情况
+        $status = Equipment::where('id',$id)->select('status')->get()->toArray();
+        if($status[0]['status'] == 0){
+            Equipment::where('id',$id)->update([
+                'status'=>'1'
+            ]);
+        }else{
+            Equipment::where('id',$id)->update([
+                'status'=>'0'
+            ]);
+        }
+        return redirect("/equipset/set/id/$id/type/".$typeId[0]['type_id']);
+    }
+
+    //获取设备类型
+    protected function getEquipType($id)
+    {
+        return Equipment::where('id',$id)->select('type_id')->get()->toArray();
     }
 }
