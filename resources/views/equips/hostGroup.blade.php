@@ -24,8 +24,8 @@
     $hostName = array_keys($equip);
     for($i=0;$i<$num;$i++){
         ?>
-    <div class="weui_cells_title"><span class="slider list">{{$hostName[$i]}}
-            <span class="pull-right">{{count($equip[$hostName[$i]])}}</span></span></div>
+    <div class="weui_cells_title"><div class="slider list">{{$hostName[$i]}}
+            <span class="pull-right">{{count($equip[$hostName[$i]])}}</span></div></div>
     <div class="weui_cells weui_cells_access" style='display: none;'>
       <?php
         for($j=0;$j<count($equip[$hostName[$i]]);$j++){

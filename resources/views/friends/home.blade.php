@@ -101,8 +101,8 @@
         ?>
 
 
-    <div class="weui_cells_title"><span class="slider list">{{$fg[$i]['name']}}
-        </span></div>
+    <div class="weui_cells_title"><div class="slider list" style="display: block">{{$fg[$i]['name']}}
+        </div></div>
     <div class="weui_cells weui_cells_access" style='display: none;'>
         <?php
         for($j=0;$j<count($friends);$j++){

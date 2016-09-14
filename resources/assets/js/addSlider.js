@@ -16,6 +16,9 @@ $(document).ready(function(){
         }
 
     });
+    $(".slider1").click(function(){
+            $(this).parent().next().slideToggle();
+    });
 
 
 });

@@ -23,9 +23,9 @@
                     </div>
             </div>
             </div>
-        <a class="weui_cell" href="javascript:;" style="color: inherit">
+        <a class="weui_cell" href="javascript:;" style="color: inherit;">
             <div class="weui_cell_bd weui_cell_primary">
-                <p>请选择加入的设备:</p>
+                <span>请选择加入的设备:</span>
             </div>
         </a>
 
@@ -37,8 +37,8 @@
     <?php
     for($i=0;$i<$num;$i++){
 ?>
-        <div class="weui_cells_title"><b class="slider">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</b>
-            <input type='checkbox' class='checkedAll1'/>{{count($equip[$hostName[$i]])}}个设备</div>
+        <div class="weui_cells_title"><div class="slider list">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</div>
+            <span style="color: #999999">全选</span><input type='checkbox' class='checkedAll1'/>{{count($equip[$hostName[$i]])}}个设备</div>
         <div class="weui_cells weui_cells_access" style='display:none'>
        <?php
         for($j=0;$j<count($equip[$hostName[$i]]);$j++){

@@ -23,8 +23,8 @@
     <?php
         for($i=0;$i<$num;$i++){
         ?>
-        <div class="weui_cells_title"><div class="slider list">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</div>
-            <input type='checkbox' class='checkedAll1'/>{{count($equip[$hostName[$i]])}}个设备</div>
+        <div class="weui_cells_title"><div class="slider1 list">{{$hostName[$i]}}&nbsp;&nbsp;&nbsp;</div>
+            <span style="color: #999999">全选</span><input type='checkbox' class='checkedAll1'/>{{count($equip[$hostName[$i]])}}个设备</div>
         <div class="weui_cells weui_cells_access" style='display: none;'>
             <?php
             for($j=0;$j<count($equip[$hostName[$i]]);$j++){

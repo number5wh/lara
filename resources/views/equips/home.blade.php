@@ -16,9 +16,9 @@
     </div>
 @endsection
 @section('main')
-    <div class="weui_cells_title"><span class="slider list">灯
+    <div class="weui_cells_title"><div class="slider list">灯
             <span class="pull-right">{{count($light)}}</span>
-        </span></div>
+        </div></div>
     <div class="weui_cells weui_cells_access" style='display: none;'>
     <?php
         for($i=0;$i<count($light);$i++){
@@ -31,9 +31,9 @@
     <?php }   ?>
     </div>
 
-    <div class="weui_cells_title"><span class="slider list">空调
+    <div class="weui_cells_title"><div class="slider list">空调
             <span class="pull-right">{{count($air)}}</span>
-        </span></div>
+        </div></div>
     <div class="weui_cells weui_cells_access" style='display: none;'>
         <?php
         for($j=0;$j<count($air);$j++){
@@ -46,9 +46,9 @@
         <?php }   ?>
     </div>
 
-    <div class="weui_cells_title"><span class="slider list">电视
+    <div class="weui_cells_title"><div class="slider list">电视
             <span class="pull-right">{{count($tv)}}</span>
-        </span></div>
+        </div></div>
     <div class="weui_cells weui_cells_access" style='display: none;'>
         <?php
         for($m=0;$m<count($tv);$m++){
@@ -61,9 +61,9 @@
         <?php }   ?>
     </div>
 
-    <div class="weui_cells_title"><span class="slider list">风扇
+    <div class="weui_cells_title"><div class="slider list">风扇
             <span class="pull-right">{{count($fan)}}</span>
-        </span></div>
+        </div></div>
     <div class="weui_cells weui_cells_access" style='display: none;'>
         <?php
         for($n=0;$i<count($fan);$n++){
