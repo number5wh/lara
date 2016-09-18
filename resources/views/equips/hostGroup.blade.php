@@ -51,8 +51,8 @@
           if($equip2!=null){
           $num2 = count($equip2);
           ?>
-          <div class="weui_cells_title"><span class="slider list">别人分配的设备
-                  <span class="pull-right">{{count($equip2)}}</span></span></div>
+          <div class="weui_cells_title"><div class="slider list">别人分配的设备
+                  <span class="pull-right">{{count($equip2)}}</span></div></div>
           <div class="weui_cells weui_cells_access" style='display:none'>
           <?php
           for($k=0;$k<$num2;$k++){

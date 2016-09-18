@@ -16,6 +16,7 @@
     </div>
 @endsection
 @section('main')
+
     <div class="weui_cells_title"><div class="slider list">灯
             <span class="pull-right">{{count($light)}}</span>
         </div></div>
@@ -66,7 +67,8 @@
         </div></div>
     <div class="weui_cells weui_cells_access" style='display: none;'>
         <?php
-        for($n=0;$i<count($fan);$n++){
+
+        for($n=0;$n<count($fan);$n++){
         ?>
             <a class="weui_cell" href="{{url("/equipset/set/id/".$fan[$n]['id']."/type/".$fan[$n]['type_id'])}}">
             <div class="weui_cell_bd weui_cell_primary">

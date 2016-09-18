@@ -56,6 +56,11 @@ Route::group(['prefix'=>'/air'],function(){
     Route::post('/setDirection','Equip\AirConditionController@setDirection');
     Route::post('/setTemperature','Equip\AirConditionController@setTemperature');
 });
+//风扇设置
+Route::group(['prefix'=>'/fan'],function(){
+    Route::post('/setSpeed','Equip\FanController@setSpeed');
+    Route::post('/setSwing','Equip\FanController@setSwing');
+});
 
 Route::group(['prefix'=>'equipGroup'],function(){
     Route::get('/','Equip\EquipGroupController@home');

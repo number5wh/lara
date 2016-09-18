@@ -72,7 +72,7 @@ class EquipController extends Controller
                 $fan[] = $e;
             }
         }
-       // dd($light,$fan,$tv,$air);
+//        dd($light,$fan,$tv,$air);
 
         return view('equips.home',compact(['light','fan','tv','air']));
 

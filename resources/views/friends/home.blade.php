@@ -101,7 +101,8 @@
         ?>
 
 
-    <div class="weui_cells_title"><div class="slider list" style="display: block">{{$fg[$i]['name']}}
+    <div class="weui_cells_title"><div class="slider2 list" style="display: block">{{$fg[$i]['name']}}
+            <span class="glyphicon glyphicon-chevron-right pull-right"></span>
         </div></div>
     <div class="weui_cells weui_cells_access" style='display: none;'>
         <?php
