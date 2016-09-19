@@ -16,11 +16,11 @@ $(function() {
         var url = "http://"+dm+tg;
         $.post(
             url,
-            {
-                equipId:equipId,
-                speed:afterSpeed,
-                _token:$("input[name='_token']").val()
-            },
+        {
+            equipId:equipId,
+            speed:afterSpeed,
+            _token:$("input[name='_token']").val()
+        },
             function(data){
                 if(afterSpeed == 0){
                     $("#showWindSpeed").html("<input type='text' name='speed' value='0' hidden>风速:低</span>");

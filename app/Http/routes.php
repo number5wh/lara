@@ -62,6 +62,11 @@ Route::group(['prefix'=>'/fan'],function(){
     Route::post('/setSwing','Equip\FanController@setSwing');
 });
 
+//灯泡设置
+Route::group(['prefix'=>'/light'],function(){
+    Route::post('/setLight','Equip\LightController@setLight');
+});
+
 Route::group(['prefix'=>'equipGroup'],function(){
     Route::get('/','Equip\EquipGroupController@home');
     Route::get('/add','Equip\EquipGroupController@showAddForm');

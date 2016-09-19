@@ -1,5 +1,6 @@
 .showEquipSet{
     height: 40%;
+    width: 100%;
     text-align: center;
     background-color: #eee;
 }
@@ -54,4 +55,36 @@
     text-align: center;
 
     border: solid 1px #EEEEEE;
+}
+.show-light{
+    padding-top: 60px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 20px;
+    font-weight: bolder;
+    padding-bottom: 30px;
+}
+
+.circle1{
+    margin: 45px auto;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    border: solid 1px;
+    /* 宽度和高度需要相等 */
+}
+.circle2{
+    margin: 20px auto;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border: solid 1px;
+    /* 宽度和高度需要相等 */
+}
+.showEquipSet2{
+    padding-top: 30px;
+    height: 60%;
+    width: 100%;
+    text-align: center;
+    background-color: #eee;
 }

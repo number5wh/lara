@@ -11,17 +11,12 @@
 ">
 <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{url('css/all.css')}}">
+
     <script src="{{url('js/jquery-2.1.4.js')}}"></script>
 
-    <script src="{{url('js/fastclick.js')}}"></script>
-    <script>
-      $(function() {
-        FastClick.attach(document.body);
-      });
-    </script>
-    <script src="{{url('js/jquery-weui.js')}}"></script>
-    <script src="{{url('js/all.js')}}"></script>
 
+
+    @yield('style')
   </head>
 
   <body ontouchstart>
@@ -65,6 +60,15 @@
         </a>
       </div>
     </div>
+    <script src="{{url('js/fastclick.js')}}"></script>
+    <script src="{{url('js/jquery-weui.js')}}"></script>
+    <script src="{{url('js/all.js')}}"></script>
+    <script>
+      $(function() {
+        FastClick.attach(document.body);
+      });
+    </script>
+    @yield('script')
     <script>$(".bk_title").html(document.title)</script>
     @include('toptips.error')
     @include('toptips.success')

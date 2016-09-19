@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-    设备类型
+    {{$equipIdName[0]['name']}}
 @endsection
 @section('header')
     <div class="bk_nav">
@@ -60,6 +60,7 @@
 
     </div>
     <script>
+        //设置行高
         $(function(){
             var height = $(".row-set-50").css('height');
             $(".row-set-50").css('line-height',height);

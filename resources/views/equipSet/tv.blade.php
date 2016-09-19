@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('title')
-    设备类型
+    {{$equipIdName[0]['name']}}
 @endsection
 @section('header')
     <div class="bk_nav">
@@ -14,5 +14,25 @@
     </div>
 @endsection
 @section('main')
+<div class="showEquipSet2">
+    <canvas id="pic" height="200" width="200">
+    </canvas>
+</div>
 
+    <script>
+ /*       $(function(){
+            //获取宽高
+            var y = Number($("#pic").outerHeight(true));
+            var x = Number($("#pic").outerWidth(true));
+            var c = document.getElementById('pic');
+            var ctx = c.getContext('2d');
+            ctx.beginPath();
+            ctx.arc(x/2,y/2,90,0,2*Math.PI);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(x/2,y/2,30,0,2*Math.PI);
+            ctx.stroke();
+        });*/
+
+    </script>
 @endsection
