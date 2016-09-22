@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="{{url('css/all.css')}}">
 
     <script src="{{url('js/jquery-2.1.4.js')}}"></script>
-
+    <script src="http://cdn.bootcss.com/jQuery-Knob/1.2.13/jquery.knob.min.js"></script>
 
 
     @yield('style')

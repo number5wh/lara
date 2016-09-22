@@ -99,8 +99,31 @@ $(function(){
             }
         )
     });
+    $("#setTem").knob({
+        'change':function(v){
+            //将实时改变的值写入到input中
+            $("#setTem").attr('value',v);
+        },
+        'release':function(){
+            var dm = window.location.host;
+            var tg = "/air/setTemperature";
+            var url = "http://"+dm+tg;
+            $.post(
+                url,
+                {
+                    equipId:equipId,
+                    temperature:$("#setTem").attr('value'),
+                    _token:$("input[name='_token']").val()
+                },
+                function(data){
+                }
+            )}
 
-    //减温度
+    });
+
+
+
+ /*   //减温度
     $("#setAirTemperatureMinus").click(function(){
         var beforeTem = $("#showTemperature").text();
         var afterTem = Number((Number(beforeTem)-1));
@@ -139,5 +162,5 @@ $(function(){
                 $("#showTemperature").text(afterTem);
             }
         )
-    });
+    });*/
 });

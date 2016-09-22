@@ -35,7 +35,7 @@
     <div class="weui_cells_title"><div class="slider list">空调
             <span class="pull-right">{{count($air)}}</span>
         </div></div>
-    <div class="weui_cells weui_cells_access" style='display: none;'>
+    <div class="weui_cells weui_cells_access" style="display: none">
         <?php
         for($j=0;$j<count($air);$j++){
         ?>

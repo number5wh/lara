@@ -39,35 +39,21 @@
         <div class="status2zero">灯泡未开启</div>
     @elseif($switch[0]['status'] == 1)
         <div class="show-light">
-            <div class="pull-left">灯泡亮度调节：</div>
-            <div class="progress slider" style="width: 100%;margin: 0 auto">
-                <div id="light-num" aria-valuemax="100" aria-valuemin="0" aria-valuenow="{{$equipSetInf[0]['light']}}" role="progressbar" class="progress-bar progress-bar-primary" disabled> <span class="sr-only">50%</span>
+            <div class="pull-left">灯泡亮度调节：<span id="l-num">{{$equipSetInf[0]['light']}}%</span></div>
+            <div class="progress slider" id="light-num" style="width: 100%;margin: 0 auto">
+                <div  aria-valuemax="100" aria-valuemin="0" aria-valuenow="{{$equipSetInf[0]['light']}}" role="progressbar" class="progress-bar progress-bar-primary" disabled> <span class="sr-only">50%</span>
                 </div>
             </div>
         </div>
     @endif
 </div>
 
-<div class="set">
-    <div class="row row-set-50">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-column">
-            <a href="{{url('/equipset/onoff/id/'.$equipIdName[0]['id'])}}" type="button" style="color: inherit;display: block">开关</a>
+<div  style="text-align: center;margin:40px auto">
+        <div class="btn btn-primary circle-button">
+            <a href="{{url('/equipset/onoff/id/'.$equipIdName[0]['id'])}}" type="button" style="color: inherit;display: block">
+                <span class="glyphicon glyphicon-off"></span>
+                开关</a>
         </div>
-    </div>
-    <div class="row row-set-50">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-column">
-            <a id="setLight" type="button" style="color: inherit;display: block">确定设置</a>
-        </div>
-    </div>
 </div>
-<script>
-    //设置行高
-    $(function(){
-        var height = $(".row-set-50").css('height');
-        $(".row-set-50").css('line-height',height);
-        $(".row-column").css('height',height);
-        $(".row-column").css('line-height',height);
-    })
-</script>
 @endsection
 

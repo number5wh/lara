@@ -67,6 +67,15 @@ Route::group(['prefix'=>'/light'],function(){
     Route::post('/setLight','Equip\LightController@setLight');
 });
 
+//电视设置
+Route::group(['prefix'=>'/tv'],function(){
+    Route::post('/setChannel','Equip\TVController@setChannel');
+    Route::post('/setVolume','Equip\TVController@setVolume');
+    Route::post('/setModel','Equip\TVController@setModel');
+    Route::post('/setSilent','Equip\TVController@setSilent');
+});
+
+
 Route::group(['prefix'=>'equipGroup'],function(){
     Route::get('/','Equip\EquipGroupController@home');
     Route::get('/add','Equip\EquipGroupController@showAddForm');
