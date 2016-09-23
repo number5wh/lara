@@ -39,15 +39,15 @@
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="showModel">
                         @if($equipSetInf[0]['model'] == 0)
-                            <span class="span"><span class="glyphicon glyphicon-asterisk"></span>
+                            <span class="span" id="showModel"><span class="glyphicon glyphicon-asterisk"></span>
                                 <span id="air-model"><input type="text" value="{{$equipSetInf[0]['model']}}" hidden>制冷</span>
                             </span>
                         @elseif($equipSetInf[0]['model'] == 1)
-                            <span class="span"><span class="glyphicon glyphicon-fire"></span>
+                            <span class="span" id="showModel"><span class="glyphicon glyphicon-fire"></span>
                                 <span id="air-model"><input type="text" value="{{$equipSetInf[0]['model']}}" hidden>制热</span>
                             </span>
                         @elseif($equipSetInf[0]['model'] == 2)
-                            <span class="span"><span class="glyphicon glyphicon-leaf"></span>
+                            <span class="span" id="showModel"><span class="glyphicon glyphicon-leaf"></span>
                                 <span id="air-model"><input type="text" value="{{$equipSetInf[0]['model']}}" hidden>自动</span>
                             </span>
                         @elseif($equipSetInf[0]['model'] == 3)
@@ -55,7 +55,7 @@
                                 <span id="air-model"><input type="text" value="{{$equipSetInf[0]['model']}}" hidden>通风</span>
                             </span>
                         @elseif($equipSetInf[0]['model'] == 4)
-                            <span class="span"><span class="glyphicon glyphicon-tint"></span>
+                            <span class="span" id="showModel"><span class="glyphicon glyphicon-tint"></span>
                                 <span id="air-model"><input type="text" value="{{$equipSetInf[0]['model']}}" hidden>除湿</span>
                             </span>
                         @endif

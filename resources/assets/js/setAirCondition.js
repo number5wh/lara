@@ -28,15 +28,15 @@ $(function(){
            },
            function(data){
                if(afterModel == 0){
-                   $(".sub").html("<span class='glyphicon glyphicon-asterisk'></span><span id='air-model'><input type='text' value='0' hidden> 制冷</span>");
+                   $("#showModel").html("<span class='glyphicon glyphicon-asterisk'></span><span id='air-model'><input type='text' value='0' hidden> 制冷</span>");
                }else if(afterModel == 1){
-                   $(".sub").html("<span class='glyphicon glyphicon-fire'></span><span id='air-model'><input type='text' value='1' hidden> 制热</span>");
+                   $("#showModel").html("<span class='glyphicon glyphicon-fire'></span><span id='air-model'><input type='text' value='1' hidden> 制热</span>");
                }else if(afterModel == 2){
-                   $(".sub").html("<span class='glyphicon glyphicon-leaf'></span><span id='air-model'><input type='text' value='2' hidden> 自动</span>");
+                   $("#showModel").html("<span class='glyphicon glyphicon-leaf'></span><span id='air-model'><input type='text' value='2' hidden> 自动</span>");
                }else if(afterModel == 3){
-                   $(".sub").html("<span class='glyphicon glyphicon-refresh'></span><span id='air-model'><input type='text' value='3' hidden> 通风</span>");
+                   $("#showModel").html("<span class='glyphicon glyphicon-refresh'></span><span id='air-model'><input type='text' value='3' hidden> 通风</span>");
                }else if(afterModel == 4){
-                   $(".sub").html("<span class='glyphicon glyphicon-tint'></span><span id='air-model'><input type='text' value='4' hidden> 除湿</span>");
+                   $("#showModel").html("<span class='glyphicon glyphicon-tint'></span><span id='air-model'><input type='text' value='4' hidden> 除湿</span>");
                }
            }
        );

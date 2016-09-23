@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50629
 File Encoding         : 65001
 
-Date: 2016-09-14 15:20:04
+Date: 2016-09-23 08:52:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,18 +26,18 @@ CREATE TABLE `air_condition` (
   `direction` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '风向 0中 1上 2下 3扫风',
   `speed` int(11) NOT NULL DEFAULT '0' COMMENT '风速 0自动 1低 2中 3高',
   `temperature` int(10) unsigned NOT NULL DEFAULT '26' COMMENT '温度',
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of air_condition
 -- ----------------------------
-INSERT INTO `air_condition` VALUES ('1', '20', '0', '1', '1', '26', '2016-09-14 14:37:09', '2016-09-14 14:37:09');
+INSERT INTO `air_condition` VALUES ('1', '20', '0', '1', '0', '26', '2016-09-18 11:00:42', '2016-09-23 08:46:56');
 INSERT INTO `air_condition` VALUES ('2', '28', '1', '0', '2', '26', '2016-09-14 12:01:24', '2016-09-14 12:01:24');
 INSERT INTO `air_condition` VALUES ('3', '29', '1', '0', '0', '26', '2016-09-13 17:03:23', '2016-09-13 17:03:23');
-INSERT INTO `air_condition` VALUES ('4', '32', '2', '1', '3', '26', '2016-09-14 14:14:59', '2016-09-14 14:14:59');
+INSERT INTO `air_condition` VALUES ('4', '32', '4', '3', '0', '26', '2016-09-18 11:33:19', '2016-09-23 08:40:18');
 
 -- ----------------------------
 -- Table structure for `equipment`
@@ -55,7 +55,7 @@ CREATE TABLE `equipment` (
   PRIMARY KEY (`id`),
   KEY `index_equip` (`name`),
   KEY `index_equip_status` (`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COMMENT='设备';
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='设备';
 
 -- ----------------------------
 -- Records of equipment
@@ -69,7 +69,7 @@ INSERT INTO `equipment` VALUES ('13', '大厅灯', '3', '1', '0', '0', '2016-08-
 INSERT INTO `equipment` VALUES ('14', '办公室一灯', '3', '1', '0', '0', '2016-08-31 11:14:07', '2016-08-31 16:28:01');
 INSERT INTO `equipment` VALUES ('15', '办公室二灯', '3', '1', '0', '0', '2016-08-31 11:14:19', '2016-09-12 15:38:24');
 INSERT INTO `equipment` VALUES ('16', '卫生间灯', '4', '1', '0', '0', '2016-08-31 15:08:33', '2016-08-31 15:08:33');
-INSERT INTO `equipment` VALUES ('20', '空调', '6', '2', '1', '0', '2016-09-01 10:32:06', '2016-09-14 14:23:52');
+INSERT INTO `equipment` VALUES ('20', '空调', '6', '2', '1', '0', '2016-09-01 10:32:06', '2016-09-23 08:36:48');
 INSERT INTO `equipment` VALUES ('21', '风扇1', '7', '4', '0', '0', '2016-09-01 10:33:43', '2016-09-01 10:33:43');
 INSERT INTO `equipment` VALUES ('22', '风扇2', '7', '4', '0', '0', '2016-09-01 10:33:49', '2016-09-01 10:33:49');
 INSERT INTO `equipment` VALUES ('23', '大厅电视', '7', '3', '0', '0', '2016-09-01 10:33:55', '2016-09-01 10:33:55');
@@ -79,8 +79,10 @@ INSERT INTO `equipment` VALUES ('28', '空调', '5', '2', '1', '0', '2016-09-10 
 INSERT INTO `equipment` VALUES ('29', '空调', '11', '2', '1', '0', '2016-09-10 08:26:09', '2016-09-10 08:38:10');
 INSERT INTO `equipment` VALUES ('30', '办公室总灯', '3', '1', '1', '0', '2016-09-10 11:35:02', '2016-09-12 14:46:21');
 INSERT INTO `equipment` VALUES ('31', '办公室-过道大灯', '3', '1', '1', '0', '2016-09-10 15:07:57', '2016-09-12 14:38:14');
-INSERT INTO `equipment` VALUES ('32', '大厅空调', '8', '2', '1', '0', '2016-09-13 09:46:31', '2016-09-14 14:14:40');
-INSERT INTO `equipment` VALUES ('38', '灯1', '6', '1', '0', '0', '2016-09-13 15:21:45', '2016-09-13 15:21:45');
+INSERT INTO `equipment` VALUES ('32', '大厅空调', '8', '2', '0', '0', '2016-09-13 09:46:31', '2016-09-23 08:40:18');
+INSERT INTO `equipment` VALUES ('38', '灯1', '6', '1', '1', '0', '2016-09-13 15:21:45', '2016-09-21 14:23:34');
+INSERT INTO `equipment` VALUES ('39', '美的风扇', '6', '4', '0', '0', '2016-09-18 09:38:18', '2016-09-23 08:38:19');
+INSERT INTO `equipment` VALUES ('40', '电视', '6', '3', '1', '0', '2016-09-19 15:37:47', '2016-09-22 17:28:54');
 
 -- ----------------------------
 -- Table structure for `equipment_distribute`
@@ -94,7 +96,7 @@ CREATE TABLE `equipment_distribute` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of equipment_distribute
@@ -105,9 +107,10 @@ INSERT INTO `equipment_distribute` VALUES ('66', '26', '30', '12', '2016-09-08 1
 INSERT INTO `equipment_distribute` VALUES ('67', '26', '30', '13', '2016-09-08 17:24:18', '2016-09-08 17:24:18');
 INSERT INTO `equipment_distribute` VALUES ('68', '26', '30', '16', '2016-09-10 11:35:49', '2016-09-10 11:35:49');
 INSERT INTO `equipment_distribute` VALUES ('69', '26', '30', '27', '2016-09-10 11:35:49', '2016-09-10 11:35:49');
-INSERT INTO `equipment_distribute` VALUES ('70', '25', '28', '2', '2016-09-12 18:13:58', '2016-09-12 18:13:58');
 INSERT INTO `equipment_distribute` VALUES ('71', '29', '26', '20', '2016-09-13 10:30:42', '2016-09-13 10:30:42');
 INSERT INTO `equipment_distribute` VALUES ('73', '29', '26', '32', '2016-09-13 10:32:30', '2016-09-13 10:32:30');
+INSERT INTO `equipment_distribute` VALUES ('74', '25', '28', '1', '2016-09-14 16:47:06', '2016-09-14 16:47:06');
+INSERT INTO `equipment_distribute` VALUES ('75', '25', '28', '2', '2016-09-14 16:47:06', '2016-09-14 16:47:06');
 
 -- ----------------------------
 -- Table structure for `equipment_group`
@@ -122,7 +125,7 @@ CREATE TABLE `equipment_group` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_equipgroup` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='设备分组';
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COMMENT='设备分组';
 
 -- ----------------------------
 -- Records of equipment_group
@@ -160,6 +163,8 @@ INSERT INTO `equipment_group` VALUES ('64', '去轻轻去去去去去去去去�
 INSERT INTO `equipment_group` VALUES ('65', '去轻轻去去去去去去去去去去去去', '30', '26', '2016-09-10 16:06:53', '2016-09-10 16:06:53');
 INSERT INTO `equipment_group` VALUES ('66', '去轻轻去去去去去去去去去去去去', '31', '26', '2016-09-10 16:06:53', '2016-09-10 16:06:53');
 INSERT INTO `equipment_group` VALUES ('67', '去轻轻去去去去去去去去去去去去', '32', '26', '2016-09-10 16:06:53', '2016-09-10 16:06:53');
+INSERT INTO `equipment_group` VALUES ('68', '我的分组', '1', '25', '2016-09-14 16:53:23', '2016-09-14 16:53:23');
+INSERT INTO `equipment_group` VALUES ('69', '我的分组', '2', '25', '2016-09-14 16:53:23', '2016-09-14 16:53:23');
 
 -- ----------------------------
 -- Table structure for `equipment_type`
@@ -189,16 +194,17 @@ CREATE TABLE `fan` (
   `equipment_id` int(11) NOT NULL DEFAULT '0' COMMENT '设备id',
   `speed` int(11) NOT NULL DEFAULT '1' COMMENT '风速  0低 1中 2高',
   `swing_wind` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '是否左右摆风  0否  1是',
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of fan
 -- ----------------------------
 INSERT INTO `fan` VALUES ('1', '21', '1', '0', '2016-09-13 14:35:41', '2016-09-13 14:35:44');
 INSERT INTO `fan` VALUES ('2', '22', '1', '0', '2016-09-13 14:35:52', '2016-09-13 14:35:55');
+INSERT INTO `fan` VALUES ('3', '39', '1', '1', '2016-09-18 11:07:07', '2016-09-23 08:38:18');
 
 -- ----------------------------
 -- Table structure for `friend`
@@ -237,8 +243,8 @@ CREATE TABLE `friend_group` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(60) NOT NULL DEFAULT '默认' COMMENT '好友分组名',
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户id',
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_friendgroup` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
@@ -277,24 +283,24 @@ CREATE TABLE `friend_group_detail` (
 INSERT INTO `friend_group_detail` VALUES ('4', '1', '28', '25', '2016-09-02 08:22:07', '2016-09-02 08:57:15');
 INSERT INTO `friend_group_detail` VALUES ('5', '5', '29', '30', '2016-09-02 08:24:59', '2016-09-03 16:01:23');
 INSERT INTO `friend_group_detail` VALUES ('6', '3', '25', '28', '2016-09-02 08:51:56', '2016-09-02 08:57:15');
-INSERT INTO `friend_group_detail` VALUES ('50', '4', '30', '29', '2016-09-02 09:01:13', '2016-09-03 15:45:09');
+INSERT INTO `friend_group_detail` VALUES ('50', '4', '30', '29', '2016-09-02 09:01:13', '2016-09-18 09:04:01');
 INSERT INTO `friend_group_detail` VALUES ('54', '5', '26', '30', '2016-09-02 10:05:00', '2016-09-03 16:01:23');
 INSERT INTO `friend_group_detail` VALUES ('55', '2', '30', '26', '2016-09-02 10:05:00', '2016-09-07 17:23:18');
-INSERT INTO `friend_group_detail` VALUES ('56', '4', '26', '29', '2016-09-07 16:40:32', '2016-09-07 17:26:35');
+INSERT INTO `friend_group_detail` VALUES ('56', '4', '26', '29', '2016-09-07 16:40:32', '2016-09-18 09:04:01');
 INSERT INTO `friend_group_detail` VALUES ('57', '2', '29', '26', '2016-09-07 16:40:32', '2016-09-07 17:23:18');
 INSERT INTO `friend_group_detail` VALUES ('58', '14', '26', '32', '2016-09-07 16:45:33', '2016-09-07 16:45:33');
 INSERT INTO `friend_group_detail` VALUES ('59', '2', '32', '26', '2016-09-07 16:45:33', '2016-09-07 17:26:08');
 INSERT INTO `friend_group_detail` VALUES ('60', '3', '26', '28', '2016-09-07 16:45:46', '2016-09-07 16:45:46');
 INSERT INTO `friend_group_detail` VALUES ('61', '2', '28', '26', '2016-09-07 16:45:46', '2016-09-07 17:26:08');
-INSERT INTO `friend_group_detail` VALUES ('62', '16', '25', '29', '2016-09-12 16:59:16', '2016-09-12 16:59:16');
+INSERT INTO `friend_group_detail` VALUES ('62', '4', '25', '29', '2016-09-12 16:59:16', '2016-09-18 09:04:01');
 INSERT INTO `friend_group_detail` VALUES ('63', '1', '29', '25', '2016-09-12 16:59:16', '2016-09-12 16:59:16');
-INSERT INTO `friend_group_detail` VALUES ('64', '4', '32', '29', '2016-09-12 17:40:18', '2016-09-12 17:40:18');
+INSERT INTO `friend_group_detail` VALUES ('64', '16', '32', '29', '2016-09-12 17:40:18', '2016-09-14 16:57:19');
 INSERT INTO `friend_group_detail` VALUES ('65', '14', '29', '32', '2016-09-12 17:40:18', '2016-09-12 17:40:18');
 INSERT INTO `friend_group_detail` VALUES ('68', '2', '31', '26', '2016-09-12 17:53:25', '2016-09-12 17:53:25');
 INSERT INTO `friend_group_detail` VALUES ('69', '6', '26', '31', '2016-09-12 17:53:25', '2016-09-12 17:53:25');
 INSERT INTO `friend_group_detail` VALUES ('70', '6', '25', '31', '2016-09-12 17:56:18', '2016-09-12 17:56:18');
 INSERT INTO `friend_group_detail` VALUES ('71', '1', '31', '25', '2016-09-12 17:56:19', '2016-09-12 17:56:19');
-INSERT INTO `friend_group_detail` VALUES ('76', '4', '31', '29', '2016-09-13 09:19:19', '2016-09-13 09:19:19');
+INSERT INTO `friend_group_detail` VALUES ('76', '16', '31', '29', '2016-09-13 09:19:19', '2016-09-14 16:57:19');
 INSERT INTO `friend_group_detail` VALUES ('77', '6', '29', '31', '2016-09-13 09:19:19', '2016-09-13 09:19:19');
 
 -- ----------------------------
@@ -356,8 +362,8 @@ DROP TABLE IF EXISTS `host_type`;
 CREATE TABLE `host_type` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL DEFAULT '' COMMENT '主机类型',
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -375,27 +381,27 @@ DROP TABLE IF EXISTS `light`;
 CREATE TABLE `light` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `equipment_id` int(11) NOT NULL DEFAULT '0' COMMENT '设备id',
-  `light` float unsigned NOT NULL DEFAULT '1' COMMENT '亮度  0~1',
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `light` float(10,2) unsigned NOT NULL DEFAULT '100.00' COMMENT '亮度  0~100',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of light
 -- ----------------------------
-INSERT INTO `light` VALUES ('1', '2', '1', '2016-09-13 14:37:10', '2016-09-13 14:37:12');
-INSERT INTO `light` VALUES ('2', '11', '1', '2016-09-13 14:37:33', '2016-09-13 14:37:36');
-INSERT INTO `light` VALUES ('3', '12', '1', '2016-09-13 14:39:12', '2016-09-13 14:39:15');
-INSERT INTO `light` VALUES ('4', '13', '1', '2016-09-13 14:39:09', '2016-09-13 14:39:10');
-INSERT INTO `light` VALUES ('5', '14', '1', '2016-09-13 14:39:05', '2016-09-13 14:39:08');
-INSERT INTO `light` VALUES ('6', '15', '1', '2016-09-13 14:39:02', '2016-09-13 14:39:04');
-INSERT INTO `light` VALUES ('7', '16', '1', '2016-09-13 14:39:00', '2016-09-13 14:39:01');
-INSERT INTO `light` VALUES ('8', '24', '1', '2016-09-13 14:38:57', '2016-09-13 14:38:59');
-INSERT INTO `light` VALUES ('10', '27', '1', '2016-09-13 14:38:48', '2016-09-13 14:38:50');
-INSERT INTO `light` VALUES ('11', '30', '1', '2016-09-13 14:38:45', '2016-09-13 14:38:47');
-INSERT INTO `light` VALUES ('12', '31', '1', '2016-09-13 14:38:54', '2016-09-13 14:38:52');
-INSERT INTO `light` VALUES ('15', '38', '1', '2016-09-13 15:21:45', '2016-09-13 15:21:45');
+INSERT INTO `light` VALUES ('1', '2', '100.00', '2016-09-13 14:37:10', '2016-09-13 14:37:12');
+INSERT INTO `light` VALUES ('2', '11', '100.00', '2016-09-13 14:37:33', '2016-09-13 14:37:36');
+INSERT INTO `light` VALUES ('3', '12', '100.00', '2016-09-13 14:39:12', '2016-09-13 14:39:15');
+INSERT INTO `light` VALUES ('4', '13', '100.00', '2016-09-13 14:39:09', '2016-09-13 14:39:10');
+INSERT INTO `light` VALUES ('5', '14', '100.00', '2016-09-13 14:39:05', '2016-09-13 14:39:08');
+INSERT INTO `light` VALUES ('6', '15', '100.00', '2016-09-13 14:39:02', '2016-09-13 14:39:04');
+INSERT INTO `light` VALUES ('7', '16', '100.00', '2016-09-13 14:39:00', '2016-09-13 14:39:01');
+INSERT INTO `light` VALUES ('8', '24', '100.00', '2016-09-13 14:38:57', '2016-09-13 14:38:59');
+INSERT INTO `light` VALUES ('10', '27', '100.00', '2016-09-13 14:38:48', '2016-09-13 14:38:50');
+INSERT INTO `light` VALUES ('11', '30', '100.00', '2016-09-13 14:38:45', '2016-09-13 14:38:47');
+INSERT INTO `light` VALUES ('12', '31', '100.00', '2016-09-13 14:38:54', '2016-09-13 14:38:52');
+INSERT INTO `light` VALUES ('15', '38', '32.43', '2016-09-13 15:21:45', '2016-09-23 08:39:20');
 
 -- ----------------------------
 -- Table structure for `television`
@@ -404,20 +410,22 @@ DROP TABLE IF EXISTS `television`;
 CREATE TABLE `television` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `equipment_id` int(11) NOT NULL DEFAULT '0' COMMENT '设备id',
-  `channel` int(11) NOT NULL DEFAULT '0' COMMENT '频道',
-  `volume` int(11) NOT NULL DEFAULT '20' COMMENT '音量',
+  `channel` int(11) NOT NULL DEFAULT '0' COMMENT '频道 0-200',
+  `volume` int(11) NOT NULL DEFAULT '20' COMMENT '音量 0-100',
   `model` int(11) NOT NULL DEFAULT '0' COMMENT '模式 0正常  1冷色  2暖色',
-  `created_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `silent` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '0没静音  1静音',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of television
 -- ----------------------------
-INSERT INTO `television` VALUES ('1', '1', '15', '20', '0', '2016-09-12 16:43:04', '2016-09-12 16:43:04');
-INSERT INTO `television` VALUES ('2', '23', '6', '70', '0', '2016-09-12 16:43:18', '2016-09-12 16:43:21');
-INSERT INTO `television` VALUES ('3', '10', '22', '20', '0', '2016-09-13 14:40:12', '2016-09-13 14:40:09');
+INSERT INTO `television` VALUES ('1', '1', '15', '20', '0', '0', '2016-09-12 16:43:04', '2016-09-12 16:43:04');
+INSERT INTO `television` VALUES ('2', '23', '6', '70', '0', '0', '2016-09-12 16:43:18', '2016-09-12 16:43:21');
+INSERT INTO `television` VALUES ('3', '10', '22', '20', '0', '0', '2016-09-13 14:40:12', '2016-09-13 14:40:09');
+INSERT INTO `television` VALUES ('4', '40', '2', '1', '2', '0', '2016-09-19 15:37:47', '2016-09-23 08:37:53');
 
 -- ----------------------------
 -- Table structure for `users`
@@ -439,10 +447,10 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('25', 'number5', '212@qq.com', '$2y$10$KuHvJSpQ67mzb0PieXkxPuJ3OsnwekOQuDev4aFKm85bR/S9g2Xme', '1', 'HY09yVbWrn4ILkleP0IZqyed07SuWNlMaPYKs4SgI6TLiOdDq7CMQuQAfY1z', '2016-08-18 08:32:04', '2016-09-14 14:19:20');
+INSERT INTO `users` VALUES ('25', 'number5', '212@qq.com', '$2y$10$KuHvJSpQ67mzb0PieXkxPuJ3OsnwekOQuDev4aFKm85bR/S9g2Xme', '1', 'jRoYZmA0vhpaf7oe5Lqt1sdzHrukazOVFaohsuBp5oZ1sFj7pFzRLc2pap50', '2016-08-18 08:32:04', '2016-09-14 16:56:06');
 INSERT INTO `users` VALUES ('26', '6666', '211@qq.com', '$2y$10$0oub3VxuiKwfmsKPlEw.tuXjx7evlAUFoiPaGgAQ/SKc1BzxdEE5S', '1', 'PwX8KZFGltaa4M0loELfWlzk7NbtU9tJcsvqbo4m6JZrnaUngFIgWLTQE4cH', '2016-08-18 08:46:04', '2016-09-13 10:56:16');
 INSERT INTO `users` VALUES ('28', 'xxx', '210@qq.com', '$2y$10$KZP6FXg5A6oPihRaZNEbAeLBTYvI6dnHOeF7J.b/E0xSl7jBlMF.O', '1', '6wblW2pOTXYMING5fFhJHu8tx5N0LihUxC3acLAUPqjErff3Z9QPlCBDVoOh', '2016-08-18 08:55:12', '2016-09-07 16:42:35');
-INSERT INTO `users` VALUES ('29', 'bbbb', '213@qq.com', '$2y$10$N0FpqOnYfu17UYwcXicqjuLkA2Pb9fhGE8sttWQoGbKuilKABBdlu', '1', 'ThApRMfYQjgb1kAG6pEEXGb7HlX8CoUXNgGGWIHbfoFAN2vh3u8PkpY0iNll', '2016-08-20 09:03:48', '2016-09-14 14:16:45');
-INSERT INTO `users` VALUES ('30', 'xc', '214@qq.com', '$2y$10$NPw/24kG588Dd7ZagrwYE.7i42eJ9OkCS81RO0NMB8CeTL.2U5ESK', '0', 'IWN9sEugQ6M8aT4lZZdvhSWuPYjdUfpiK53kqXzWVCXWCdotYWdRUdWuvCoT', '2016-08-31 17:21:44', '2016-09-14 14:19:06');
+INSERT INTO `users` VALUES ('29', 'bbbb', '213@qq.com', '$2y$10$N0FpqOnYfu17UYwcXicqjuLkA2Pb9fhGE8sttWQoGbKuilKABBdlu', '1', 'vPzwNq3UTnU4TPj8IN1mj6CqaqqVCb8ZbgO9XagBrJVvCv34oHOBInWRjl9s', '2016-08-20 09:03:48', '2016-09-14 16:40:57');
+INSERT INTO `users` VALUES ('30', 'xc', '214@qq.com', '$2y$10$NPw/24kG588Dd7ZagrwYE.7i42eJ9OkCS81RO0NMB8CeTL.2U5ESK', '0', 'sqCoHcrDvUQmWYShtmylbsNLkAnG9FaALe3acn4gJqTAjrqedfGSDOavaSkA', '2016-08-31 17:21:44', '2016-09-14 16:41:44');
 INSERT INTO `users` VALUES ('31', 'xx', '222@qq.com', '$2y$10$EeeZOHftT/OjYvfU.laCnuQNjveVCsTE0cgOgGUAAjxF5HCAs6Cu.', '1', 'RbDy9AfepyPP4cmgAd5JUSJxlV4IzLFs29iJGy1sgSqD7ffcbYoNbhH0Ge7J', '2016-09-01 09:59:24', '2016-09-13 09:19:24');
 INSERT INTO `users` VALUES ('32', 'xx', '215@qq.com', '$2y$10$TYgnwkjMr0X7X/k/xFBdi.cJjE7ZfUMZJe0GUnOsHyZ9NeSheVU8i', '1', 'oVe2mmZK4B2Dmun4VPC8XBUjHsMnHeBhx5ujoF4WtpKaPYKFKKncdCMgTWyb', '2016-09-07 14:15:47', '2016-09-12 17:40:35');
