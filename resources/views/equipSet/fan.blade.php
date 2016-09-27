@@ -44,15 +44,15 @@
     </div>
     <div class="set">
         <div class="row row-set-50">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-column">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 row-column btn btn-default">
                 <a href="{{url('/equipset/onoff/id/'.$equipIdName[0]['id'])}}" type="button" style="color: inherit;display: block">开关</a>
             </div>
         </div>
         <div class="row row-set-50">
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-column" id="setFanSpeed" >
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-column btn btn-default" id="setFanSpeed" >
                 <a type="button" style="color: inherit">风速</a>
             </div>
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-column" id="setFanSwing">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 row-column btn btn-default" id="setFanSwing">
                 <a  type="button" style="color: inherit">左右摆风</a>
             </div>
         </div>
