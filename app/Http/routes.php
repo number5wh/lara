@@ -45,6 +45,7 @@ Route::group(['prefix'=>'/equip'],function(){
 });
 
 Route::group(['prefix'=>'/equipset'],function(){
+    //Route::get('/setName','Equip\EquipSetController@setName');
     Route::get('/set/id/{id}/type/{type_id}','Equip\EquipSetController@set');
     Route::get('/onoff/id/{id}','Equip\EquipSetController@equipOnOff');
 });

@@ -273,18 +273,18 @@ $(document).on("click", "#equipSet", function() {
             console.log("close");
         },
         actions: [
-            {
+   /*         {
                 text: "修改设备名",
                 className: "color-primary",
                 onClick: function() {
                     //$.alert("你选择了“编辑”");
                     var dm = window.location.host;
-                    var tg = "/equipSet/setName";
+                    var tg = "/equipset/setName";
                     var url = "http://"+dm+tg;
                     window.location.href=url;
 
                 }
-            },
+            },*/
         ]
     });
 });
