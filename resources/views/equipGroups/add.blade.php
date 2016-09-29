@@ -57,7 +57,8 @@
         $num2 = $equip2==null?0:count($equip2);
             if($num2 != 0){
                 ?>
-                <div class="weui_cells_title"><b class="slider">别人分配的部分&nbsp;&nbsp;&nbsp;</b><input type='checkbox' class='checkedAll1'/>{{count($equip2)}}个设备</div>
+                <div class="weui_cells_title"><div class="slider list">别人分配的部分&nbsp;&nbsp;&nbsp;</div>
+                    <span style="color: #999999">全选</span><input type='checkbox' class='checkedAll1'/>{{count($equip2)}}个设备</div>
                 <div class="weui_cells weui_cells_access" style='display:none'>
                 <?php
 
@@ -65,7 +66,7 @@
                     ?>
            <a class="weui_cell" href="javascript:;">
                <div class="weui_cell_bd weui_cell_primary">
-                   <p><input type="checkbox" name="equip_id[]" value="{{$equip2[$k]['id']}}">{{$equip2[$k]['name']}}</p>
+                   <p><input type="checkbox" name="equip_id[]" value="{{$equip2[$k][0]['id']}}">{{$equip2[$k][0]['name']}}</p>
                </div>
            </a>
            <?php
